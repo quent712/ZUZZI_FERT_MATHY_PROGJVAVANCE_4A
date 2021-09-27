@@ -30,10 +30,9 @@ public class MCTS1
         if(pokemonAdv != null && pokemonMe != null){
             
             // initialise les données du simulateur
-            GameSimul.lifeAdv = pokemonAdv.getStats().Pv;
-            GameSimul.lifeMe = pokemonMe.getStats().Pv;
-            GameSimul.chargeAdv = pokemonAdv.charged;
-            GameSimul.chargeMe = pokemonMe.charged;
+            GameSimul.TouchAdv = 0;
+            GameSimul.TouchME = 0;
+           
             
             for(int i = 0 ; i < 4 ; i++){
                 if(pokemonMe.capacities[i] != null)
@@ -42,7 +41,7 @@ public class MCTS1
                     GameSimul.ppAdv[i] = pokemonAdv.capacities[i].getPP();
             }
 
-            compute(tree,pokemonMe, pokemonAdv);
+            compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
 
         // Appel horloge
