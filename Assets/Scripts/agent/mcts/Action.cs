@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 public class GameSimul{
-
+/// <summary>
+/// Le script a pour but de définir les différentes actions possible dans le jeu.
+/// </summary>
     public static bool isFinished = false;
 
     public static float chargeAdv=0, chargeMe=0;
@@ -22,12 +24,14 @@ public class GameSimul{
         chargeMe = 0;
     }
 
-    public static void PlayAction(Node action, Pokemon pokemonMe, Pokemon pokemonAdv){
+    public static void PlayAction(Node action){
         
-        // Gestion du niveau chargement des pokémons
-        chargeMe += MCTS.FREQUENCY * pokemonMe.getStats().Vitess;
-        chargeAdv += MCTS.FREQUENCY * pokemonAdv.getStats().Vitess;
+        /// Gestion du niveau chargement des pokémons
+        
+        //chargeMe += MCTS.FREQUENCY * pokemonMe.getStats().Vitess;
+        //chargeAdv += MCTS.FREQUENCY * pokemonAdv.getStats().Vitess;
 
+       
         if(chargeMe > 100) chargeMe = 0;
         if(chargeAdv > 100) chargeAdv = 0;
 
@@ -72,7 +76,7 @@ public class GameSimul{
         
     }
 
-    public static System.Array GetNextPossibleAction(Node n){
+    public static System.Array GetNextPossibleAction(Node n){ //?????
         return PossibleAction.GetValues(typeof(PossibleAction));
     }
 
