@@ -8,10 +8,12 @@ public class OptionMenuScript : MonoBehaviour
     // Start is called before the first frame update
     public void SelectAIHard()
     {
-        Debug.Log("Test Hard");
+        AIandSound.Instance.Difficulty = "Hard";
+        //Debug.Log(AIandSound.Instance.Difficulty);
     }
     public void SelectAIEasy()
     {
-        Debug.Log("Test Easy");
+        AIandSound.Instance.Difficulty = "Easy";
+        //Debug.Log(AIandSound.Instance.Difficulty);
     }
 }
