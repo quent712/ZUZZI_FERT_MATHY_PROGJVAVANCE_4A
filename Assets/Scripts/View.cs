@@ -11,6 +11,10 @@ public class View
 
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
+    
+    // TEMPORARY VARIABLES
+    private Dictionary<int, Bomb> tempDict;
+    private List<int> idList;
 
     //private GameObject wallModel;
 
@@ -19,7 +23,6 @@ public class View
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    //public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall,GameObject floor, GameObject destructibleEnv)
     public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb)
     {
         playerObject = player;
@@ -27,6 +30,8 @@ public class View
 
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
+        
+        // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
             GameObject newPlayer = GameObject.Instantiate(playerObject);
@@ -42,17 +47,28 @@ public class View
     public void UpdateView(Dictionary<string, object> gameState)
     {
         
+        // Update Players Position
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
             playerObjectDict[playerInfo.playerID].transform.position =
                 new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
         }
         
-        foreach (KeyValuePair<int,GameObject> bombItem in bombObjectDict)
+        // Check for bombs to destroy and create explosions
+        tempDict = gameState["BombsInfo"] as Dictionary<int, Bomb>;
+        idList = new List<int>(bombObjectDict.Keys);
+        foreach (int bombKey in idList)
         {
-            // TO BE CONTINUED
+            
+            if (!tempDict.ContainsKey(bombKey))
+            {
+                // VISUAL EXPLOSION HANDLED HERE
+                GameObject.Destroy(bombObjectDict[bombKey]);
+                bombObjectDict.Remove(bombKey);
+            }
         }
         
+        // Update new bombs
         foreach (KeyValuePair<int,Bomb> bombItem in (IEnumerable) gameState["BombsInfo"])
         {
             if (!bombObjectDict.ContainsKey(bombItem.Key))

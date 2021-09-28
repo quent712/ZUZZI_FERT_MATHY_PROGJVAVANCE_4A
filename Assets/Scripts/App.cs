@@ -16,7 +16,7 @@ public class App : MonoBehaviour
     public GameObject player;
     public GameObject bomb;
     
-    // TO ADDED
+    // TO BE ADDED
     
 
     //public GameObject wallModel;

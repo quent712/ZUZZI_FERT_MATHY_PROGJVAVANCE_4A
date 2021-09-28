@@ -23,9 +23,10 @@ public enum MapEnvironment
 // The map is an array containing the possible element of environment for each square 
 public struct Map
 {
-    public Map(int mapx,int mapY) : this()
+    // Map constructor
+    public Map(int mapX,int mapY) : this()
     {
-        mapSizeX = mapx;
+        mapSizeX = mapX;
         mapSizeY = mapY;
         myMapLayout = CreateRandomMap();
     }
@@ -64,8 +65,15 @@ public struct Map
 // A player is a position and health pool
 public struct Player
 {
+    private static int nbPlayer = 0; // increments to give each player a unique ID
+    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
+    
+    public int playerID;
+    public Vector2 position;
+    public int health;
+    
     // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
-    // In a struct, a constructor needs to have a parameter and be called using this parameter
+    // Player Constructor
     public Player(int hp = 1)
     {
         playerID = nbPlayer;
@@ -74,14 +82,6 @@ public struct Player
         health = hp;
 
     }
-    
-    
-    private static int nbPlayer = 0; // increments to give each player a unique ID
-    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
-    
-    public int playerID;
-    public Vector2 position;
-    public int health;
 
     // TO BE MOVED TO MODEL CLASS TO HANDLE COLLISIONS
     public void makeAMove(MovementDirection direction)
@@ -122,6 +122,7 @@ public struct Bomb
     public Vector2 position;
     public float explosionTime;
     
+    // Bomb constructor
     public Bomb(Vector2 setPosition,float time)
     {
         bombID = nbBomb;
@@ -143,6 +144,9 @@ public class Model
     private Dictionary<string, object> myGameState;
     
     private float inGameTimer;
+    
+    // TEMPORARY VARIABLES
+    private List<int> idList;
     
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
@@ -188,11 +192,15 @@ public class Model
     {
         
         inGameTimer += Time.deltaTime;
-        foreach (KeyValuePair<int,Bomb> bombItem in bombList)
+        
+        // Bomb suppression if timer expired
+        idList = new List<int>(bombList.Keys);
+        foreach (int bombKey in idList)
         {
-            if (inGameTimer > bombItem.Value.explosionTime)
+            if (inGameTimer > bombList[bombKey].explosionTime)
             {
-                bombList.Remove(bombItem.Key);
+                // HANDLE EXPLOSION COLLISION HERE
+                bombList.Remove(bombKey);
             }
         }
     }
