@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 
 // General class containing the main variables and responsible of initiating the different classes
-public class Application : MonoBehaviour
+public class App : MonoBehaviour
 {
     private View myView;
     private Controller myController;
@@ -15,8 +12,20 @@ public class Application : MonoBehaviour
     public int numberOfPlayer = 2;
     public int mapSizeX = 13;
     public int mapSizeY = 13;
-
     
+    public GameObject player;
+    
+    
+    // TO ADDED
+    //public GameObject bombModel;
+
+    //public GameObject wallModel;
+
+    //public GameObject floorModel;
+
+    //public GameObject destructibleEnvModel;
+
+    // Initialize the different parts of the MVC model
     private void Start()
     {
         
@@ -25,7 +34,7 @@ public class Application : MonoBehaviour
         myController = new Controller();
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState());
+        myView = new View(myModel.getGameState(),player);
         
     }
 
@@ -33,5 +42,7 @@ public class Application : MonoBehaviour
     void Update()
     {
         myController.UpdateController();
+        myModel.UpdateModel();
+        myView.UpdateView(myModel.getGameState());
     }
 }
