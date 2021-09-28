@@ -12,19 +12,21 @@ public class View
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
     
+    private GameObject wallModel;
+    private Dictionary<int, GameObject> wallModelDict;
+    
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
 
-    private GameObject wallModel;
-    private Dictionary<int, GameObject> wallModelDict;
+    
 
     //private GameObject floorModel;
 
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall)
     {
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
@@ -45,12 +47,11 @@ public class View
             playerObjectDict.Add(playerInfo.playerID,newPlayer);
             
         }
-
-        Map temp = (Map) gameState["MapInfo"];
         
+        // Visual Map generation
+        Map temp = (Map) gameState["MapInfo"];
         for (int i=0;  i < 15; i++)
         {
-            
             int padz = i;
             for (int j = 0;  j<15; j++)
             {

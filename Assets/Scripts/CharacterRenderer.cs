@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CharacterRender : MonoBehaviour
 {
-
+    public Vector2 v;
     /*public float minX, maxX;
     public float minY, maxY;
 
-    public Vector2 v;
+    
 
     public Vector2 originalPosition;
 
