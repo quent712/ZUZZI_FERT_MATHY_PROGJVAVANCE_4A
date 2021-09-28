@@ -42,11 +42,11 @@ public struct Map
         {
             for (int i = 0; i < mapSizeX+2; i++)
             {
-                if (j == 0 || j == +1)
+                if (j == 0 || j == mapSizeY+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
-                else if (i == 0 || i == +1)
+                else if (i == 0 || i == mapSizeX+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }

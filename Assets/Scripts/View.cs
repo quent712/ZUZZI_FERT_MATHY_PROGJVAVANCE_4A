@@ -43,11 +43,22 @@ public class View
 
         Map temp = (Map) gameState["MapInfo"];
         
-        for (int x=0;  x < 15; x++)
+        for (int i=0;  i < 15; i++)
         {
+            
+            int padz = i;
             for (int j = 0;  j<15; j++)
             {
-                Debug.Log(temp.myMapLayout[x,j]);
+                int padx = j;
+                
+                if (temp.myMapLayout[i,j] == MapEnvironment.Wall)
+                {
+                    BlockFactory.Factory(wall, j+padx,i+padz);
+                }
+                else
+                {
+                    //Debug.Log("Nothing Here");
+                }
             }
         }
     }
