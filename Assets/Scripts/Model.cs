@@ -13,8 +13,11 @@ public enum MovementDirection
 
 public enum Action
 {
-    Deplacement,
-    SetBomb,
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    SetBomb
 };
 
 // Possible Environment on the map
@@ -29,9 +32,10 @@ public enum MapEnvironment
 // The map is an array containing the possible element of environment for each square 
 public struct Map
 {
-    public Map(int mapx,int mapY) : this()
+    // Map constructor
+    public Map(int mapX,int mapY) : this()
     {
-        mapSizeX = mapx;
+        mapSizeX = mapX;
         mapSizeY = mapY;
         myMapLayout = CreateRandomMap();
     }
@@ -70,8 +74,16 @@ public struct Map
 // A player is a position and health pool
 public struct Player
 {
+    private static int nbPlayer = 0; // increments to give each player a unique ID
+    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
+    
+    public int playerID;
+    public Vector2 position;
+    public int health;
+    public float timeuntilbomb;
+    
     // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
-    // In a struct, a constructor needs to have a parameter and be called using this parameter
+    // Player Constructor
     public Player(int hp = 1)
     {
         playerID = nbPlayer;
@@ -79,50 +91,34 @@ public struct Player
         position = new Vector2(1, 1);
         health = hp;
         timeuntilbomb = 0f;
-
-
     }
 
-    public float timeuntilbomb;
-    
-    private static int nbPlayer = 0; // increments to give each player a unique ID
-    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
-    
-    public int playerID;
-    public Vector2 position;
-    public int health;
-
     // TO BE MOVED TO MODEL CLASS TO HANDLE COLLISIONS
-    public void makeAMove(MovementDirection direction)
+    public void makeAMove(Action direction)
     {   
         
         // Currently with direct incrementation
         switch (direction)
         {
-            case MovementDirection.Up:
+            case Action.MoveUp:
                 position.y += movementStep;
                 break;
             
-            case MovementDirection.Down:
+            case Action.MoveDown:
                 position.y -= movementStep;
                 break;
             
-            case MovementDirection.Right:
+            case Action.MoveRight:
                 position.x += movementStep;
                 break;
             
-            case MovementDirection.Left:
+            case Action.MoveLeft:
                 position.x -= movementStep;
                 break;
             
             default:
                 break;
         }
-    }
-
-    public void resettimebeforebomb(float gametime,float i )
-    {
-        this.timeuntilbomb = gametime +i;
     }
 }
 
@@ -136,6 +132,7 @@ public struct Bomb
     public Vector2 position;
     public float explosionTime;
     
+    // Bomb constructor
     public Bomb(Vector2 setPosition,float time)
     {
         bombID = nbBomb;
@@ -158,6 +155,9 @@ public class Model
     
     private float inGameTimer;
     
+    // TEMPORARY VARIABLES
+    private List<int> idList;
+    
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
@@ -174,24 +174,19 @@ public class Model
         
     }
 
-    public float getgametimer()
-    {
-        return inGameTimer;
-    }
-    public Player getPlayer(int i)
-    {
-        return playerList[i];
-    }
+    
     // TO BE CONTINUED: HANDLE BORDER DETECTION
-    public void movementAction(MovementDirection chosenDirection, int playerID)
+    public void actionHandler(Action action, int playerID)
     {
-        playerList[playerID].makeAMove(chosenDirection);
+        if(action!=Action.SetBomb) playerList[playerID].makeAMove(action);
+        else dropBombAction(playerID);
     }
     
-    public void dropBombAction(int playerID)
+    // Drop a bomb at the position of a given player
+    private void dropBombAction(int playerID)
     {   
-        Debug.Log("Ingametimer" + inGameTimer);
-        Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
+        //Debug.Log("Ingametimer" + inGameTimer);
+        //Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
         if (inGameTimer > playerList[playerID].timeuntilbomb)
         {
             Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
@@ -218,13 +213,16 @@ public class Model
     {
         
         inGameTimer += Time.deltaTime;
-        foreach (KeyValuePair<int,Bomb> bombItem in bombList)
+        
+        // Bomb suppression if timer expired
+        idList = new List<int>(bombList.Keys);
+        foreach (int bombKey in idList)
         {
-            if (inGameTimer > bombItem.Value.explosionTime)
+            if (inGameTimer > bombList[bombKey].explosionTime)
             {
-                bombList.Remove(bombItem.Key);
+                // HANDLE EXPLOSION COLLISION HERE
+                bombList.Remove(bombKey);
             }
         }
     }
-    
 }

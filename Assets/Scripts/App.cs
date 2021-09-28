@@ -20,6 +20,7 @@ public class App : MonoBehaviour
     
 
     public bool randomIA = false;
+    // TO BE ADDED
     
     public GameObject pauseCanvas;
     //public GameObject floorModel;

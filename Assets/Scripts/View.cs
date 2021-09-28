@@ -11,16 +11,21 @@ public class View
 
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
-
+    
     private GameObject wallModel;
     private Dictionary<int, GameObject> wallModelDict;
+    
+    // TEMPORARY VARIABLES
+    private Dictionary<int, Bomb> tempDict;
+    private List<int> idList;
+
+    
 
     //private GameObject floorModel;
 
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    //public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall,GameObject floor, GameObject destructibleEnv)
     public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall)
     {
         playerObject = player;
@@ -32,6 +37,8 @@ public class View
         wallModel = wall;
         wallModelDict = new Dictionary<int, GameObject>();
         
+        
+        // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
             GameObject newPlayer = GameObject.Instantiate(playerObject);
@@ -40,12 +47,11 @@ public class View
             playerObjectDict.Add(playerInfo.playerID,newPlayer);
             
         }
-
-        Map temp = (Map) gameState["MapInfo"];
         
+        // Visual Map generation
+        Map temp = (Map) gameState["MapInfo"];
         for (int i=0;  i < 15; i++)
         {
-            
             int padz = i;
             for (int j = 0;  j<15; j++)
             {
@@ -67,17 +73,28 @@ public class View
     public void UpdateView(Dictionary<string, object> gameState)
     {
         
+        // Update Players Position
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
             playerObjectDict[playerInfo.playerID].transform.position =
                 new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
         }
         
-        foreach (KeyValuePair<int,GameObject> bombItem in bombObjectDict)
+        // Check for bombs to destroy and create explosions
+        tempDict = gameState["BombsInfo"] as Dictionary<int, Bomb>;
+        idList = new List<int>(bombObjectDict.Keys);
+        foreach (int bombKey in idList)
         {
-            // TO BE CONTINUED
+            
+            if (!tempDict.ContainsKey(bombKey))
+            {
+                // VISUAL EXPLOSION HANDLED HERE
+                GameObject.Destroy(bombObjectDict[bombKey]);
+                bombObjectDict.Remove(bombKey);
+            }
         }
         
+        // Update new bombs
         foreach (KeyValuePair<int,Bomb> bombItem in (IEnumerable) gameState["BombsInfo"])
         {
             if (!bombObjectDict.ContainsKey(bombItem.Key))

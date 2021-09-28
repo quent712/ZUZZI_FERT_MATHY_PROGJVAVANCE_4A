@@ -1,4 +1,4 @@
-    using UnityEngine;
+using UnityEngine;
 
 // Conceptually the Controller is the interface with which the players will interact
 // It will transmit instructions to the model on what actions to take
@@ -25,23 +25,23 @@ public class Controller
         // PLAYER 1 INPUTS
         if (Input.GetKey(KeyCode.Z))
         {
-            activeModel.movementAction(MovementDirection.Up, 0);
+            activeModel.actionHandler(Action.MoveUp, 0);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            activeModel.movementAction(MovementDirection.Down, 0);
+            activeModel.actionHandler(Action.MoveDown, 0);
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            activeModel.movementAction(MovementDirection.Left, 0);
+            activeModel.actionHandler(Action.MoveLeft, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            activeModel.movementAction(MovementDirection.Right, 0);
+            activeModel.actionHandler(Action.MoveRight, 0);
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            activeModel.dropBombAction(0);
+            activeModel.actionHandler(Action.SetBomb,0);
         }
         
         // PLAYER 2 INPUTS
@@ -51,42 +51,34 @@ public class Controller
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                activeModel.movementAction(MovementDirection.Up, 1);
+                activeModel.actionHandler(Action.MoveUp, 1);
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                activeModel.movementAction(MovementDirection.Down, 1);
+                activeModel.actionHandler(Action.MoveDown, 1);
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                activeModel.movementAction(MovementDirection.Left, 1);
+                activeModel.actionHandler(Action.MoveLeft, 1);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                activeModel.movementAction(MovementDirection.Right, 1);
+                activeModel.actionHandler(Action.MoveRight, 1);
             }
 
             if (Input.GetKeyDown(KeyCode.RightShift))
             {
-                activeModel.dropBombAction(1);
+                activeModel.actionHandler(Action.SetBomb,1);
             }
         }
 
         else
         {
-             Action action = (Action)Random.Range(0, 2);
-             
-             if (action == Action.Deplacement)
-             {activeModel.movementAction((MovementDirection)Random.Range(0, 4),1);}
-             
-             else if (action == Action.SetBomb ) ;
-             {
-                 activeModel.dropBombAction(1);
-                 
-             }
+             Action action = (Action)Random.Range(0, 5);
+             activeModel.actionHandler(action, 1);
         }
     }
 }
