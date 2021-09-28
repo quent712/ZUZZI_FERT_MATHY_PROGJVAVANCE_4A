@@ -12,7 +12,8 @@ public class View
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
 
-    //private GameObject wallModel;
+    private GameObject wallModel;
+    private Dictionary<int, GameObject> wallModelDict;
 
     //private GameObject floorModel;
 
@@ -20,22 +21,35 @@ public class View
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
     //public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall,GameObject floor, GameObject destructibleEnv)
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall)
     {
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
 
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
+        
+        wallModel = wall;
+        wallModelDict = new Dictionary<int, GameObject>();
+        
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
             GameObject newPlayer = GameObject.Instantiate(playerObject);
             newPlayer.transform.position = new Vector3(playerInfo.position.x,0,playerInfo.position.y);
             newPlayer.name = playerInfo.playerID.ToString();
             playerObjectDict.Add(playerInfo.playerID,newPlayer);
+            
         }
+
+        Map temp = (Map) gameState["MapInfo"];
         
-        // Add map generetion here
+        for (int x=0;  x < 15; x++)
+        {
+            for (int j = 0;  j<15; j++)
+            {
+                Debug.Log(temp.myMapLayout[x,j]);
+            }
+        }
     }
     
     // Update every model with the positions from Model

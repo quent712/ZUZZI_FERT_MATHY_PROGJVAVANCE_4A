@@ -30,7 +30,7 @@ public struct Map
         myMapLayout = CreateRandomMap();
     }
     
-    private MapEnvironment[,] myMapLayout;
+    public MapEnvironment[,] myMapLayout;
     public int mapSizeX;
     public int mapSizeY;
 
@@ -182,6 +182,8 @@ public class Model
         
         return myGameState;
     }
+
+    
     
     // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
     public void UpdateModel()

@@ -15,11 +15,9 @@ public class App : MonoBehaviour
     
     public GameObject player;
     public GameObject bomb;
+    public GameObject wall;
     
     // TO ADDED
-    
-
-    //public GameObject wallModel;
 
     //public GameObject floorModel;
 
@@ -34,7 +32,7 @@ public class App : MonoBehaviour
         myController = new Controller();
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,bomb);
+        myView = new View(myModel.getGameState(),player,bomb,wall);
         
     }
 
