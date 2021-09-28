@@ -15,14 +15,13 @@ public class App : MonoBehaviour
     
     public GameObject player;
     public GameObject bomb;
+    public GameObject wall;
     public Randomer randomer;
-
-    public bool randomIA = false;
-    // TO ADDED
     
 
-    //public GameObject wallModel;
-
+    public bool randomIA = false;
+    
+    public GameObject pauseCanvas;
     //public GameObject floorModel;
 
     //public GameObject destructibleEnvModel;
@@ -42,7 +41,7 @@ public class App : MonoBehaviour
         
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,bomb);
+        myView = new View(myModel.getGameState(),player,bomb, wall);
         
         
         
@@ -55,5 +54,11 @@ public class App : MonoBehaviour
         myModel.UpdateModel();
         myView.UpdateView(myModel.getGameState());
         
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseCanvas.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }
