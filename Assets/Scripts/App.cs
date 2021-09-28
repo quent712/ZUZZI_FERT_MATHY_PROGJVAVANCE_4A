@@ -14,10 +14,10 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
-    
+    public GameObject bomb;
     
     // TO ADDED
-    //public GameObject bombModel;
+    
 
     //public GameObject wallModel;
 
@@ -34,7 +34,7 @@ public class App : MonoBehaviour
         myController = new Controller();
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player);
+        myView = new View(myModel.getGameState(),player,bomb);
         
     }
 
