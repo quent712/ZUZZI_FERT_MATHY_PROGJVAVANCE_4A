@@ -16,6 +16,8 @@ public class App : MonoBehaviour
     public GameObject player;
     public GameObject bomb;
     public GameObject wall;
+
+    public GameObject pauseCanvas;
     
     // TO ADDED
 
@@ -42,5 +44,12 @@ public class App : MonoBehaviour
         myController.UpdateController();
         myModel.UpdateModel();
         myView.UpdateView(myModel.getGameState());
+        
+        //Pause Game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseCanvas.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }
