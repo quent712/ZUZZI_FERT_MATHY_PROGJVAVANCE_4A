@@ -11,6 +11,12 @@ public enum MovementDirection
     Right
 };
 
+public enum Action
+{
+    Deplacement,
+    SetBomb,
+};
+
 // Possible Environment on the map
 public enum MapEnvironment
 {
@@ -72,9 +78,12 @@ public struct Player
         nbPlayer++;
         position = new Vector2(1, 1);
         health = hp;
+        timeuntilbomb = 0f;
+
 
     }
-    
+
+    public float timeuntilbomb;
     
     private static int nbPlayer = 0; // increments to give each player a unique ID
     public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
@@ -109,6 +118,11 @@ public struct Player
             default:
                 break;
         }
+    }
+
+    public void resettimebeforebomb(float gametime,float i )
+    {
+        this.timeuntilbomb = gametime +i;
     }
 }
 
@@ -159,7 +173,15 @@ public class Model
         }
         
     }
-    
+
+    public float getgametimer()
+    {
+        return inGameTimer;
+    }
+    public Player getPlayer(int i)
+    {
+        return playerList[i];
+    }
     // TO BE CONTINUED: HANDLE BORDER DETECTION
     public void movementAction(MovementDirection chosenDirection, int playerID)
     {
@@ -167,9 +189,15 @@ public class Model
     }
     
     public void dropBombAction(int playerID)
-    {
-        Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
-        bombList.Add(newBomb.bombID,newBomb);
+    {   
+        Debug.Log("Ingametimer" + inGameTimer);
+        Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
+        if (inGameTimer > playerList[playerID].timeuntilbomb)
+        {
+            Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
+            bombList.Add(newBomb.bombID, newBomb);
+            playerList[playerID].timeuntilbomb = inGameTimer + 1f;
+        }
     }
     
     // Returns the current state of the game in a dictionary
@@ -196,4 +224,5 @@ public class Model
             }
         }
     }
+    
 }

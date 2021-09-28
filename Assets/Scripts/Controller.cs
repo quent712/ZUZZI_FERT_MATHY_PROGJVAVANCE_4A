@@ -77,7 +77,16 @@ public class Controller
 
         else
         {
-             activeModel.movementAction((MovementDirection)Random.Range(0, 4),1);
+             Action action = (Action)Random.Range(0, 2);
+             
+             if (action == Action.Deplacement)
+             {activeModel.movementAction((MovementDirection)Random.Range(0, 4),1);}
+             
+             else if (action == Action.SetBomb ) ;
+             {
+                 activeModel.dropBombAction(1);
+                 
+             }
         }
     }
 }
