@@ -6,9 +6,14 @@ public class ToggleAudio : MonoBehaviour
 {
     [SerializeField] private bool Togglesound, Togglemusic;
 
-    public void Toggle()
+    public void Togglezique()
     {
         if (Togglemusic) SoundManager.Instance.ToggleMusic();
+        
+    }
+
+    public void Toggleeffet()
+    {
         if (Togglesound) SoundManager.Instance.ToggleEffect();
     }
 }
