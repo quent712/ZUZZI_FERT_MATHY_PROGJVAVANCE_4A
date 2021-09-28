@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseAndWinLoseScript : MonoBehaviour
 {
+    [SerializeField] private AudioClip buttonclip;
     public void Resume()
     {
         Time.timeScale = 1.0f;
@@ -22,5 +23,9 @@ public class PauseAndWinLoseScript : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1.0f;
+    }
+    public void playsoundbutton()
+    {
+        SoundManager.Instance.PlaySound(buttonclip);
     }
 }

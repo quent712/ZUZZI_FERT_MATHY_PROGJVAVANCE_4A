@@ -36,7 +36,7 @@ public struct Map
         myMapLayout = CreateRandomMap();
     }
     
-    private MapEnvironment[,] myMapLayout;
+    public MapEnvironment[,] myMapLayout;
     public int mapSizeX;
     public int mapSizeY;
 
@@ -48,11 +48,11 @@ public struct Map
         {
             for (int i = 0; i < mapSizeX+2; i++)
             {
-                if (j == 0 || j == +1)
+                if (j == 0 || j == mapSizeY+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
-                else if (i == 0 || i == +1)
+                else if (i == 0 || i == mapSizeX+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
@@ -210,6 +210,8 @@ public class Model
         
         return myGameState;
     }
+
+    
     
     // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
     public void UpdateModel()

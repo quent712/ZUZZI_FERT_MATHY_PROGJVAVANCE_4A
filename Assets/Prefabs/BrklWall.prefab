@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4355942775455218070}
   - component: {fileID: 854753147088860723}
   - component: {fileID: 3186373962241147641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BrklWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

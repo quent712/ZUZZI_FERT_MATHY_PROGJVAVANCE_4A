@@ -26,4 +26,14 @@ public class SoundManager : MonoBehaviour
     {
         EffectSource.PlayOneShot(clip);
     }
+
+    public void ToggleEffect()
+    {
+        EffectSource.mute = !EffectSource.mute;
+    }
+    
+    public void ToggleMusic()
+    {
+        MusicSource.mute = !MusicSource.mute;
+    }
 }
