@@ -15,39 +15,47 @@ public class Controller
         // PLAYERID IS MANUALLY INPUTTED, NOT GOOD?
         
         // PLAYER 1 INPUTS
-        if (Input.GetKey("z"))
+        if (Input.GetKey(KeyCode.Z))
         {
             activeModel.movementAction(MovementDirection.Up, 0);
         }
-        if (Input.GetKey("s"))
+        if (Input.GetKey(KeyCode.S))
         {
             activeModel.movementAction(MovementDirection.Down, 0);
         }
-        if (Input.GetKey("q"))
+        if (Input.GetKey(KeyCode.Q))
         {
             activeModel.movementAction(MovementDirection.Left, 0);
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey(KeyCode.D))
         {
             activeModel.movementAction(MovementDirection.Right, 0);
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            activeModel.dropBombAction(0);
+        }
         
         // PLAYER 2 INPUTS
-        if (Input.GetKey("up"))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             activeModel.movementAction(MovementDirection.Up, 1);
         }
-        if (Input.GetKey("down"))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             activeModel.movementAction(MovementDirection.Down, 1);
         }
-        if (Input.GetKey("left"))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             activeModel.movementAction(MovementDirection.Left, 1);
         }
-        if (Input.GetKey("right"))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             activeModel.movementAction(MovementDirection.Right, 1);
+        }
+        if(Input.GetKeyDown(KeyCode.RightShift))
+        {
+            activeModel.dropBombAction(1);
         }
     }
 }

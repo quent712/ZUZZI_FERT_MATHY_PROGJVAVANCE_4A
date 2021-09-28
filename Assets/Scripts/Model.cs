@@ -116,14 +116,18 @@ public struct Player
 public struct Bomb
 {
     private static float bombTimer = 3.0f;
-    
+    private static int nbBomb = 0;
+
+    public int bombID;
     public Vector2 position;
     public float explosionTime;
     
-    public Bomb(Vector2 setPosition)
+    public Bomb(Vector2 setPosition,float time)
     {
+        bombID = nbBomb;
+        nbBomb++;
         position = setPosition;
-        explosionTime = Time.time + bombTimer;
+        explosionTime = time + bombTimer;
 
     }
 }
@@ -132,16 +136,20 @@ public struct Bomb
 // Model is gonna do most of calculation and handle collisions
 public class Model
 {
+    
     private Map currentMap;
     private Player[] playerList;
-    private Bomb[] bombList;
+    private Dictionary<int,Bomb> bombList;
     private Dictionary<string, object> myGameState;
+    
+    private float inGameTimer;
     
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
+        inGameTimer = 0.0f;
         playerList = new Player[numberOfPlayer];
-        bombList = new Bomb[10];
+        bombList = new Dictionary<int, Bomb>();
         currentMap = new Map(mapX,mapY);
         
         myGameState = new Dictionary<string, object>();
@@ -158,19 +166,34 @@ public class Model
         playerList[playerID].makeAMove(chosenDirection);
     }
     
+    public void dropBombAction(int playerID)
+    {
+        Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
+        bombList.Add(newBomb.bombID,newBomb);
+    }
+    
     // Returns the current state of the game in a dictionary
     public Dictionary<string, object> getGameState()
     {
         myGameState["MapInfo"] = currentMap;
+        myGameState["InGameTime"] = inGameTimer;
         myGameState["PlayersInfo"] = playerList;
         myGameState["BombsInfo"] = bombList;
         
         return myGameState;
     }
     
-    // TO BE DONE: HANDLE BOMB EXPLOSION DETECTION
+    // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
     public void UpdateModel()
     {
         
+        inGameTimer += Time.deltaTime;
+        foreach (KeyValuePair<int,Bomb> bombItem in bombList)
+        {
+            if (inGameTimer > bombItem.Value.explosionTime)
+            {
+                bombList.Remove(bombItem.Key);
+            }
+        }
     }
 }
