@@ -15,12 +15,14 @@ public class App : MonoBehaviour
     
     public GameObject player;
     public GameObject bomb;
+    public GameObject wall;
+    public Randomer randomer;
     
+
+    public bool randomIA = false;
     // TO BE ADDED
     
-
-    //public GameObject wallModel;
-
+    public GameObject pauseCanvas;
     //public GameObject floorModel;
 
     //public GameObject destructibleEnvModel;
@@ -30,19 +32,34 @@ public class App : MonoBehaviour
     {
         
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
+        CharacterRender charrender = new CharacterRender();
+        Randomer rand = new Randomer(charrender);
         
-        myController = new Controller();
+        
+        
+        myController = new Controller(rand);
+       
+        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,bomb);
+        myView = new View(myModel.getGameState(),player,bomb, wall);
+        
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        myController.UpdateController();
+        myController.UpdateController(randomIA);
         myModel.UpdateModel();
         myView.UpdateView(myModel.getGameState());
+        
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseCanvas.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }

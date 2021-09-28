@@ -16,7 +16,8 @@ public class View
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
 
-    //private GameObject wallModel;
+    private GameObject wallModel;
+    private Dictionary<int, GameObject> wallModelDict;
 
     //private GameObject floorModel;
 
@@ -31,6 +32,10 @@ public class View
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
         
+        wallModel = wall;
+        wallModelDict = new Dictionary<int, GameObject>();
+        
+        
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
@@ -38,9 +43,29 @@ public class View
             newPlayer.transform.position = new Vector3(playerInfo.position.x,0,playerInfo.position.y);
             newPlayer.name = playerInfo.playerID.ToString();
             playerObjectDict.Add(playerInfo.playerID,newPlayer);
+            
         }
+
+        Map temp = (Map) gameState["MapInfo"];
         
-        // Add map generetion here
+        for (int i=0;  i < 15; i++)
+        {
+            
+            int padz = i;
+            for (int j = 0;  j<15; j++)
+            {
+                int padx = j;
+                
+                if (temp.myMapLayout[i,j] == MapEnvironment.Wall)
+                {
+                    BlockFactory.Factory(wall, j+padx,i+padz);
+                }
+                else
+                {
+                    //Debug.Log("Nothing Here");
+                }
+            }
+        }
     }
     
     // Update every model with the positions from Model
