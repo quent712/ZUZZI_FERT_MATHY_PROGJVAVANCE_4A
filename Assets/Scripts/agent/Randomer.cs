@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Randomer : Agent
+public class Randomer
 {
     /*private double born;
     private System.Random random;
