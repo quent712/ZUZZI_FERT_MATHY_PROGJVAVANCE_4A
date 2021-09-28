@@ -34,12 +34,7 @@ public class MCTS1
             GameSimul.TouchME = 0;
            
             
-            for(int i = 0 ; i < 4 ; i++){
-                if(pokemonMe.capacities[i] != null)
-                    GameSimul.ppMe[i] = pokemonMe.capacities[i].getPP();
-                if(pokemonAdv.capacities[i] != null)
-                    GameSimul.ppAdv[i] = pokemonAdv.capacities[i].getPP();
-            }
+            
 
             compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
@@ -75,8 +70,8 @@ public class MCTS1
             // Si priorité de mouvement ou action ESQUIVE
             // On se déplace
             a = new int[4];
-            if(priorityMove || currentAction == PossibleAction.ESQUIVE){
-                if(render.v.x >= 0)
+            if(priorityMove || currentAction == PossibleAction.WALK){
+                if(7.v.x >= 0)
                     a[2] = 1;
                 else
                     a[3] = 1;
