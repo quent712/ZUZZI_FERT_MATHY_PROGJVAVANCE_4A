@@ -50,8 +50,8 @@ public class MCTS1
             PossibleAction currentAction = PossibleAction.UNDETERMINED;
             Node n = null;
             bool priorityMove = false;
-            // Si une cible existe sur l'objet, on gère une priorité
-            foreach(GameObject o in GameObject.FindGameObjectsWithTag("target")){
+            // Si une bombe est proche de l'objet on gère une priorité
+            foreach(GameObject o in GameObject.FindGameObjectsWithTag("bomb")){
                 if(Vector2.Distance(o.transform.position, render.transform.position) < 2f){
                     priorityMove = true;;
                 }
