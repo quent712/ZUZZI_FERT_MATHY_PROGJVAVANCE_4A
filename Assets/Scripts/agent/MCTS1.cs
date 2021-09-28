@@ -32,7 +32,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact(Character characAdv, Pokemon characMe)
+    public int interact(Character characAdv, Character characMe)
     {
 
 
