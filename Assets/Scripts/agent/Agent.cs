@@ -20,5 +20,5 @@ public abstract class Agent
         internalHorloge += time;
     }
 
-    public abstract int interact(Pokemon pokemonMe, Pokemon pokemonAdv);
+    public abstract int interact(Character characMe, Character characAdv);
 }

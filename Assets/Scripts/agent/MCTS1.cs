@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class MCTS1
     public static float FREQUENCY = 0.4f;  // Fréquence des actions du MCTS
     private int[] a; // matrice des touches directionnelles
     private float born;
+    
 
     public MCTS1() : base(){
         tree = new Node(new Register(0,0));
@@ -24,26 +26,25 @@ public class MCTS1
         return false;
     }
 
-    public override int interact(Pokemon pokemonMe, Pokemon pokemonAdv){
+    public int interact(Character characAdv, Pokemon characMe)
+    {
 
 
-        if(pokemonAdv != null && pokemonMe != null){
-            
+        if (characAdv != null && characMe != null)
+        {
+
             // initialise les données du simulateur
             GameSimul.TouchAdv = 0;
             GameSimul.TouchME = 0;
-           
-            
-            
 
             compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
 
-        // Appel horloge
-        if(internalHorloge > born && thrust())
+       
+          // Appel horloge
+        if(thrust())
         {
             born = FREQUENCY;
-            internalHorloge = 0;
 
             float max = float.MinValue;
             PossibleAction currentAction = PossibleAction.UNDETERMINED;
@@ -70,8 +71,8 @@ public class MCTS1
             // Si priorité de mouvement ou action ESQUIVE
             // On se déplace
             a = new int[4];
-            if(priorityMove || currentAction == PossibleAction.WALK){
-                if(7.v.x >= 0)
+            if(priorityMove || currentAction == PossibleAction.ESQUIVE){
+                if(render.v.x >= 0)
                     a[2] = 1;
                 else
                     a[3] = 1;
@@ -84,8 +85,8 @@ public class MCTS1
 
 
             int i = 0;
-            if(pokemonMe != null
-               && pokemonAdv != null)
+            if(characMe != null
+               && characAdv != null)
                 {
                 switch(currentAction){
                     case PossibleAction.UNDETERMINED:
@@ -113,27 +114,31 @@ public class MCTS1
 
             return i;
         }
-        // Applique le mouvement
-        if(pokemonMe != null){
-            if(a[0] >= 0.8f){
-                render.v.y += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
+
+    // Applique le mouvement
+    if( characMe != null){
+                if(a[0] >= 0.8f){
+                    render.v.y += Time.deltaTime * SENSIBILITY;
+                    pokemonMe.charge(COST_MOVE);
+                }
+                if(a[1] >= 0.8f){
+                    render.v.y -= Time.deltaTime * SENSIBILITY;
+                    pokemonMe.charge(COST_MOVE);
+                }
+                if(a[2] >= 0.8f){
+                    render.v.x -= Time.deltaTime * SENSIBILITY;
+                    pokemonMe.charge(COST_MOVE);
+                }
+                if(a[3] >= 0.8f){
+                    render.v.x += Time.deltaTime * SENSIBILITY;
+                    pokemonMe.charge(COST_MOVE);
+                }
             }
-            if(a[1] >= 0.8f){
-                render.v.y -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-            if(a[2] >= 0.8f){
-                render.v.x -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-            if(a[3] >= 0.8f){
-                render.v.x += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-        }
-        return 0;
+            return 0;
     }
+    
+    
+    
     
     void compute(Node action){
         //Debug.Log(action.data.a + "/" + action.data.b);
@@ -172,5 +177,5 @@ public class MCTS1
         Node.Retropropagation(action);
         // Prépare le simulateur à une prochaine simulation
         GameSimul.Reset();
-    }
+    
 }
