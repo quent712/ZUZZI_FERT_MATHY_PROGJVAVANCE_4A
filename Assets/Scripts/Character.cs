@@ -7,15 +7,17 @@ public class Character
     
     protected string name;
     
-    // Start is called before the first frame update
+    
     public Character(string name)
     {
         this.name = name;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SetBombe()
     {
-        
+        //Doit instantier bombe au character.position 
     }
+    
+
 }
