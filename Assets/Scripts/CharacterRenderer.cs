@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterRender : MonoBehaviour
 {
 
-    public float minX, maxX;
+    /*public float minX, maxX;
     public float minY, maxY;
 
     public Vector2 v;
@@ -47,5 +47,5 @@ public class CharacterRender : MonoBehaviour
     {
        gameObject.transform.localPosition = originalPosition + v;
 
-    }
+    }*/
 }

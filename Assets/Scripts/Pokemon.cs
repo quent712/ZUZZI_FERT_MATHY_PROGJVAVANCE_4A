@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pokemon {
-    protected string name;
+    /*protected string name;
     protected Stats stats;
     protected Stats baseStats;
     protected Stats IV; // todo eventually
@@ -184,5 +184,5 @@ public class Pokemon {
         if(this.charged < 0){
             this.charged = 0;
         }
-    }
+    }*/
 }

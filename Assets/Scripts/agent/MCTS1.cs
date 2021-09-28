@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MCTS1 
 {
-    private Node tree;
+    /*private Node tree;
     public static float FREQUENCY = 0.4f;  // Fréquence des actions du MCTS
     private int[] a; // matrice des touches directionnelles
     private float born;
@@ -136,46 +136,54 @@ public class MCTS1
             }
             return 0;
     }
-    
-    
-    
-    
-    void compute(Node action){
+
+
+
+
+    void compute(Node action)
+    {
         //Debug.Log(action.data.a + "/" + action.data.b);
         //Tant que la simulation n'est pas achevée
-        while(!GameSimul.isFinished){
+        while (!GameSimul.isFinished)
+        {
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
             // Choisi une action au piff
-            PossibleAction choice = (PossibleAction)GameSimul.GetRandomAction(actions);
-            
+            PossibleAction choice = (PossibleAction) GameSimul.GetRandomAction(actions);
+
             // Crée un node (donc une action) si elle n'existe pas encore
             // ou sinon prend celle trouvée
             Node exitanteNode = action.Exist(choice);
-            if(exitanteNode == null){
-                Node selectedAction = action.AddChild(new Register(0,0));
+            if (exitanteNode == null)
+            {
+                Node selectedAction = action.AddChild(new Register(0, 0));
                 selectedAction.parent = action;
                 selectedAction.setState(choice);
-                
+
                 action = selectedAction;
-            }else{
+            }
+            else
+            {
                 action = exitanteNode;
             }
+
             // Lance la simulation 
             GameSimul.PlayAction(action);
             //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
             //if(i++ > 10000) break;
         }
+
         // Applique des valeurs sur la feuille finale
         action.data.b = 1;
-        if(GameSimul.finalSituation == 0)//gameover
+        if (GameSimul.finalSituation == 0) //gameover
             action.data.a = 0;
-        else                    //win
+        else //win
             action.data.a = 1;
 
         // Retroprograpagation de l'action
         Node.Retropropagation(action);
         // Prépare le simulateur à une prochaine simulation
         GameSimul.Reset();
-    
+    }*/
+
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PokemonBattleRender {
 
-	public static void makeSprite(GameObject terrain, Pokemon pokemon,bool reversed)
+	/*public static void makeSprite(GameObject terrain, Pokemon pokemon,bool reversed)
     {
         SpriteRenderer sr;
 
@@ -114,5 +114,5 @@ public class PokemonBattleRender {
             }
 
         }
-    }
+    }*/
 }

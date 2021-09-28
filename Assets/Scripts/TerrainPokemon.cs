@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Terrain {
 
-    static public GameObject playerPart, trainerPart;
+    /*static public GameObject playerPart, trainerPart;
     static public double born = 0;
     private Team adversaire, me;
 
@@ -52,5 +52,5 @@ public class Terrain {
         if(pokemonAdv != null){
             pokemonAdv.charge(t);
         }
-    }
+    }*/
 }

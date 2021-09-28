@@ -5,7 +5,7 @@ using UnityEngine;
 public class PokemonRender : MonoBehaviour
 {
 
-    public float minX, maxX;
+    /*public float minX, maxX;
     public float minY, maxY;
 
     public Vector2 v;
@@ -61,5 +61,5 @@ public class PokemonRender : MonoBehaviour
 
         gameObject.transform.localPosition = originalPosition + v;
 
-    }
+    }*/
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Randomer : Agent
 {
-    private double born;
+    /*private double born;
     private System.Random random;
 
     double[] a;
@@ -53,5 +53,5 @@ public class Randomer : Agent
             }
         }
         return 0;
-    }
+    }*/
 }

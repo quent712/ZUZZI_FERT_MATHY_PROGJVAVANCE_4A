@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MCTS : Agent
 {
-    private Node tree;
+    /*private Node tree;
     public static float FREQUENCY = 0.4f;  // Fréquence des actions du MCTS
     private int[] a; // matrice des touches directionnelles
     private float born;
@@ -178,5 +178,5 @@ public class MCTS : Agent
         Node.Retropropagation(action);
         // Prépare le simulateur à une prochaine simulation
         GameSimul.Reset();
-    }
+    }*/
 }

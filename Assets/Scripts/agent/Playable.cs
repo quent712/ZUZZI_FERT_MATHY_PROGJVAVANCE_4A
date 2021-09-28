@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Playable : Agent
 {
-    public Playable(PokemonRender render) : base(render){
+    /*public Playable(PokemonRender render) : base(render){
 
     }
 
@@ -43,5 +43,5 @@ public class Playable : Agent
             return i;
         }
         return 0;
-    }
+    }*/
 }
