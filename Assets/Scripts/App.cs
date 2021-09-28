@@ -15,7 +15,9 @@ public class App : MonoBehaviour
     
     public GameObject player;
     public GameObject bomb;
-    
+    public Randomer randomer;
+
+    public bool randomIA = false;
     // TO ADDED
     
 
@@ -30,19 +32,28 @@ public class App : MonoBehaviour
     {
         
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
+        CharacterRender charrender = new CharacterRender();
+        Randomer rand = new Randomer(charrender);
         
-        myController = new Controller();
+        
+        
+        myController = new Controller(rand);
+       
+        
         myController.activeModel = myModel;
         
         myView = new View(myModel.getGameState(),player,bomb);
+        
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        myController.UpdateController();
+        myController.UpdateController(randomIA);
         myModel.UpdateModel();
         myView.UpdateView(myModel.getGameState());
+        
     }
 }

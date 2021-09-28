@@ -156,6 +156,8 @@ MonoBehaviour:
   mapSizeX: 13
   mapSizeY: 13
   player: {fileID: 919132149155446097, guid: 567584cac52d66b44b242fbf10c9be27, type: 3}
+  bomb: {fileID: 919132149155446097, guid: 2aafb19b5640d424d81878a0e3b0b9e1, type: 3}
+  randomIA: 0
 --- !u!4 &631681371
 Transform:
   m_ObjectHideFlags: 0

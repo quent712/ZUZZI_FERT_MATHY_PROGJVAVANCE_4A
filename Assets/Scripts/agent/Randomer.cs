@@ -19,7 +19,7 @@ public class Randomer
     public int interact(Character charAdv,Character charMe){
         
         int k = 0;
-        if(internalHorloge > born)
+        /*if(internalHorloge > born)
         {
             born = random.NextDouble() * 2.0d + 1d;
             internalHorloge = 0;
@@ -35,24 +35,9 @@ public class Randomer
 
 
             
-        }
+        }*/
         if(charAdv != null){
-            if(a[0] >= 0.8f){
-                render.v.y += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-            if(a[1] >= 0.8f){
-                render.v.y -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-            if(a[2] >= 0.8f){
-                render.v.x -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-            if(a[3] >= 0.8f){
-                render.v.x += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
+            
         }
         return 0;
     }
