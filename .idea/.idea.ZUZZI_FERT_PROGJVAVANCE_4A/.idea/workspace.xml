@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" afterDir="false" />
+    <list default="true" id="84643304-b540-4591-b7ef-876986795166" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Application.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/View.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/View.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,25 +16,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/Action.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/TreeAction.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/TreeAction.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/Agent.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/View.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Application.cs" />
     </changedPaths>
   </component>
-  <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
+  <component name="ProjectId" id="1yiquakGnnE02gzXvT9fV3IJ9cj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,6 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -48,7 +42,6 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -58,7 +51,6 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -68,16 +60,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="" />
-      <created>1632747691012</created>
+      <changelist id="84643304-b540-4591-b7ef-876986795166" name="Default Changelist" comment="" />
+      <created>1632744986846</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1632747691012</updated>
-      <workItem from="1632747697646" duration="1214000" />
-      <workItem from="1632752998141" duration="2446000" />
-      <workItem from="1632818802502" duration="1379000" />
-      <workItem from="1632823503572" duration="1475000" />
-      <workItem from="1632825298172" duration="1038000" />
+      <updated>1632744986846</updated>
+      <workItem from="1632744996500" duration="11507000" />
     </task>
     <servers />
   </component>
@@ -96,7 +84,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
