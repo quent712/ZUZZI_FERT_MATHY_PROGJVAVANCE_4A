@@ -112,17 +112,21 @@ public struct Bomb
 {
     private static float bombTimer = 3.0f;
     private static int nbBomb = 0;
-
+    
     public int bombID;
+    public bool exploding;
     public Vector2 position;
     public float explosionTime;
     public float explosionRadius;
+    public List<Vector2> explosionSquare;
     
     // Bomb constructor
     public Bomb(Vector2 setPosition,float time,float radius = 5)
     {
         bombID = nbBomb;
         nbBomb++;
+        exploding = false;
+        explosionSquare = new List<Vector2>();
         position = setPosition;
         explosionTime = time + bombTimer;
         explosionRadius = radius;
@@ -175,7 +179,7 @@ public class Model
             Vector2 pos = new Vector2(0,0);
             if (i == 0)
             {
-                pos = new Vector2(3, 11);
+                pos = new Vector2(2, 11);
             }
             else
             {
@@ -189,33 +193,19 @@ public class Model
     // Check the nearest points to see if it is a wall
     private bool canMakeMove(Vector2 posToCheck)
     {
-        Vector2[] nearPoints = new Vector2[8];
-        nearPoints[0] = new Vector2((int) Math.Round(posToCheck.x + 0, 0), (int) Math.Round(posToCheck.y + 1, 0));
-        nearPoints[1] = new Vector2((int) Math.Round(posToCheck.x + 1, 0), (int) Math.Round(posToCheck.y + 1, 0));
-        nearPoints[2] = new Vector2((int) Math.Round(posToCheck.x + 1, 0), (int) Math.Round(posToCheck.y + 0, 0));
-        nearPoints[3] = new Vector2((int) Math.Round(posToCheck.x + 1, 0), (int) Math.Round(posToCheck.y - 1, 0));
-        nearPoints[4] = new Vector2((int) Math.Round(posToCheck.x + 0, 0), (int) Math.Round(posToCheck.y - 1, 0));
-        nearPoints[5] = new Vector2((int) Math.Round(posToCheck.x - 1, 0), (int) Math.Round(posToCheck.y - 1, 0));
-        nearPoints[6] = new Vector2((int) Math.Round(posToCheck.x - 1, 0), (int) Math.Round(posToCheck.y + 0, 0));
-        nearPoints[7] = new Vector2((int) Math.Round(posToCheck.x - 1, 0), (int) Math.Round(posToCheck.y + 1, 0));
-        nearPoints = nearPoints.Distinct().ToArray();
-
-        foreach (Vector2 closePoint in nearPoints)
-        {
-            if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
-                closePoint.y < currentMap.mapSizeY)
-            {
-                if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] != MapEnvironment.Empty)
-                {
-                    tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
-                    if (tempRect.Contains(posToCheck)) return false;
-                }
-            }
-            else return false;
-
-        }
+        Vector2 closePoint = new Vector2((int) Math.Round(posToCheck.x, 0), (int) Math.Round(posToCheck.y, 0));
         
-        return true;
+        if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
+            closePoint.y < currentMap.mapSizeY)
+        {
+            if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] != MapEnvironment.Empty)
+            {
+                tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
+                if (tempRect.Contains(posToCheck)) return false;
+            }
+            return true;
+        }
+        return false;
     }
     
     // Handle all possible action
