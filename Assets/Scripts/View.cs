@@ -6,6 +6,7 @@ using UnityEngine;
 // This class is responsible to sync the unity environment to the Model class
 public class View
 {
+    // The dictionaries and lists contains the unity gameObjects
     private GameObject playerObject;
     private Dictionary<int,GameObject> playerObjectDict;
 
@@ -19,21 +20,18 @@ public class View
     private Dictionary<Vector2, GameObject> breakableObjectDict;
 
     private GameObject fireObject;
-    //private Dictionary<int, GameObject> fireObjectDict;
+    
     
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
+    private Map tempMap;
+    private List<Vector2> tempVectorList;
 
-    
-
-    //private GameObject floorModel;
-
-    //private GameObject destructibleEnvModel;
-    
-    // TO BE CONTINUED: ADD VISUAL MAP GENERATION
+    // View constructor
     public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
+        // We add the prefab so it can be generated
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
 
@@ -47,8 +45,7 @@ public class View
         breakableObjectDict = new Dictionary<Vector2, GameObject>();
 
         fireObject = fire;
-        //fireObjectDict = new Dictionary<int, GameObject>();
-        
+
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
@@ -60,19 +57,16 @@ public class View
         }
         
         // Visual Map generation
-        Map temp = (Map) gameState["MapInfo"];
-        for (int i=0;  i < 15; i++)
+        tempMap = (Map) gameState["MapInfo"];
+        for (int i=0;  i < tempMap.mapSizeX; i++)
         {
-            int padz = i;
-            for (int j = 0;  j<15; j++)
+            for (int j = 0;  j<tempMap.mapSizeY; j++)
             {
-                int padx = j;
-                
-                if (temp.myMapLayout[i,j] == MapEnvironment.Wall)
+                if (tempMap.myMapLayout[i,j] == MapEnvironment.Wall)
                 {
                     wallObjectList.Add(GameObject.Instantiate(wallObject, new Vector3(i, 0, j), Quaternion.identity));
                 }
-                else if (temp.myMapLayout[i,j] == MapEnvironment.Breakable)
+                else if (tempMap.myMapLayout[i,j] == MapEnvironment.Breakable)
                 {
                     breakableObjectDict.Add(new Vector2(i,j),GameObject.Instantiate(breakableObject,new Vector3(i,0,j),Quaternion.identity));
                 }
@@ -90,23 +84,8 @@ public class View
             playerObjectDict[playerInfo.playerID].transform.position =
                 new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
         }
-        ///////////////////////////// TO BE MERGED BELOW //////////////////////////
-        // Check for bombs to destroy and create explosions
-        tempDict = gameState["BombsInfo"] as Dictionary<int, Bomb>;
-        idList = new List<int>(bombObjectDict.Keys);
-        foreach (int bombKey in idList)
-        {
-            
-            if (!tempDict.ContainsKey(bombKey))
-            {
-                // VISUAL EXPLOSION HANDLED HERE
-                GameObject.Destroy(bombObjectDict[bombKey]);
-                bombObjectDict.Remove(bombKey);
-            }
-        }
-        ////////////////////////////////////////////////////////////////////////
         
-        // Update new bombs
+        // Update the bombs state and display an explosion if exploding
         foreach (KeyValuePair<int,Bomb> bombItem in (IEnumerable) gameState["BombsInfo"])
         {
             // if new bomb add
@@ -116,16 +95,31 @@ public class View
                 newBomb.transform.position = new Vector3(bombItem.Value.position.x, 0, bombItem.Value.position.y);
                 bombObjectDict.Add(bombItem.Key,newBomb);
             }
-            // if bombItem.exploding==true -> create fire at bombItem.explosionSquares[] and remove bomb gameobject
-            // extra fire script to delete itself
-
-            if (bombItem.Value.exploding == true)
+            
+            // Create an explosion
+            if (bombItem.Value.exploding)
             {
-                //BlockFactory.Factory(fireObject ,bombItem.Value.position.x, bombItem.Value.position.y);
+                foreach (Vector2 explosionPosition in bombItem.Value.explosionSquares)
+                {
+                    GameObject.Instantiate(fireObject, new Vector3(explosionPosition.x, 0, explosionPosition.y),
+                        Quaternion.identity);
+                }
+                GameObject.Destroy(bombObjectDict[bombItem.Key]);
+                bombObjectDict.Remove(bombItem.Key);
             }
         }
         
-        // Update dynamic environment here with gameState["MapInfo"]
+        // Update breakable environment
+        tempMap = (Map) gameState["MapInfo"];
+        tempVectorList = new List<Vector2>(breakableObjectDict.Keys);
+        foreach (Vector2 breakPos in tempVectorList)
+        {
+            if (tempMap.myMapLayout[(int) breakPos.x, (int) breakPos.y] == MapEnvironment.Empty)
+            {
+                GameObject.Destroy(breakableObjectDict[breakPos]);
+                breakableObjectDict.Remove(breakPos);
+            }
+        }
 
     }
 }
