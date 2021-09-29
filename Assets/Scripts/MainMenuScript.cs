@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("MainField");
+        SoundManager.Instance.StopSoundMusic();
     }
     
     public void QuitGame()

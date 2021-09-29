@@ -19,7 +19,6 @@ public class SoundManager : MonoBehaviour
         {
             Destroy (gameObject);
         }
-
     }
     
     public void PlaySoundMusic(AudioClip clip)
@@ -41,5 +40,9 @@ public class SoundManager : MonoBehaviour
     {
         MusicSource.mute = !MusicSource.mute;
     }
-    
+
+    public void StopSoundMusic()
+    {
+        MusicSource.Stop();
+    }
 }
