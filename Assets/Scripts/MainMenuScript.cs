@@ -18,6 +18,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void playsoundbutton()
     {
-        SoundManager.Instance.PlaySound(buttonclip);
+        SoundManager.Instance.PlaySoundEffect(buttonclip);
     }
 }

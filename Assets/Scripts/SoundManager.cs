@@ -22,7 +22,12 @@ public class SoundManager : MonoBehaviour
 
     }
     
-    public void PlaySound(AudioClip clip)
+    public void PlaySoundMusic(AudioClip clip)
+    {
+        MusicSource.PlayOneShot(clip);
+    }
+    
+    public void PlaySoundEffect(AudioClip clip)
     {
         EffectSource.PlayOneShot(clip);
     }
@@ -36,4 +41,5 @@ public class SoundManager : MonoBehaviour
     {
         MusicSource.mute = !MusicSource.mute;
     }
+    
 }

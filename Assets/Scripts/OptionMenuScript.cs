@@ -10,16 +10,14 @@ public class OptionMenuScript : MonoBehaviour
     public void SelectAIHard()
     {
         AIandSound.Instance.Difficulty = "Hard";
-        //Debug.Log(AIandSound.Instance.Difficulty);
     }
     public void SelectAIEasy()
     {
         AIandSound.Instance.Difficulty = "Easy";
-        //Debug.Log(AIandSound.Instance.Difficulty);
     }
     
     public void playsoundbutton()
     {
-        SoundManager.Instance.PlaySound(buttonclip);
+        SoundManager.Instance.PlaySoundEffect(buttonclip);
     }
 }
