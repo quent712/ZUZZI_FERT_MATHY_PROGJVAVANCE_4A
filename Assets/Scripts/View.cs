@@ -50,10 +50,10 @@ public class View
         
         // Visual Map generation
         Map temp = (Map) gameState["MapInfo"];
-        for (int i=0;  i < 15; i+=2)
+        for (int i=0;  i < 15; i++)
         {
             int padz = i;
-            for (int j = 0;  j<15; j+=2)
+            for (int j = 0;  j<15; j++)
             {
                 int padx = j;
                 
