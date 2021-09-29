@@ -118,6 +118,11 @@ public class View
             }
             // if bombItem.exploding==true -> create fire at bombItem.explosionSquares[] and remove bomb gameobject
             // extra fire script to delete itself
+
+            if (bombItem.Value.exploding == true)
+            {
+                //BlockFactory.Factory(fireObject ,bombItem.Value.position.x, bombItem.Value.position.y);
+            }
         }
         
         // Update dynamic environment here with gameState["MapInfo"]

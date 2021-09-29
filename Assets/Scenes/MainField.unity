@@ -1657,7 +1657,7 @@ MonoBehaviour:
   bomb: {fileID: 6575330075604828838, guid: ac814dff80dc1c940a59a438a8226636, type: 3}
   wall: {fileID: 3026889979026083125, guid: b29bbf4142a718d44ba76c8784eefecf, type: 3}
   breakable: {fileID: 3979135109488943916, guid: d6f7daf7f92da714db8116dbadd8d329, type: 3}
-  fire: {fileID: 0}
+  fire: {fileID: 5468725236565767469, guid: 56140859cca4db54f8e2826c5b40b04c, type: 3}
   randomIA: 0
   pausePanel: {fileID: 7028591}
   winPanel: {fileID: 940700912}
