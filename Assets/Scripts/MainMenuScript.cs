@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("MainField");
+        SoundManager.Instance.StopSoundMusic();
     }
     
     public void QuitGame()
@@ -18,6 +19,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void playsoundbutton()
     {
-        SoundManager.Instance.PlaySound(buttonclip);
+        SoundManager.Instance.PlaySoundEffect(buttonclip);
     }
 }
