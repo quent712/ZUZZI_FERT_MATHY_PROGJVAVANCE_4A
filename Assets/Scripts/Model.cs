@@ -148,7 +148,10 @@ public class Model
 
     //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
     public bool isBothPlayerAlive;
-
+    
+    public object Clone() {
+        return this.MemberwiseClone();
+    }
     // This code is kinda bad
     public Player getWinner()
     {
@@ -185,7 +188,7 @@ public class Model
             }
             else
             {
-                pos = new Vector2(11, 3);
+                pos = new Vector2(12, 3);
             }
             playerList[i] = (new Player(pos));
         }

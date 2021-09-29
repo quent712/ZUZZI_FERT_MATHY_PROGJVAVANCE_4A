@@ -99,10 +99,13 @@ public class MCTS1
 
     void compute(Node action)
     {
+        Model simmodel = (Model)model.Clone();
+        GameSimul.model = simmodel;
         //Debug.Log(action.data.a + "/" + action.data.b);
         //Tant que la simulation n'est pas achevée
         while (!GameSimul.isFinished)
         {
+            
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
             // Choisi une action au piff

@@ -1,6 +1,10 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class GameSimul{
 /// <summary>
 /// Le script a pour but de définir les différentes actions possible dans le jeu.
@@ -13,7 +17,9 @@ public class GameSimul{
     
     public static int TouchME = -1; // 0 = pastouché; 1 = touché   
 
-    public static int[] ppMe = new int[4], ppAdv = new int[4]; 
+    public static int[] ppMe = new int[4], ppAdv = new int[4];
+
+    public static Model model = null;
 
     public static void Reset(){
         TouchAdv = 0;
@@ -24,45 +30,20 @@ public class GameSimul{
     }
 
     public static void PlayAction(Node action){
-
-        
-        
-        // Il va simuler l'action choisi et voir les changements qu'ils impliquent
-        switch(action.state){
-            
-            case Action.MoveDown:
-                
-                break;
-            
-            case Action.MoveLeft:
-                
-                break;
-            
-            
-            case Action.MoveRight:
-                
-                break;
-            
-            
-            case Action.MoveUp:
-                
-                break;
-            
-            case Action.SetBomb:
-                
-                break;
-            
-            case Action.Wait:
-               // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
-                break;
-        }
+ 
+        // Il va simuler l'action choisi pour l'IA
+       model.actionHandler(action.state,1);
+       Action actiona = (Action)Random.Range(0, 5);
+       
+       model.actionHandler( actiona,0); //Action aléatoire du player
+       
         //On a une fin de partie ?
-        
-        if(TouchAdv == 0){
+       Player[] listplayer = model.getGameState()["PlayerInfo"] as Player[];
+        if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;
         }
-        else if(TouchME == 0){
+        else if(listplayer[0].health <=0){ //Si Player mort
             finalSituation = 1;
             isFinished = true;
         }
