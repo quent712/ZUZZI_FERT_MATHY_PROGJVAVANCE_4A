@@ -25,18 +25,34 @@ public class GameSimul{
 
     public static void PlayAction(Node action){
 
-        // Gestion de la vie
+        
         
         // Il va simuler l'action choisi et voir les changements qu'ils impliquent
         switch(action.state){
             
-            case PossibleAction.WALK:
+            case Action.MoveDown:
                 
                 break;
-            case PossibleAction.SETBOMBE:
+            
+            
+            case Action.MoveLeft:
                 
                 break;
-            case PossibleAction.WAIT:
+            
+            
+            case Action.MoveRight:
+                
+                break;
+            
+            
+            case Action.MoveUp:
+                
+                break;
+            
+            case Action.SetBomb:
+                
+                break;
+            case Action.Wait:
                // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
                 break;
         }
@@ -54,14 +70,14 @@ public class GameSimul{
     }
 
     public static System.Array GetNextPossibleAction(Node n){ //?????
-        return PossibleAction.GetValues(typeof(PossibleAction));
+        return Action.GetValues(typeof(Action));
     }
 
     public static object GetRandomAction(System.Array actions){
         System.Random rand = new System.Random();
         int i = 0;
         if(i >= 1){
-            return PossibleAction.WAIT;
+            return Action.Wait;
         }else{
             return actions.GetValue(rand.Next(actions.Length-1));
         }
@@ -79,10 +95,4 @@ public struct Register{
         this.a = a;
         this.b = b;
     }
-}
-public enum PossibleAction{
-    UNDETERMINED,
-    WAIT,
-    WALK,
-    SETBOMBE,
 }

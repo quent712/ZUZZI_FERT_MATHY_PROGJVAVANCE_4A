@@ -8,7 +8,7 @@ public class Node
 
     public Node parent;
 
-    public PossibleAction state; //Etat du joueur
+    public Action state; //Etat du joueur
     public Register data;
 
     public Node(Register data){
@@ -34,7 +34,7 @@ public class Node
         return children.Count;
     }
 
-    public void setState(PossibleAction p){ //set un etat
+    public void setState(Action p){ //set un etat
         this.state = p;
     }
 
@@ -42,15 +42,15 @@ public class Node
         int i = 0;
         int validate = node.data.a;
         while(node.parent != null){
-            node.parent.data.a += validate;
-            node.parent.data.b++;
+            node.parent.data.a += validate; //ON Incrémente le data de win du parent
+            node.parent.data.b++; //On incrémente le data de try du parent
             node = node.parent;
             //if(i++ > 10000) break;
 
         }
     }
 
-    public Node Exist(PossibleAction p ){
+    public Node Exist(Action p ){
         if(children != null){
             foreach(var child in children){
                 if(child.state == p){

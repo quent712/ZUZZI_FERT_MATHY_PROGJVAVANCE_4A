@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Model.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Model.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,17 +25,18 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/TreeAction.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Agent.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
@@ -89,7 +89,7 @@
       <workItem from="1632836402809" duration="6000" />
       <workItem from="1632836504672" duration="5726000" />
       <workItem from="1632901454786" duration="2903000" />
-      <workItem from="1632907010028" duration="499000" />
+      <workItem from="1632907010028" duration="6235000" />
     </task>
     <servers />
   </component>

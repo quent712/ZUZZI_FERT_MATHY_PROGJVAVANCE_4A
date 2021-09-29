@@ -17,7 +17,9 @@ public enum Action
     MoveDown,
     MoveLeft,
     MoveRight,
-    SetBomb
+    SetBomb,
+    Wait,
+    Undertermined
 };
 
 // Possible Environment on the map
@@ -93,33 +95,8 @@ public struct Player
         timeuntilbomb = 0f;
     }
 
-    // TO BE MOVED TO MODEL CLASS TO HANDLE COLLISIONS
-    public void makeAMove(Action direction)
-    {   
-        
-        // Currently with direct incrementation
-        switch (direction)
-        {
-            case Action.MoveUp:
-                position.y += movementStep;
-                break;
-            
-            case Action.MoveDown:
-                position.y -= movementStep;
-                break;
-            
-            case Action.MoveRight:
-                position.x += movementStep;
-                break;
-            
-            case Action.MoveLeft:
-                position.x -= movementStep;
-                break;
-            
-            default:
-                break;
-        }
-    }
+
+   
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -227,7 +204,7 @@ public class Model
     }
     
     // Drop a bomb at the position of a given player
-    private void dropBombAction(int playerID)
+    public void dropBombAction(int playerID)
     {   
         //Debug.Log("Ingametimer" + inGameTimer);
         //Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
