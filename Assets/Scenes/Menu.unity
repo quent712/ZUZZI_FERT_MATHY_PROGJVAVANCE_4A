@@ -202,25 +202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400546666}
   m_CullTransparentMesh: 1
---- !u!1 &413252699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3022488527087197145, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
-  m_PrefabInstance: {fileID: 3022488526310678578}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &413252704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413252699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a7634345dfb3d4fbd7dfb1ab43d9b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Togglesound: 0
-  Togglemusic: 1
 --- !u!1 &506407987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1509,7 +1490,7 @@ PrefabInstance:
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 413252704}
+      objectReference: {fileID: 3022488526310678579}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -1528,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Togglezique
+      value: playsoundbutton
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -1540,7 +1521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ToggleAudio, Assembly-CSharp
+      value: MainMenuScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
