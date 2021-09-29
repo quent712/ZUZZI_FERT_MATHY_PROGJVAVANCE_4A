@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1605,7 +1605,10 @@ MonoBehaviour:
   player: {fileID: 7931282367196829637, guid: d4ddf4ec92db4a2409a924cf7f6cb8e0, type: 3}
   bomb: {fileID: 6575330075604828838, guid: ac814dff80dc1c940a59a438a8226636, type: 3}
   wall: {fileID: 3026889979026083125, guid: b29bbf4142a718d44ba76c8784eefecf, type: 3}
-  pauseCanvas: {fileID: 7028591}
+  randomIA: 0
+  pausePanel: {fileID: 7028591}
+  winPanel: {fileID: 940700912}
+  losePanel: {fileID: 1095374724}
 --- !u!4 &982279720
 Transform:
   m_ObjectHideFlags: 0

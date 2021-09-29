@@ -22,7 +22,9 @@ public class App : MonoBehaviour
     public bool randomIA = false;
     // TO BE ADDED
     
-    public GameObject pauseCanvas;
+    public GameObject pausePanel;
+    public GameObject winPanel;
+    public GameObject losePanel;
     //public GameObject floorModel;
 
     //public GameObject destructibleEnvModel;
@@ -47,7 +49,7 @@ public class App : MonoBehaviour
         
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -59,8 +61,17 @@ public class App : MonoBehaviour
         {
             Player winner = myModel.getWinner();
             Debug.Log("Game Ended and I got a Winner: Player "+winner.playerID);
-            // CALL MY WIN SCREEN HERE
-            // GIVE IT WINNER INFO
+
+            if (winner.playerID == 0)
+            {
+                winPanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                losePanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
         }
         /////////////////////////////////////////////////////////////
         
@@ -69,7 +80,7 @@ public class App : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseCanvas.SetActive(true);
+            pausePanel.SetActive(true);
             Time.timeScale = 0.0f;
         }
     }
