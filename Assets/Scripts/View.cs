@@ -12,11 +12,14 @@ public class View
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
     
-    private GameObject wallModel;
-    private Dictionary<int, GameObject> wallModelDict;
+    private GameObject wallObject;
+    private Dictionary<int, GameObject> wallObjectDict;
     
-    private GameObject breakableModel;
-    private Dictionary<int, GameObject> breakableModelDict;
+    private GameObject breakableObject;
+    private Dictionary<int, GameObject> breakableObjectDict;
+
+    private GameObject fireObject;
+    private Dictionary<int, GameObject> fireObjectDict;
     
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
@@ -29,7 +32,7 @@ public class View
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall, GameObject breakable)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
@@ -37,11 +40,14 @@ public class View
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
         
-        wallModel = wall;
-        wallModelDict = new Dictionary<int, GameObject>();
+        wallObject = wall;
+        wallObjectDict = new Dictionary<int, GameObject>();
 
-        breakableModel = breakable;
-        breakableModelDict = new Dictionary<int, GameObject>();
+        breakableObject = breakable;
+        breakableObjectDict = new Dictionary<int, GameObject>();
+
+        fireObject = fire;
+        fireObjectDict = new Dictionary<int, GameObject>();
         
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])

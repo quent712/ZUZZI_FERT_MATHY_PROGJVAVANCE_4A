@@ -17,6 +17,7 @@ public class App : MonoBehaviour
     public GameObject bomb;
     public GameObject wall;
     public GameObject breakable;
+    public GameObject fire;
     public Randomer randomer;
     
 
@@ -45,7 +46,7 @@ public class App : MonoBehaviour
         
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,bomb, wall, breakable);
+        myView = new View(myModel.getGameState(),player,bomb, wall, breakable, fire);
         
         
         

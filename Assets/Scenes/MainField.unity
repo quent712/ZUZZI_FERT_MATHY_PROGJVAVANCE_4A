@@ -645,6 +645,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7028593}
+        m_TargetAssemblyTypeName: PauseAndWinLoseScript, Assembly-CSharp
+        m_MethodName: playsoundbutton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &573723013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1120,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7028593}
+        m_TargetAssemblyTypeName: PauseAndWinLoseScript, Assembly-CSharp
+        m_MethodName: playsoundbutton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &744715945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,6 +1256,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7028593}
         m_TargetAssemblyTypeName: PauseAndWinLoseScript, Assembly-CSharp
         m_MethodName: BacktoMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7028593}
+        m_TargetAssemblyTypeName: PauseAndWinLoseScript, Assembly-CSharp
+        m_MethodName: playsoundbutton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1535,6 +1571,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7028593}
+        m_TargetAssemblyTypeName: PauseAndWinLoseScript, Assembly-CSharp
+        m_MethodName: playsoundbutton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &970190011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,6 +1657,7 @@ MonoBehaviour:
   bomb: {fileID: 6575330075604828838, guid: ac814dff80dc1c940a59a438a8226636, type: 3}
   wall: {fileID: 3026889979026083125, guid: b29bbf4142a718d44ba76c8784eefecf, type: 3}
   breakable: {fileID: 3979135109488943916, guid: d6f7daf7f92da714db8116dbadd8d329, type: 3}
+  fire: {fileID: 0}
   randomIA: 0
   pausePanel: {fileID: 7028591}
   winPanel: {fileID: 940700912}

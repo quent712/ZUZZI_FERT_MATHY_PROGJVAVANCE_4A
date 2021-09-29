@@ -97,12 +97,12 @@ public struct Player
     
     // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
     // Player Constructor
-    public Player(int hp = 1)
+    public Player(Vector2 pos)
     {
         playerID = nbPlayer;
         nbPlayer++;
-        position = new Vector2(10, 10);
-        health = hp;
+        position = pos;
+        health = 1;
         timeuntilbomb = 0f;
     }
 
@@ -198,7 +198,16 @@ public class Model
         myGameState = new Dictionary<string, object>();
         for (int i = 0; i < numberOfPlayer; i++)
         {
-            playerList[i] = (new Player(1));
+            Vector2 pos = new Vector2(0,0);
+            if (i == 0)
+            {
+                pos = new Vector2(3, 11);
+            }
+            else
+            {
+                pos = new Vector2(11, 3);
+            }
+            playerList[i] = (new Player(pos));
         }
         
     }
