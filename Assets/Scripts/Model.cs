@@ -19,7 +19,9 @@ public enum Action
     MoveDown,
     MoveLeft,
     MoveRight,
-    SetBomb
+    SetBomb,
+    Wait,
+    Undertermined
 };
 
 // Possible Environment on the map

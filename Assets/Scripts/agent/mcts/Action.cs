@@ -51,6 +51,7 @@ public class GameSimul{
             case Action.SetBomb:
                 
                 break;
+            
             case Action.Wait:
                // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
                 break;
