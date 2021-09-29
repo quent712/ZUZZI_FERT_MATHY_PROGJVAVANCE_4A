@@ -13,13 +13,13 @@ public class View
     private Dictionary<int,GameObject> bombObjectDict;
     
     private GameObject wallObject;
-    private Dictionary<int, GameObject> wallObjectDict;
+    private List<GameObject> wallObjectList;
     
     private GameObject breakableObject;
-    private Dictionary<int, GameObject> breakableObjectDict;
+    private Dictionary<Vector2, GameObject> breakableObjectDict;
 
     private GameObject fireObject;
-    private Dictionary<int, GameObject> fireObjectDict;
+    //private Dictionary<int, GameObject> fireObjectDict;
     
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
@@ -41,13 +41,13 @@ public class View
         bombObjectDict = new Dictionary<int, GameObject>();
         
         wallObject = wall;
-        wallObjectDict = new Dictionary<int, GameObject>();
-
+        wallObjectList = new List<GameObject>();
+        
         breakableObject = breakable;
-        breakableObjectDict = new Dictionary<int, GameObject>();
+        breakableObjectDict = new Dictionary<Vector2, GameObject>();
 
         fireObject = fire;
-        fireObjectDict = new Dictionary<int, GameObject>();
+        //fireObjectDict = new Dictionary<int, GameObject>();
         
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
@@ -70,11 +70,11 @@ public class View
                 
                 if (temp.myMapLayout[i,j] == MapEnvironment.Wall)
                 {
-                    BlockFactory.Factory(wall, j,i);
+                    wallObjectList.Add(GameObject.Instantiate(wallObject, new Vector3(i, 0, j), Quaternion.identity));
                 }
                 else if (temp.myMapLayout[i,j] == MapEnvironment.Breakable)
                 {
-                    BlockFactory.Factory(breakable, j,i);
+                    breakableObjectDict.Add(new Vector2(i,j),GameObject.Instantiate(breakableObject,new Vector3(i,0,j),Quaternion.identity));
                 }
             }
         }

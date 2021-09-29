@@ -160,6 +160,7 @@ public class Model
     private List<int> idList;
     private Vector2 tempPosition;
     private Rect tempRect;
+    private Bomb tempBomb;
     
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
@@ -193,7 +194,7 @@ public class Model
         if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
             closePoint.y < currentMap.mapSizeY)
         {
-            if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] != MapEnvironment.Empty)
+            if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] != MapEnvironment.Empty)
             {
                 tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
                 if (tempRect.Contains(posToCheck)) return false;
@@ -210,14 +211,14 @@ public class Model
         if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
             closePoint.y < currentMap.mapSizeY)
         {
-            if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] == MapEnvironment.Wall)
+            if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Wall)
             {
                 tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
                 if (tempRect.Contains(explToCheck)) return 0;
             }
-            else if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] == MapEnvironment.Breakable)
+            else if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Breakable)
             {
-                currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] = MapEnvironment.Empty;
+                currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] = MapEnvironment.Empty;
                 return 2;
             }
             return 1;
@@ -337,8 +338,10 @@ public class Model
             {
                 if (!bombList[bombKey].exploding)
                 {
-                    explosionCollision(bombList[bombKey]);
-                    bombList[bombKey].explode();
+                    tempBomb = bombList[bombKey];
+                    explosionCollision(tempBomb);
+                    tempBomb.exploding = true;
+                    bombList[bombKey] = tempBomb;
                 }
                 else bombList.Remove(bombKey);
             }
