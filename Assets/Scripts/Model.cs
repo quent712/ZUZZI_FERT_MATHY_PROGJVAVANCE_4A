@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 // Possible Movement direction for any given Player or IA
 public enum MovementDirection
@@ -49,22 +51,33 @@ public struct Map
     // Creation of a map with only border walls, not random
     private MapEnvironment[,] CreateRandomMap()
     {
-        MapEnvironment[,] newMap = new MapEnvironment[mapSizeX+2,mapSizeY+2];
-        for (int j = 0; j < mapSizeY+2; j++)
+        MapEnvironment[,] newMap = new MapEnvironment[mapSizeX,mapSizeY];
+        for (int j = 0; j < mapSizeY; j++)
         {
-            for (int i = 0; i < mapSizeX+2; i++)
+            for (int i = 0; i < mapSizeX; i++)
             {
-                if (j == 0 || j == mapSizeY+1)
+                if (j == 0 || j == mapSizeY-1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
-                else if (i == 0 || i == mapSizeX+1)
+                else if (i == 0 || i == mapSizeX-1)
+                {
+                    newMap[i,j] = MapEnvironment.Wall;
+                }
+                else if (i % 2 != 0 && j % 2 != 0)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
                 else
                 {
-                    newMap[i, j] = MapEnvironment.Empty;
+                    if (Random.Range(0, 100) >= 80)
+                    {
+                        newMap[i,j] = MapEnvironment.Breakable;
+                    }
+                    else
+                    {
+                        newMap[i,j] = MapEnvironment.Empty;
+                    }
                 }
             }
         }
@@ -150,6 +163,8 @@ public class Model
     
     // TEMPORARY VARIABLES
     private List<int> idList;
+    private Vector2 tempPosition;
+    private Rect tempRect;
     
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
@@ -166,42 +181,57 @@ public class Model
         }
         
     }
+    
+    // Check the nearest points to see if it is a wall
+    private bool canMakeMove(Vector2 posToCheck)
+    {
+        Vector2 closePoint = new Vector2((int) Math.Round(posToCheck.x, 0), (int) Math.Round(posToCheck.y, 0));
+        
+        if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
+            closePoint.y < currentMap.mapSizeY)
+        {
+            if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] != MapEnvironment.Empty)
+            {
+                tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
+                if (tempRect.Contains(posToCheck)) return false;
+            }
+            return true;
+        }
+        return false;
+    }
 
     
     // TO BE CONTINUED: HANDLE BORDER DETECTION
     public void actionHandler(Action action, int playerID)
     {
-        if (action != Action.SetBomb || action != Action.Wait || action!=Action.Undertermined)
+        
+        if (action != Action.SetBomb|| action != Action.Wait || action!=Action.Undertermined)
         {
-            //playerList[playerID].makeAMove(action);
+            tempPosition = playerList[playerID].position;
             switch (action)
             {
                 case Action.MoveUp:
-                    if(playerList[playerID].position.y+Player.movementStep*Time.deltaTime<currentMap.mapSizeY)
-                        playerList[playerID].position.y += Player.movementStep*Time.deltaTime;
+                    tempPosition.y += Player.movementStep*Time.deltaTime;
                     break;
             
                 case Action.MoveDown:
-                    if(playerList[playerID].position.y-Player.movementStep*Time.deltaTime>0)
-                        playerList[playerID].position.y -= Player.movementStep*Time.deltaTime;
+                    tempPosition.y -= Player.movementStep*Time.deltaTime;
                     break;
             
                 case Action.MoveRight:
-                    if(playerList[playerID].position.x+Player.movementStep*Time.deltaTime<currentMap.mapSizeX)
-                        playerList[playerID].position.x += Player.movementStep*Time.deltaTime;
+                    tempPosition.x += Player.movementStep*Time.deltaTime;
                     break;
             
                 case Action.MoveLeft:
-                    if(playerList[playerID].position.x-Player.movementStep*Time.deltaTime>0)
-                        playerList[playerID].position.x -= Player.movementStep*Time.deltaTime;
+                    tempPosition.x -= Player.movementStep*Time.deltaTime;
                     break;
-                
-                case Action.Undertermined:
-                    
-                    
+            
                 default:
                     break;
             }
+            // check if move is possible
+            if(canMakeMove(tempPosition)) playerList[playerID].position = tempPosition;
+            
         }
         else if (action == Action.SetBomb)
         {
@@ -217,9 +247,8 @@ public class Model
         {
             
         }
-
-
     }
+   
     
     // Drop a bomb at the position of a given player
     public void dropBombAction(int playerID)
