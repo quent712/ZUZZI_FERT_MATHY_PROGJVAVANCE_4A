@@ -15,6 +15,9 @@ public class View
     private GameObject wallModel;
     private Dictionary<int, GameObject> wallModelDict;
     
+    private GameObject breakableModel;
+    private Dictionary<int, GameObject> breakableModelDict;
+    
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
@@ -26,7 +29,7 @@ public class View
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall, GameObject breakable)
     {
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
@@ -36,7 +39,9 @@ public class View
         
         wallModel = wall;
         wallModelDict = new Dictionary<int, GameObject>();
-        
+
+        breakableModel = breakable;
+        breakableModelDict = new Dictionary<int, GameObject>();
         
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
@@ -61,9 +66,9 @@ public class View
                 {
                     BlockFactory.Factory(wall, j,i);
                 }
-                else
+                else if (temp.myMapLayout[i,j] == MapEnvironment.Breakable)
                 {
-                    //Debug.Log("Nothing Here");
+                    BlockFactory.Factory(breakable, j,i);
                 }
             }
         }
