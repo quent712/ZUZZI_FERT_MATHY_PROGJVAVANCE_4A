@@ -90,7 +90,7 @@ public class View
             playerObjectDict[playerInfo.playerID].transform.position =
                 new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
         }
-        
+        ///////////////////////////// TO BE MERGED BELOW //////////////////////////
         // Check for bombs to destroy and create explosions
         tempDict = gameState["BombsInfo"] as Dictionary<int, Bomb>;
         idList = new List<int>(bombObjectDict.Keys);
@@ -104,16 +104,20 @@ public class View
                 bombObjectDict.Remove(bombKey);
             }
         }
+        ////////////////////////////////////////////////////////////////////////
         
         // Update new bombs
         foreach (KeyValuePair<int,Bomb> bombItem in (IEnumerable) gameState["BombsInfo"])
         {
+            // if new bomb add
             if (!bombObjectDict.ContainsKey(bombItem.Key))
             {
                 GameObject newBomb = GameObject.Instantiate(bombObject);
                 newBomb.transform.position = new Vector3(bombItem.Value.position.x, 0, bombItem.Value.position.y);
                 bombObjectDict.Add(bombItem.Key,newBomb);
             }
+            // if bombItem.exploding==true -> create fire at bombItem.explosionSquares[] and remove bomb gameobject
+            // extra fire script to delete itself
         }
         
         // Update dynamic environment here with gameState["MapInfo"]

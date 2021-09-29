@@ -118,7 +118,7 @@ public struct Bomb
     public Vector2 position;
     public float explosionTime;
     public float explosionRadius;
-    public List<Vector2> explosionSquare;
+    public List<Vector2> explosionSquares;
     
     // Bomb constructor
     public Bomb(Vector2 setPosition,float time,float radius = 5)
@@ -126,7 +126,7 @@ public struct Bomb
         bombID = nbBomb;
         nbBomb++;
         exploding = false;
-        explosionSquare = new List<Vector2>();
+        explosionSquares = new List<Vector2>();
         position = setPosition;
         explosionTime = time + bombTimer;
         explosionRadius = radius;
