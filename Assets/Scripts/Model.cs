@@ -1,17 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-// Possible Movement direction for any given Player or IA
-public enum MovementDirection
-{
-    Up,
-    Down,
-    Left,
-    Right
-};
 
 public enum Action
 {
@@ -132,13 +124,17 @@ public struct Bomb
         explosionRadius = radius;
 
     }
+
+    public void explode()
+    {
+        exploding = true;
+    }
 }
 
 
 // Model is gonna do most of calculation and handle collisions
 public class Model
 {
-    
     private Map currentMap;
     private Player[] playerList;
     private Dictionary<int,Bomb> bombList;
@@ -183,15 +179,14 @@ public class Model
             }
             else
             {
-                pos = new Vector2(11, 3);
+                pos = new Vector2(10, 3);
             }
             playerList[i] = (new Player(pos));
         }
-        
     }
 
     // Check the nearest points to see if it is a wall
-    private bool canMakeMove(Vector2 posToCheck)
+    private bool checkPossibleMovement(Vector2 posToCheck)
     {
         Vector2 closePoint = new Vector2((int) Math.Round(posToCheck.x, 0), (int) Math.Round(posToCheck.y, 0));
         
@@ -206,6 +201,28 @@ public class Model
             return true;
         }
         return false;
+    }
+    
+    private int checkPossibleExplosion(Vector2 explToCheck)
+    {
+        Vector2 closePoint = new Vector2((int) Math.Round(explToCheck.x, 0), (int) Math.Round(explToCheck.y, 0));
+        
+        if (closePoint.x >= 0 && closePoint.x < currentMap.mapSizeX && closePoint.y >= 0 &&
+            closePoint.y < currentMap.mapSizeY)
+        {
+            if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] == MapEnvironment.Wall)
+            {
+                tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
+                if (tempRect.Contains(explToCheck)) return 0;
+            }
+            else if (currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] == MapEnvironment.Breakable)
+            {
+                currentMap.myMapLayout[(int) closePoint.y, (int) closePoint.x] = MapEnvironment.Empty;
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
     }
     
     // Handle all possible action
@@ -237,7 +254,8 @@ public class Model
                     break;
             }
             // check if move is possible
-            if(canMakeMove(tempPosition)) playerList[playerID].position = tempPosition;
+            
+            if(checkPossibleMovement(tempPosition)) playerList[playerID].position = tempPosition;
             
         }
         else dropBombAction(playerID);
@@ -268,23 +286,39 @@ public class Model
     }
     
     // Handles explosion collisions
-    private void explosionCollision(Vector2 bombPosition, float bombRadius)
+    private void explosionCollision(Bomb explodingBomb)
     {
-        Rect horizontal = new Rect(bombPosition.x - bombRadius, bombPosition.y - 0.5f, bombRadius * 2, 1.0f);
-        Rect vertical = new Rect(bombPosition.x-0.5f, bombPosition.y - bombRadius, 1.0f, bombRadius*2);
-        Debug.Log(horizontal.center+" vs "+bombPosition +" vs "+vertical.center);
-        
-        foreach (Player player in playerList)
+        int collisionResult;
+        foreach (Vector2 direction in new Vector2[]{Vector2.up,Vector2.right, Vector2.down,Vector2.right})
         {
-            if (horizontal.Contains(player.position) || vertical.Contains(player.position))
+            for (int i = 1; i <= explodingBomb.explosionRadius; i++)
             {
-                //Debug.Log("Exploded a player");
-                playerList[player.playerID].health = 0;
+                collisionResult = checkPossibleExplosion(explodingBomb.position + direction * i);
                 
-                //////////////// TO BE CHANGED AS WELL ////////////////
-                isBothPlayerAlive = false;
-
+                if (collisionResult!=0)
+                {
+                    explodingBomb.explosionSquares.Add(explodingBomb.position + direction * i);
+                    
+                }
+                if(collisionResult==2) break;
             }
+        }
+
+        foreach (Vector2 explSquare in explodingBomb.explosionSquares)
+        {
+            tempRect = new Rect(explSquare.x - 0.5f, explSquare.y - 0.5f, 1, 1);
+            foreach (Player player in playerList)
+            {
+                if (tempRect.Contains(player.position))
+                {
+                    playerList[player.playerID].health = 0;
+                
+                    //////////////// TO BE CHANGED AS WELL ////////////////
+                    isBothPlayerAlive = false;
+
+                }
+            }
+            
         }
         
     }
@@ -301,9 +335,12 @@ public class Model
         {
             if (inGameTimer > bombList[bombKey].explosionTime)
             {
-                // HANDLE EXPLOSION COLLISION HERE
-                explosionCollision(bombList[bombKey].position,bombList[bombKey].explosionRadius);
-                bombList.Remove(bombKey);
+                if (!bombList[bombKey].exploding)
+                {
+                    explosionCollision(bombList[bombKey]);
+                    bombList[bombKey].explode();
+                }
+                else bombList.Remove(bombKey);
             }
         }
         
