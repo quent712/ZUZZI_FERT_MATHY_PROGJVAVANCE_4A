@@ -19,6 +19,7 @@ public class PauseAndWinLoseScript : MonoBehaviour
         
         Debug.Log("In Retry");
         Time.timeScale = 1.0f;
+        SoundManager.Instance.StopSoundMusic();
         SceneManager.LoadScene("MainField");
         
         

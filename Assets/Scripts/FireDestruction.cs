@@ -13,17 +13,9 @@ public class FireDestruction : MonoBehaviour
     // Update is called once per frame
     IEnumerator LifeTime()
     {
-        while (true)
-        {
-            if (lifetime <= 0)
-            {
-                DestroyObject(gameObject);
-            }
-            else
-            {
-                lifetime = lifetime - Time.deltaTime;
-            }
-        }
+        yield return new WaitForSeconds(lifetime);
+        
+        GameObject.Destroy(gameObject);
     }
     
     
