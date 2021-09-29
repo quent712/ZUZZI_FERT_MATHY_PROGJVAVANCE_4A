@@ -16,8 +16,11 @@ public class PauseAndWinLoseScript : MonoBehaviour
     
     public void Retry()
     {
-        SceneManager.LoadScene("MainField");
+        
+        Debug.Log("In Retry");
         Time.timeScale = 1.0f;
+        SceneManager.LoadScene("MainField");
+        
         
         
     }
