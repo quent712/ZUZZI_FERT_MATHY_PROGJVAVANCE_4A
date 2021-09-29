@@ -32,7 +32,7 @@ public class App : MonoBehaviour
     // Initialize the different parts of the MVC model
     private void Start()
     {
-        
+        Time.timeScale = 1.0f;
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
         CharacterRender charrender = new CharacterRender();
         Randomer rand = new Randomer(charrender);
