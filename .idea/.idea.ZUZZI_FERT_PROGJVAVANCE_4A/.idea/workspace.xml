@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fire.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Fire.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainField.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainField.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/View.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/View.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,26 +18,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FireDestruction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Controller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/CharacterRenderer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scenes/MainField.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/3a/0f44f3c0/Input.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -45,13 +30,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Agent.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/View.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
@@ -71,6 +55,7 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -80,6 +65,7 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -103,35 +89,6 @@
       <workItem from="1632836504672" duration="5726000" />
       <workItem from="1632901454786" duration="10150000" />
     </task>
-    <task id="LOCAL-00001" summary="Cleanup from Dev merge and little refractoring">
-      <created>1632864047873</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1632864047873</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added explosion collision and winner return function (ugly version)">
-      <created>1632871933553</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1632871933556</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added Outer wall collision and adjusted scene generation">
-      <created>1632904256442</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1632904256442</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Merged Zuzzi and Michel branch, corrected Mainfield placement">
-      <created>1632906029387</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1632906029388</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,10 +111,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Cleanup from Dev merge and little refractoring" />
-    <MESSAGE value="Added explosion collision and winner return function (ugly version)" />
-    <MESSAGE value="Added Outer wall collision and adjusted scene generation" />
-    <MESSAGE value="Merged Zuzzi and Michel branch, corrected Mainfield placement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged Zuzzi and Michel branch, corrected Mainfield placement" />
   </component>
 </project>

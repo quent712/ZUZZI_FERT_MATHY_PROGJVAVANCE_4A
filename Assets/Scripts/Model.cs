@@ -179,7 +179,7 @@ public class Model
             }
             else
             {
-                pos = new Vector2(10, 3);
+                pos = new Vector2(11, 2);
             }
             playerList[i] = (new Player(pos));
         }
