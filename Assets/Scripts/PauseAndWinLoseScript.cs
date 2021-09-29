@@ -30,5 +30,6 @@ public class PauseAndWinLoseScript : MonoBehaviour
     public void playsoundbutton()
     {
         SoundManager.Instance.PlaySound(buttonclip);
+        Time.timeScale = 1.0f;
     }
 }
