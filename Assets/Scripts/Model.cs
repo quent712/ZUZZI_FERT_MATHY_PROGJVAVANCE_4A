@@ -171,7 +171,7 @@ public class Model
     // TO BE CONTINUED: HANDLE BORDER DETECTION
     public void actionHandler(Action action, int playerID)
     {
-        if (action != Action.SetBomb)
+        if (action != Action.SetBomb || action != Action.Wait || action!=Action.Undertermined)
         {
             //playerList[playerID].makeAMove(action);
             switch (action)
@@ -195,12 +195,30 @@ public class Model
                     if(playerList[playerID].position.x-Player.movementStep*Time.deltaTime>0)
                         playerList[playerID].position.x -= Player.movementStep*Time.deltaTime;
                     break;
-            
+                
+                case Action.Undertermined:
+                    
+                    
                 default:
                     break;
             }
         }
-        else dropBombAction(playerID);
+        else if (action == Action.SetBomb)
+        {
+            dropBombAction(playerID);
+        }
+        
+        else if (action == Action.Wait)
+        {
+            
+        }
+        
+        else if (action == Action.Undertermined)
+        {
+            
+        }
+
+
     }
     
     // Drop a bomb at the position of a given player

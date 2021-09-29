@@ -34,7 +34,6 @@ public class GameSimul{
                 
                 break;
             
-            
             case Action.MoveLeft:
                 
                 break;
@@ -56,7 +55,7 @@ public class GameSimul{
                // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
                 break;
         }
-        //Condition de fin de partie
+        //On a une fin de partie ?
         
         if(TouchAdv == 0){
             finalSituation = 0;
