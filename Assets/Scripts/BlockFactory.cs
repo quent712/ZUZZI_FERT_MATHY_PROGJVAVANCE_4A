@@ -8,4 +8,5 @@ public class BlockFactory : MonoBehaviour
     {
         Instantiate(block, new Vector3(x-0.5f, 1, z-0.5f), Quaternion.identity);
     }
+    
 }
