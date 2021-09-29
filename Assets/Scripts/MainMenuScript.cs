@@ -19,6 +19,5 @@ public class MainMenuScript : MonoBehaviour
     public void playsoundbutton()
     {
         SoundManager.Instance.PlaySound(buttonclip);
-        Time.timeScale = 0.0f;
     }
 }
