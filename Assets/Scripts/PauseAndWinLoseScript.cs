@@ -18,8 +18,6 @@ public class PauseAndWinLoseScript : MonoBehaviour
     {
         SceneManager.LoadScene("MainField");
         Time.timeScale = 1.0f;
-        
-        
     }
 
     public void BacktoMain()
