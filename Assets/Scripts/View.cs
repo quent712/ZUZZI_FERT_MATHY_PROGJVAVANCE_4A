@@ -12,8 +12,14 @@ public class View
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
     
-    private GameObject wallModel;
-    private Dictionary<int, GameObject> wallModelDict;
+    private GameObject wallObject;
+    private Dictionary<int, GameObject> wallObjectDict;
+    
+    private GameObject breakableObject;
+    private Dictionary<int, GameObject> breakableObjectDict;
+
+    private GameObject fireObject;
+    private Dictionary<int, GameObject> fireObjectDict;
     
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
@@ -26,7 +32,7 @@ public class View
     //private GameObject destructibleEnvModel;
     
     // TO BE CONTINUED: ADD VISUAL MAP GENERATION
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
@@ -34,9 +40,14 @@ public class View
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
         
-        wallModel = wall;
-        wallModelDict = new Dictionary<int, GameObject>();
-        
+        wallObject = wall;
+        wallObjectDict = new Dictionary<int, GameObject>();
+
+        breakableObject = breakable;
+        breakableObjectDict = new Dictionary<int, GameObject>();
+
+        fireObject = fire;
+        fireObjectDict = new Dictionary<int, GameObject>();
         
         // For each player from Model we instantiate a new Player model
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
@@ -50,10 +61,10 @@ public class View
         
         // Visual Map generation
         Map temp = (Map) gameState["MapInfo"];
-        for (int i=0;  i < 15; i+=2)
+        for (int i=0;  i < 15; i++)
         {
             int padz = i;
-            for (int j = 0;  j<15; j+=2)
+            for (int j = 0;  j<15; j++)
             {
                 int padx = j;
                 
@@ -61,9 +72,9 @@ public class View
                 {
                     BlockFactory.Factory(wall, j,i);
                 }
-                else
+                else if (temp.myMapLayout[i,j] == MapEnvironment.Breakable)
                 {
-                    //Debug.Log("Nothing Here");
+                    BlockFactory.Factory(breakable, j,i);
                 }
             }
         }
@@ -79,7 +90,7 @@ public class View
             playerObjectDict[playerInfo.playerID].transform.position =
                 new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
         }
-        
+        ///////////////////////////// TO BE MERGED BELOW //////////////////////////
         // Check for bombs to destroy and create explosions
         tempDict = gameState["BombsInfo"] as Dictionary<int, Bomb>;
         idList = new List<int>(bombObjectDict.Keys);
@@ -93,16 +104,20 @@ public class View
                 bombObjectDict.Remove(bombKey);
             }
         }
+        ////////////////////////////////////////////////////////////////////////
         
         // Update new bombs
         foreach (KeyValuePair<int,Bomb> bombItem in (IEnumerable) gameState["BombsInfo"])
         {
+            // if new bomb add
             if (!bombObjectDict.ContainsKey(bombItem.Key))
             {
                 GameObject newBomb = GameObject.Instantiate(bombObject);
                 newBomb.transform.position = new Vector3(bombItem.Value.position.x, 0, bombItem.Value.position.y);
                 bombObjectDict.Add(bombItem.Key,newBomb);
             }
+            // if bombItem.exploding==true -> create fire at bombItem.explosionSquares[] and remove bomb gameobject
+            // extra fire script to delete itself
         }
         
         // Update dynamic environment here with gameState["MapInfo"]

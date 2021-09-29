@@ -19,9 +19,7 @@ public enum Action
     MoveDown,
     MoveLeft,
     MoveRight,
-    SetBomb,
-    Wait,
-    Undertermined
+    SetBomb
 };
 
 // Possible Environment on the map
@@ -39,8 +37,8 @@ public struct Map
     // Map constructor
     public Map(int mapX,int mapY) : this()
     {
-        mapSizeX = mapX;
-        mapSizeY = mapY;
+        mapSizeX = mapX+2;
+        mapSizeY = mapY+2;
         myMapLayout = CreateRandomMap();
     }
     
@@ -99,17 +97,14 @@ public struct Player
     
     // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
     // Player Constructor
-    public Player(int hp = 1)
+    public Player(Vector2 pos)
     {
         playerID = nbPlayer;
         nbPlayer++;
-        position = new Vector2(10, 10);
-        health = hp;
+        position = pos;
+        health = 1;
         timeuntilbomb = 0f;
     }
-
-
-   
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -117,17 +112,21 @@ public struct Bomb
 {
     private static float bombTimer = 3.0f;
     private static int nbBomb = 0;
-
+    
     public int bombID;
+    public bool exploding;
     public Vector2 position;
     public float explosionTime;
     public float explosionRadius;
+    public List<Vector2> explosionSquares;
     
     // Bomb constructor
     public Bomb(Vector2 setPosition,float time,float radius = 5)
     {
         bombID = nbBomb;
         nbBomb++;
+        exploding = false;
+        explosionSquares = new List<Vector2>();
         position = setPosition;
         explosionTime = time + bombTimer;
         explosionRadius = radius;
@@ -177,11 +176,20 @@ public class Model
         myGameState = new Dictionary<string, object>();
         for (int i = 0; i < numberOfPlayer; i++)
         {
-            playerList[i] = (new Player(1));
+            Vector2 pos = new Vector2(0,0);
+            if (i == 0)
+            {
+                pos = new Vector2(2, 11);
+            }
+            else
+            {
+                pos = new Vector2(11, 3);
+            }
+            playerList[i] = (new Player(pos));
         }
         
     }
-    
+
     // Check the nearest points to see if it is a wall
     private bool canMakeMove(Vector2 posToCheck)
     {
@@ -199,13 +207,12 @@ public class Model
         }
         return false;
     }
-
     
-    // TO BE CONTINUED: HANDLE BORDER DETECTION
+    // Handle all possible action
     public void actionHandler(Action action, int playerID)
     {
         
-        if (action != Action.SetBomb|| action != Action.Wait || action!=Action.Undertermined)
+        if (action != Action.SetBomb)
         {
             tempPosition = playerList[playerID].position;
             switch (action)
@@ -233,26 +240,12 @@ public class Model
             if(canMakeMove(tempPosition)) playerList[playerID].position = tempPosition;
             
         }
-        else if (action == Action.SetBomb)
-        {
-            dropBombAction(playerID);
-        }
-        
-        else if (action == Action.Wait)
-        {
-            
-        }
-        
-        else if (action == Action.Undertermined)
-        {
-            
-        }
+        else dropBombAction(playerID);
     }
-   
     
     // Drop a bomb at the position of a given player
-    public void dropBombAction(int playerID)
-    {   
+    private void dropBombAction(int playerID)
+    {
         //Debug.Log("Ingametimer" + inGameTimer);
         //Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
         if (inGameTimer > playerList[playerID].timeuntilbomb)
@@ -296,7 +289,7 @@ public class Model
         
     }
 
-    // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
+    // On each update, check if a bomb should explode and launch explosion detection
     public void UpdateModel()
     {
         

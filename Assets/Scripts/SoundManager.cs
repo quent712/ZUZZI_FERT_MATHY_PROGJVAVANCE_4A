@@ -19,10 +19,14 @@ public class SoundManager : MonoBehaviour
         {
             Destroy (gameObject);
         }
-
     }
     
-    public void PlaySound(AudioClip clip)
+    public void PlaySoundMusic(AudioClip clip)
+    {
+        MusicSource.PlayOneShot(clip);
+    }
+    
+    public void PlaySoundEffect(AudioClip clip)
     {
         EffectSource.PlayOneShot(clip);
     }
@@ -35,5 +39,10 @@ public class SoundManager : MonoBehaviour
     public void ToggleMusic()
     {
         MusicSource.mute = !MusicSource.mute;
+    }
+
+    public void StopSoundMusic()
+    {
+        MusicSource.Stop();
     }
 }
