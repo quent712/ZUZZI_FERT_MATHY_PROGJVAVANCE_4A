@@ -53,6 +53,17 @@ public class App : MonoBehaviour
     {
         myController.UpdateController(randomIA);
         myModel.UpdateModel();
+        
+        //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+        if (!myModel.isBothPlayerAlive)
+        {
+            Player winner = myModel.getWinner();
+            Debug.Log("Game Ended and I got a Winner: Player "+winner.playerID);
+            // CALL MY WIN SCREEN HERE
+            // GIVE IT WINNER INFO
+        }
+        /////////////////////////////////////////////////////////////
+        
         myView.UpdateView(myModel.getGameState());
         
         

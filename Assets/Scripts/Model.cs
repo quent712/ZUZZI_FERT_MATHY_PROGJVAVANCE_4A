@@ -131,14 +131,16 @@ public struct Bomb
     public int bombID;
     public Vector2 position;
     public float explosionTime;
+    public float explosionRadius;
     
     // Bomb constructor
-    public Bomb(Vector2 setPosition,float time)
+    public Bomb(Vector2 setPosition,float time,float radius = 5)
     {
         bombID = nbBomb;
         nbBomb++;
         position = setPosition;
         explosionTime = time + bombTimer;
+        explosionRadius = radius;
 
     }
 }
@@ -152,6 +154,21 @@ public class Model
     private Player[] playerList;
     private Dictionary<int,Bomb> bombList;
     private Dictionary<string, object> myGameState;
+
+    //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+    public bool isBothPlayerAlive;
+
+    // This code is kinda bad
+    public Player getWinner()
+    {
+        foreach (Player player in playerList)
+        {
+            if (player.health > 0) return player;
+        }
+
+        return playerList[0]; 
+    }
+    ////////////////////////////////////////////////////////////
     
     private float inGameTimer;
     
@@ -165,7 +182,7 @@ public class Model
         playerList = new Player[numberOfPlayer];
         bombList = new Dictionary<int, Bomb>();
         currentMap = new Map(mapX,mapY);
-        
+        isBothPlayerAlive = true;
         myGameState = new Dictionary<string, object>();
         for (int i = 0; i < numberOfPlayer; i++)
         {
@@ -205,9 +222,27 @@ public class Model
         
         return myGameState;
     }
+    
+    // Handles explosion collisions
+    private void explosionCollision(Vector2 bombPosition, float bombRadius)
+    {
+        Rect horizontal = new Rect(bombPosition.x - bombRadius, bombPosition.y - 0.5f, bombRadius * 2, 1.0f);
+        Rect vertical = new Rect(bombPosition.x-0.5f, bombPosition.y - bombRadius, 1.0f, bombRadius*2);
+        Debug.Log(horizontal.center+" vs "+bombPosition +" vs "+vertical.center);
+        
+        foreach (Player player in playerList)
+        {
+            if (horizontal.Contains(player.position) || vertical.Contains(player.position))
+            {
+                Debug.Log("Exploded a player");
+                playerList[player.playerID].health = 0;
+                isBothPlayerAlive = false;
 
-    
-    
+            }
+        }
+        
+    }
+
     // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
     public void UpdateModel()
     {
@@ -221,8 +256,11 @@ public class Model
             if (inGameTimer > bombList[bombKey].explosionTime)
             {
                 // HANDLE EXPLOSION COLLISION HERE
+                explosionCollision(bombList[bombKey].position,bombList[bombKey].explosionRadius);
                 bombList.Remove(bombKey);
             }
         }
+        
+        
     }
 }
