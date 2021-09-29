@@ -75,7 +75,7 @@ public struct Map
 public struct Player
 {
     private static int nbPlayer = 0; // increments to give each player a unique ID
-    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
+    public static float movementStep = 10.0f; // the step by which a Player move on each key pressed
     
     public int playerID;
     public Vector2 position;
@@ -88,7 +88,7 @@ public struct Player
     {
         playerID = nbPlayer;
         nbPlayer++;
-        position = new Vector2(1, 1);
+        position = new Vector2(10, 10);
         health = hp;
         timeuntilbomb = 0f;
     }
@@ -165,8 +165,7 @@ public class Model
         {
             if (player.health > 0) return player;
         }
-
-        return playerList[0]; 
+        return playerList[0];
     }
     ////////////////////////////////////////////////////////////
     
@@ -195,7 +194,35 @@ public class Model
     // TO BE CONTINUED: HANDLE BORDER DETECTION
     public void actionHandler(Action action, int playerID)
     {
-        if(action!=Action.SetBomb) playerList[playerID].makeAMove(action);
+        if (action != Action.SetBomb)
+        {
+            //playerList[playerID].makeAMove(action);
+            switch (action)
+            {
+                case Action.MoveUp:
+                    if(playerList[playerID].position.y+Player.movementStep*Time.deltaTime<currentMap.mapSizeY)
+                        playerList[playerID].position.y += Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveDown:
+                    if(playerList[playerID].position.y-Player.movementStep*Time.deltaTime>0)
+                        playerList[playerID].position.y -= Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveRight:
+                    if(playerList[playerID].position.x+Player.movementStep*Time.deltaTime<currentMap.mapSizeX)
+                        playerList[playerID].position.x += Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveLeft:
+                    if(playerList[playerID].position.x-Player.movementStep*Time.deltaTime>0)
+                        playerList[playerID].position.x -= Player.movementStep*Time.deltaTime;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
         else dropBombAction(playerID);
     }
     
@@ -234,8 +261,10 @@ public class Model
         {
             if (horizontal.Contains(player.position) || vertical.Contains(player.position))
             {
-                Debug.Log("Exploded a player");
+                //Debug.Log("Exploded a player");
                 playerList[player.playerID].health = 0;
+                
+                //////////////// TO BE CHANGED AS WELL ////////////////
                 isBothPlayerAlive = false;
 
             }

@@ -50,16 +50,16 @@ public class View
         
         // Visual Map generation
         Map temp = (Map) gameState["MapInfo"];
-        for (int i=0;  i < 15; i++)
+        for (int i=0;  i < 15; i+=2)
         {
             int padz = i;
-            for (int j = 0;  j<15; j++)
+            for (int j = 0;  j<15; j+=2)
             {
                 int padx = j;
                 
                 if (temp.myMapLayout[i,j] == MapEnvironment.Wall)
                 {
-                    BlockFactory.Factory(wall, j+padx,i+padz);
+                    BlockFactory.Factory(wall, j,i);
                 }
                 else
                 {
