@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,21 +11,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/Action.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/TreeAction.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$USER_HOME$/Downloads/ZUZZI_BRETELLE_PROGJVAVANCE_4A-master/Assets/src/battle/agent/mcts/TreeAction.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Agent.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
@@ -79,12 +77,16 @@
       <workItem from="1632818802502" duration="1379000" />
       <workItem from="1632823503572" duration="1475000" />
       <workItem from="1632825298172" duration="1038000" />
+      <workItem from="1632836402809" duration="6000" />
+      <workItem from="1632836504672" duration="5726000" />
+      <workItem from="1632901454786" duration="2903000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="Vcs.Log.Tabs.Properties">

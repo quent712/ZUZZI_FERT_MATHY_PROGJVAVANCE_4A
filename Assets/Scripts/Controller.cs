@@ -4,50 +4,81 @@ using UnityEngine;
 // It will transmit instructions to the model on what actions to take
 public class Controller
 {
-
+    
     public Model activeModel;
+    public Randomer randomer;
+    
+    
+    public Controller(Randomer randomer)
+    {
+        this.randomer = randomer;
+    }
+    
     
     // Listens to Player action
-    public void UpdateController()
+    public void UpdateController(bool randomIA)
     {
         
         // FOR PLAYER VS PLAYER TAKE INTO ACCOUNT ALTERNATE CONTROL SCHEME
         // PLAYERID IS MANUALLY INPUTTED, NOT GOOD?
         
         // PLAYER 1 INPUTS
-        if (Input.GetKey("z"))
+        if (Input.GetKey(KeyCode.Z))
         {
-            activeModel.movementAction(MovementDirection.Up, 0);
+            activeModel.actionHandler(Action.MoveUp, 0);
         }
-        if (Input.GetKey("s"))
+        if (Input.GetKey(KeyCode.S))
         {
-            activeModel.movementAction(MovementDirection.Down, 0);
+            activeModel.actionHandler(Action.MoveDown, 0);
         }
-        if (Input.GetKey("q"))
+        if (Input.GetKey(KeyCode.Q))
         {
-            activeModel.movementAction(MovementDirection.Left, 0);
+            activeModel.actionHandler(Action.MoveLeft, 0);
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey(KeyCode.D))
         {
-            activeModel.movementAction(MovementDirection.Right, 0);
+            activeModel.actionHandler(Action.MoveRight, 0);
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            activeModel.actionHandler(Action.SetBomb,0);
         }
         
         // PLAYER 2 INPUTS
-        if (Input.GetKey("up"))
+
+        if (!randomIA)
         {
-            activeModel.movementAction(MovementDirection.Up, 1);
+
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                activeModel.actionHandler(Action.MoveUp, 1);
+            }
+
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                activeModel.actionHandler(Action.MoveDown, 1);
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                activeModel.actionHandler(Action.MoveLeft, 1);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                activeModel.actionHandler(Action.MoveRight, 1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+                activeModel.actionHandler(Action.SetBomb,1);
+            }
         }
-        if (Input.GetKey("down"))
+
+        else
         {
-            activeModel.movementAction(MovementDirection.Down, 1);
-        }
-        if (Input.GetKey("left"))
-        {
-            activeModel.movementAction(MovementDirection.Left, 1);
-        }
-        if (Input.GetKey("right"))
-        {
-            activeModel.movementAction(MovementDirection.Right, 1);
+             Action action = (Action)Random.Range(0, 5);
+             activeModel.actionHandler(action, 1);
         }
     }
 }

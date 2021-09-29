@@ -5,13 +5,21 @@ using UnityEngine;
 
 public class OptionMenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    [SerializeField] private AudioClip buttonclip;
     public void SelectAIHard()
     {
-        Debug.Log("Test Hard");
+        AIandSound.Instance.Difficulty = "Hard";
+        //Debug.Log(AIandSound.Instance.Difficulty);
     }
     public void SelectAIEasy()
     {
-        Debug.Log("Test Easy");
+        AIandSound.Instance.Difficulty = "Easy";
+        //Debug.Log(AIandSound.Instance.Difficulty);
+    }
+    
+    public void playsoundbutton()
+    {
+        SoundManager.Instance.PlaySound(buttonclip);
     }
 }

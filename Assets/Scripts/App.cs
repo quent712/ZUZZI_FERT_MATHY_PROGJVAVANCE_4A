@@ -14,13 +14,17 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
+    public GameObject bomb;
+    public GameObject wall;
+    public Randomer randomer;
     
+
+    public bool randomIA = false;
+    // TO BE ADDED
     
-    // TO ADDED
-    //public GameObject bombModel;
-
-    //public GameObject wallModel;
-
+    public GameObject pausePanel;
+    public GameObject winPanel;
+    public GameObject losePanel;
     //public GameObject floorModel;
 
     //public GameObject destructibleEnvModel;
@@ -30,19 +34,54 @@ public class App : MonoBehaviour
     {
         
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
+        CharacterRender charrender = new CharacterRender();
+        Randomer rand = new Randomer(charrender);
         
-        myController = new Controller();
+        
+        
+        myController = new Controller(rand);
+       
+        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player);
+        myView = new View(myModel.getGameState(),player,bomb, wall);
+        
+        
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        myController.UpdateController();
+        myController.UpdateController(randomIA);
         myModel.UpdateModel();
+        
+        //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+        if (!myModel.isBothPlayerAlive)
+        {
+            Player winner = myModel.getWinner();
+            Debug.Log("Game Ended and I got a Winner: Player "+winner.playerID);
+
+            if (winner.playerID == 0)
+            {
+                winPanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                losePanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+        }
+        /////////////////////////////////////////////////////////////
+        
         myView.UpdateView(myModel.getGameState());
+        
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }

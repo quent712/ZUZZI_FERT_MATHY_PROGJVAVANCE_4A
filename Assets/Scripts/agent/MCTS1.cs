@@ -11,7 +11,6 @@ public class MCTS1
     private float born;
     private CharacterRender render;
 
-
     public MCTS1() : base()
     {
         tree = new Node(new Register(0, 0));
@@ -33,7 +32,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact(Character characAdv, Pokemon characMe)
+    public int interact(Character characAdv, Character characMe)
     {
 
 
@@ -109,18 +108,10 @@ public class MCTS1
                         break;
 
                     // Utilise les capacités si le MCTS le demande
-                    case PossibleAction.CAPACITY0:
-                        i = pokemonMe.useCapacity(0, pokemonAdv, render);
+                    case PossibleAction.SETBOMBE:
+                        // i = pokemonMe.useCapacity(0, pokemonAdv, render);
                         break;
-                    case PossibleAction.CAPACITY1:
-                        i = pokemonMe.useCapacity(1, pokemonAdv, render);
-                        break;
-                    case PossibleAction.CAPACITY2:
-                        i = pokemonMe.useCapacity(2, pokemonAdv, render);
-                        break;
-                    case PossibleAction.CAPACITY3:
-                        i = pokemonMe.useCapacity(3, pokemonAdv, render);
-                        break;
+
                 }
             }
 
@@ -134,29 +125,22 @@ public class MCTS1
         // Applique le mouvement
         if (characMe != null)
         {
-            if (a[0] >= 0.8f)
-            {
-                render.v.y += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-
-            if (a[1] >= 0.8f)
-            {
-                render.v.y -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-
-            if (a[2] >= 0.8f)
-            {
-                render.v.x -= Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
-
-            if (a[3] >= 0.8f)
-            {
-                render.v.x += Time.deltaTime * SENSIBILITY;
-                pokemonMe.charge(COST_MOVE);
-            }
+            /* if(a[0] >= 0.8f){
+                 render.v.y += Time.deltaTime * SENSIBILITY;
+                 pokemonMe.charge(COST_MOVE);
+             }
+             if(a[1] >= 0.8f){
+                 render.v.y -= Time.deltaTime * SENSIBILITY;
+                 pokemonMe.charge(COST_MOVE);
+             }
+             if(a[2] >= 0.8f){
+                 render.v.x -= Time.deltaTime * SENSIBILITY;
+                 pokemonMe.charge(COST_MOVE);
+             }
+             if(a[3] >= 0.8f){
+                 render.v.x += Time.deltaTime * SENSIBILITY;
+                 pokemonMe.charge(COST_MOVE);
+             }   */
         }
 
         return 0;

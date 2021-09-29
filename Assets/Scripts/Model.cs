@@ -11,6 +11,15 @@ public enum MovementDirection
     Right
 };
 
+public enum Action
+{
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight,
+    SetBomb
+};
+
 // Possible Environment on the map
 public enum MapEnvironment
 {
@@ -23,14 +32,15 @@ public enum MapEnvironment
 // The map is an array containing the possible element of environment for each square 
 public struct Map
 {
-    public Map(int mapx,int mapY) : this()
+    // Map constructor
+    public Map(int mapX,int mapY) : this()
     {
-        mapSizeX = mapx;
+        mapSizeX = mapX;
         mapSizeY = mapY;
         myMapLayout = CreateRandomMap();
     }
     
-    private MapEnvironment[,] myMapLayout;
+    public MapEnvironment[,] myMapLayout;
     public int mapSizeX;
     public int mapSizeY;
 
@@ -42,11 +52,11 @@ public struct Map
         {
             for (int i = 0; i < mapSizeX+2; i++)
             {
-                if (j == 0 || j == +1)
+                if (j == 0 || j == mapSizeY+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
-                else if (i == 0 || i == +1)
+                else if (i == 0 || i == mapSizeX+1)
                 {
                     newMap[i,j] = MapEnvironment.Wall;
                 }
@@ -64,45 +74,45 @@ public struct Map
 // A player is a position and health pool
 public struct Player
 {
-    // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
-    // In a struct, a constructor needs to have a parameter and be called using this parameter
-    public Player(int hp = 1)
-    {
-        playerID = nbPlayer;
-        nbPlayer++;
-        position = new Vector2(1, 1);
-        health = hp;
-
-    }
-    
-    
     private static int nbPlayer = 0; // increments to give each player a unique ID
-    public static float movementStep = 0.1f; // the step by which a Player move on each key pressed
+    public static float movementStep = 10.0f; // the step by which a Player move on each key pressed
     
     public int playerID;
     public Vector2 position;
     public int health;
+    public float timeuntilbomb;
+    
+    // TO BE CONTINUED: HANDLE POSITION RANDOMIZATION
+    // Player Constructor
+    public Player(int hp = 1)
+    {
+        playerID = nbPlayer;
+        nbPlayer++;
+        position = new Vector2(10, 10);
+        health = hp;
+        timeuntilbomb = 0f;
+    }
 
     // TO BE MOVED TO MODEL CLASS TO HANDLE COLLISIONS
-    public void makeAMove(MovementDirection direction)
+    public void makeAMove(Action direction)
     {   
         
         // Currently with direct incrementation
         switch (direction)
         {
-            case MovementDirection.Up:
+            case Action.MoveUp:
                 position.y += movementStep;
                 break;
             
-            case MovementDirection.Down:
+            case Action.MoveDown:
                 position.y -= movementStep;
                 break;
             
-            case MovementDirection.Right:
+            case Action.MoveRight:
                 position.x += movementStep;
                 break;
             
-            case MovementDirection.Left:
+            case Action.MoveLeft:
                 position.x -= movementStep;
                 break;
             
@@ -116,14 +126,21 @@ public struct Player
 public struct Bomb
 {
     private static float bombTimer = 3.0f;
-    
+    private static int nbBomb = 0;
+
+    public int bombID;
     public Vector2 position;
     public float explosionTime;
+    public float explosionRadius;
     
-    public Bomb(Vector2 setPosition)
+    // Bomb constructor
+    public Bomb(Vector2 setPosition,float time,float radius = 5)
     {
+        bombID = nbBomb;
+        nbBomb++;
         position = setPosition;
-        explosionTime = Time.time + bombTimer;
+        explosionTime = time + bombTimer;
+        explosionRadius = radius;
 
     }
 }
@@ -132,18 +149,39 @@ public struct Bomb
 // Model is gonna do most of calculation and handle collisions
 public class Model
 {
+    
     private Map currentMap;
     private Player[] playerList;
-    private Bomb[] bombList;
+    private Dictionary<int,Bomb> bombList;
     private Dictionary<string, object> myGameState;
+
+    //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+    public bool isBothPlayerAlive;
+
+    // This code is kinda bad
+    public Player getWinner()
+    {
+        foreach (Player player in playerList)
+        {
+            if (player.health > 0) return player;
+        }
+        return playerList[0];
+    }
+    ////////////////////////////////////////////////////////////
+    
+    private float inGameTimer;
+    
+    // TEMPORARY VARIABLES
+    private List<int> idList;
     
     // Init the different lists and had new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
+        inGameTimer = 0.0f;
         playerList = new Player[numberOfPlayer];
-        bombList = new Bomb[10];
+        bombList = new Dictionary<int, Bomb>();
         currentMap = new Map(mapX,mapY);
-        
+        isBothPlayerAlive = true;
         myGameState = new Dictionary<string, object>();
         for (int i = 0; i < numberOfPlayer; i++)
         {
@@ -151,26 +189,107 @@ public class Model
         }
         
     }
+
     
     // TO BE CONTINUED: HANDLE BORDER DETECTION
-    public void movementAction(MovementDirection chosenDirection, int playerID)
+    public void actionHandler(Action action, int playerID)
     {
-        playerList[playerID].makeAMove(chosenDirection);
+        if (action != Action.SetBomb)
+        {
+            //playerList[playerID].makeAMove(action);
+            switch (action)
+            {
+                case Action.MoveUp:
+                    if(playerList[playerID].position.y+Player.movementStep*Time.deltaTime<currentMap.mapSizeY)
+                        playerList[playerID].position.y += Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveDown:
+                    if(playerList[playerID].position.y-Player.movementStep*Time.deltaTime>0)
+                        playerList[playerID].position.y -= Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveRight:
+                    if(playerList[playerID].position.x+Player.movementStep*Time.deltaTime<currentMap.mapSizeX)
+                        playerList[playerID].position.x += Player.movementStep*Time.deltaTime;
+                    break;
+            
+                case Action.MoveLeft:
+                    if(playerList[playerID].position.x-Player.movementStep*Time.deltaTime>0)
+                        playerList[playerID].position.x -= Player.movementStep*Time.deltaTime;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+        else dropBombAction(playerID);
+    }
+    
+    // Drop a bomb at the position of a given player
+    private void dropBombAction(int playerID)
+    {   
+        //Debug.Log("Ingametimer" + inGameTimer);
+        //Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
+        if (inGameTimer > playerList[playerID].timeuntilbomb)
+        {
+            Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
+            bombList.Add(newBomb.bombID, newBomb);
+            playerList[playerID].timeuntilbomb = inGameTimer + 1f;
+        }
     }
     
     // Returns the current state of the game in a dictionary
     public Dictionary<string, object> getGameState()
     {
         myGameState["MapInfo"] = currentMap;
+        myGameState["InGameTime"] = inGameTimer;
         myGameState["PlayersInfo"] = playerList;
         myGameState["BombsInfo"] = bombList;
         
         return myGameState;
     }
     
-    // TO BE DONE: HANDLE BOMB EXPLOSION DETECTION
+    // Handles explosion collisions
+    private void explosionCollision(Vector2 bombPosition, float bombRadius)
+    {
+        Rect horizontal = new Rect(bombPosition.x - bombRadius, bombPosition.y - 0.5f, bombRadius * 2, 1.0f);
+        Rect vertical = new Rect(bombPosition.x-0.5f, bombPosition.y - bombRadius, 1.0f, bombRadius*2);
+        Debug.Log(horizontal.center+" vs "+bombPosition +" vs "+vertical.center);
+        
+        foreach (Player player in playerList)
+        {
+            if (horizontal.Contains(player.position) || vertical.Contains(player.position))
+            {
+                //Debug.Log("Exploded a player");
+                playerList[player.playerID].health = 0;
+                
+                //////////////// TO BE CHANGED AS WELL ////////////////
+                isBothPlayerAlive = false;
+
+            }
+        }
+        
+    }
+
+    // TO BE DONE: HANDLE BOMB SUPPRESSION AND EXPLOSION DETECTION
     public void UpdateModel()
     {
+        
+        inGameTimer += Time.deltaTime;
+        
+        // Bomb suppression if timer expired
+        idList = new List<int>(bombList.Keys);
+        foreach (int bombKey in idList)
+        {
+            if (inGameTimer > bombList[bombKey].explosionTime)
+            {
+                // HANDLE EXPLOSION COLLISION HERE
+                explosionCollision(bombList[bombKey].position,bombList[bombKey].explosionRadius);
+                bombList.Remove(bombKey);
+            }
+        }
+        
         
     }
 }
