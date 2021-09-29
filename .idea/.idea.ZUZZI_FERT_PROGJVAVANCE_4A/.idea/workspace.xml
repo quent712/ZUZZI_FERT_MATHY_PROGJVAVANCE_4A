@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BrklWall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BrklWall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Model.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Model.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/View.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/View.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainField.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainField.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/AI and Sound.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/AI and Sound.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/SoundManager.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/SoundManager.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +87,7 @@
       <workItem from="1632825298172" duration="1038000" />
       <workItem from="1632836402809" duration="6000" />
       <workItem from="1632836504672" duration="5726000" />
-      <workItem from="1632901454786" duration="6913000" />
+      <workItem from="1632901454786" duration="7504000" />
     </task>
     <servers />
   </component>
