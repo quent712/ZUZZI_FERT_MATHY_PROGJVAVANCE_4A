@@ -7,18 +7,15 @@ public class MCTS1
 {
     private Node tree;
     public static float FREQUENCY = 0.4f; // Fréquence des actions du MCTS
-    private int[] a; // matrice des touches directionnelles
     private float born;
     private CharacterRender render;
     private Model model;
     private int playerID = 1;
-    private float simtime = 0.0f;
 
     public MCTS1(Model model) 
     {
         tree = new Node(new Register(0, 0));
         born = 0.0f;
-        a = new int[4];
         this.model = model;
     }
 
@@ -38,21 +35,11 @@ public class MCTS1
 
     public Action interact() //SELECT BEST ACTION IN THREE
     {
-        simtime = 0.0f;
-        Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
-
-        if (listplayer.Length != 0)
+        for (int i =0;i<50;i++)
         {
-            // initialise les données du simulateur PROB HERE
-            
-            listplayer[1].health = 1;
-            listplayer[0].health = 1;
-            
-            for (int i =0;i<50;i++)
-            {
-                compute(tree); //compute(tree,pokemonMe, pokemonAdv);
-            }
+            compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
+        
 
 
         // Appel horloge
@@ -101,8 +88,6 @@ public class MCTS1
         //Tant que la simulation n'est pas achevée
         while (!GameSimul.isFinished)
         {
-            simtime = simtime + Time.deltaTime;
-            
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
             // Choisi une action au piff
