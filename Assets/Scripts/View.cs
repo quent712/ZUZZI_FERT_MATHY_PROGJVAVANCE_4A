@@ -121,7 +121,7 @@ public class View
 
             if (bombItem.Value.exploding == true)
             {
-                //BlockFactory.Factory(fireObject ,bombItem.Value.position.x, bombItem.Value.position.y);
+                BlockFactory.Factory(fireObject ,bombItem.Value.position.x, bombItem.Value.position.y);
             }
         }
         
