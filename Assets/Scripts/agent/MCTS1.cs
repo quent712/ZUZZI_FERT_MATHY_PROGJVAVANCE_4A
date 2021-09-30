@@ -92,7 +92,7 @@ public class MCTS1
 
     void compute(Node action) //Simulation
     {
-        Debug.Log("In COMPUTE");
+        //Debug.Log("In COMPUTE");
         Model simumodel = new Model(model);  //On copie le model actuel
         simumodel.inGameDeltaTime = 0.02f; //Les déplacements seront similaire à la réalité dans la simu
         GameSimul.copymodel = simumodel;

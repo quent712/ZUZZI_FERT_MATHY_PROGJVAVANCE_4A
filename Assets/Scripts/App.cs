@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -26,7 +27,6 @@ public class App : MonoBehaviour
     public GameObject wall;
     public GameObject breakable;
     public GameObject fire;
-    public Randomer randomer;
 
 
 
@@ -74,12 +74,18 @@ public class App : MonoBehaviour
         
         
     }
-    
+
+    private void Update()
+    {
+        myModel.inGameDeltaTime = Time.deltaTime;
+        myController.UpdateController(currentMode);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(Time.deltaTime);
-        myController.UpdateController(currentMode);
+        //Debug.Log(Time.deltaTime);
+        
         myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////

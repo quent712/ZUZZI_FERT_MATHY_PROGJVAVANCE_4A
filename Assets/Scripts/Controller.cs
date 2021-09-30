@@ -6,7 +6,6 @@ public class Controller
 {
     
     public Model activeModel;
-    public Randomer randomer;
     public MCTS1 mcts;
     
     public Controller(MCTS1 mcts)
