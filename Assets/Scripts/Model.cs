@@ -34,6 +34,20 @@ public struct Map
         mapSizeY = mapY+2;
         myMapLayout = CreateRandomMap();
     }
+
+    public Map(Map mapToCopy)
+    {
+        mapSizeX = mapToCopy.mapSizeX;
+        mapSizeY = mapToCopy.mapSizeY;
+        myMapLayout = new MapEnvironment[mapSizeX,mapSizeY];
+        for (int j = 0; j < mapSizeY; j++)
+        {
+            for (int i = 0; i < mapSizeX; i++)
+            {
+                myMapLayout[i, j] = mapToCopy.myMapLayout[i, j];
+            }
+        }
+    }
     
     public MapEnvironment[,] myMapLayout;
     public int mapSizeX;
@@ -97,6 +111,14 @@ public struct Player
         health = 1;
         timeuntilbomb = 0f;
     }
+
+    public Player(Player playerToCopy)
+    {
+        playerID = playerToCopy.playerID;
+        position = playerToCopy.position;
+        health = playerToCopy.health;
+        timeuntilbomb = playerToCopy.timeuntilbomb;
+    }
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -124,6 +146,17 @@ public struct Bomb
         explosionRadius = radius;
 
     }
+
+    public Bomb(Bomb bombToCopy)
+    {
+        bombID = bombToCopy.bombID;
+        exploding = bombToCopy.exploding;
+        explosionSquares = bombToCopy.explosionSquares.ConvertAll(vect => new Vector2(vect.x,vect.y));
+
+        position = bombToCopy.position;
+        explosionTime = bombToCopy.explosionTime;
+        explosionRadius = bombToCopy.explosionRadius;
+    }
 }
 
 
@@ -134,7 +167,8 @@ public class Model
     private Player[] playerList;
     private Dictionary<int,Bomb> bombList;
     private Dictionary<string, object> myGameState;
-    private float inGameTimer;
+    public float inGameTimer;
+    public float inGameDeltaTime;
 
     //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
     public bool isBothPlayerAlive;
@@ -181,6 +215,24 @@ public class Model
             }
             playerList[i] = new Player(tempPosition);
         }
+    }
+
+    public Model(Model modelToCopy)
+    {
+        inGameTimer = 0.0f;
+        playerList = new Player[modelToCopy.playerList.Length];
+        foreach (Player player in modelToCopy.playerList)
+        {
+            playerList[player.playerID] = new Player(player);
+        }
+        bombList = new Dictionary<int, Bomb>();
+        foreach (KeyValuePair<int,Bomb> bombItem in modelToCopy.bombList)
+        {
+            bombList.Add(bombItem.Key,new Bomb(bombItem.Value));
+        }
+        currentMap = new Map(modelToCopy.currentMap);
+        isBothPlayerAlive = true;
+        myGameState = new Dictionary<string, object>();
     }
 
     // Check if a given position is in a wall or breakable
