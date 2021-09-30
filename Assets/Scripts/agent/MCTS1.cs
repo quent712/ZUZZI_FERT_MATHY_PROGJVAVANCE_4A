@@ -22,7 +22,7 @@ public class MCTS1
         this.model = model;
     }
 
-    public bool thrust()
+    public bool trust()
     {
         foreach (Node n in tree.getPossibleAction())
         {
@@ -36,7 +36,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact()
+    public Action interact() //SELECT BEST ACTION IN THREE
     {
         simtime = 0.0f;
         Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
@@ -48,21 +48,20 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-           compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            for (int i =0;i<50;i++)
+            {
+                compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            }
         }
 
 
         // Appel horloge
-        if (thrust())
+        if (trust())
         {
-            born = FREQUENCY;
-
             float max = float.MinValue;
             Action currentAction = Action.Undertermined;
             Node n = null;
-            bool priorityMove = false;
-           
-
+            
             // Cherche la meilleure action conduisant à une victoire
             foreach (Node child in tree.getPossibleAction())
             {
@@ -76,36 +75,31 @@ public class MCTS1
                     }
                 }
             }
-
-            
-           
-            //On résou la meilleur action conduisant à une victoire
-            int i = 0;
-            
-            
-                model.actionHandler(currentAction,1); //On lance l'action select
-
-                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             if (n != null)
                 tree = n;
 
-            return i;
+            return currentAction; //On retourne l'action select
+
+                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+            
         }
 
-        return 0;
+        return Action.Undertermined;
     }
 
 
 
 
-    void compute(Node action)
+    void compute(Node action) //Simulation
     {
         Debug.Log("In COMPUTE");
-        Model simumodel = new Model(model);     
+        Model simumodel = new Model(model);  //On copie le model actuel
+        simumodel.inGameDeltaTime = 0.02f; //Les déplacements seront similaire à la réalité dans la simu
         GameSimul.copymodel = simumodel;
-        //Debug.Log(action.data.a + "/" + action.data.b);
+        
+        
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished && simtime <0.5f)
+        while (!GameSimul.isFinished)
         {
             simtime = simtime + Time.deltaTime;
             
@@ -130,10 +124,10 @@ public class MCTS1
                 action = exitanteNode;   //la current action est l'action
             }
 
-            // Lance la simulation 
+            // Lance l'action
             GameSimul.PlayAction(action);
-            //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
-            //if(i++ > 10000) break;
+           
+            
         }
 
         // Applique des valeurs sur la feuille finale

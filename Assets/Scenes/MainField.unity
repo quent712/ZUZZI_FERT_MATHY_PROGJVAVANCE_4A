@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22742793, g: 1, b: 0.0047169924, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1658,7 +1658,7 @@ MonoBehaviour:
   AIhard: {fileID: 3226749240133836209, guid: 558d182824cde094aa01011d0de8ae8e, type: 3}
   bomb: {fileID: 6575330075604828838, guid: ac814dff80dc1c940a59a438a8226636, type: 3}
   wall: {fileID: 3026889979026083125, guid: b29bbf4142a718d44ba76c8784eefecf, type: 3}
-  breakable: {fileID: 3979135109488943916, guid: d6f7daf7f92da714db8116dbadd8d329, type: 3}
+  breakable: {fileID: 7649789925095218849, guid: 72d85612b98cb624caf00b3d20e76554, type: 3}
   fire: {fileID: 5468725236565767469, guid: 56140859cca4db54f8e2826c5b40b04c, type: 3}
   randomIA: 0
   MCTSIA: 0

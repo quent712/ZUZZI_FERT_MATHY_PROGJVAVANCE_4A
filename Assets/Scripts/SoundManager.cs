@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
 
     [SerializeField] private AudioSource MusicSource, EffectSource;
+    [SerializeField] private AudioClip Boomeffect;
     
     public static SoundManager Instance;
     void Awake ()   
@@ -21,6 +22,7 @@ public class SoundManager : MonoBehaviour
         }
     }
     
+    
     public void PlaySoundMusic(AudioClip clip)
     {
         MusicSource.PlayOneShot(clip);
@@ -29,6 +31,11 @@ public class SoundManager : MonoBehaviour
     public void PlaySoundEffect(AudioClip clip)
     {
         EffectSource.PlayOneShot(clip);
+    }
+
+    public void PlaySoundEffectBoom()
+    {
+        EffectSource.PlayOneShot(Boomeffect);
     }
 
     public void ToggleEffect()
