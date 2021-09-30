@@ -135,6 +135,8 @@ public class View
                 }
                 GameObject.Destroy(bombObjectDict[bombItem.Key]);
                 bombObjectDict.Remove(bombItem.Key);
+                
+                //SoundManager.Instance.PlaySoundEffect();
             }
         }
         
