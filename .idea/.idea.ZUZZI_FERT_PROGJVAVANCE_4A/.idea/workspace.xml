@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" afterDir="false" />
@@ -16,9 +17,64 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/Wall.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/UserSettings/EditorUserSettings.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/FireDestruction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/Fire.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/UserSettings/EditorUserSettings.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/3a/0f44f3c0/Input.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/Wall.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/UserSettings/EditorUserSettings.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/Fire.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/agent/MCTS1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FireDestruction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/BrklWall.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Prefabs/BrklWall.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/UserSettings/EditorUserSettings.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/agent/MCTS1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Bomberman copie/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/BlockFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/Model.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scenes/MainField.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/View.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/CharacterRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scenes/MainField.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/MATHY/Documents/Projet/ProjetPJVAvancee/ZUZZI_FERT_PROGJVAVANCE_4A/Assets/Scripts/App.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -29,12 +85,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
@@ -54,7 +110,6 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -64,7 +119,6 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
