@@ -14,6 +14,8 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
+    public GameObject AIeasy;
+    public GameObject AIhard;
     public GameObject bomb;
     public GameObject wall;
     public GameObject breakable;
@@ -38,15 +40,20 @@ public class App : MonoBehaviour
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
         CharacterRender charrender = new CharacterRender();
         Randomer rand = new Randomer(charrender);
-        
-        
+
+        if (AIandSound.Instance.Difficulty == "Easy")
+        {
+            randomIA = true;
+        }else if (AIandSound.Instance.Difficulty == "Hard")
+        {
+            randomIA = false;
+        }
         
         myController = new Controller(rand);
        
-        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,bomb, wall, breakable, fire);
+        myView = new View(myModel.getGameState(),player, AIeasy,  AIhard ,AIandSound.Instance.Difficulty, bomb, wall, breakable, fire);
         
         
         
