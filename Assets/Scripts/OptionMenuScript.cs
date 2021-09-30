@@ -16,6 +16,11 @@ public class OptionMenuScript : MonoBehaviour
         AIandSound.Instance.Difficulty = "Easy";
     }
     
+    public void SelectMultiplayer()
+    {
+        AIandSound.Instance.Difficulty = "Multiplayer";
+    }
+    
     public void playsoundbutton()
     {
         SoundManager.Instance.PlaySoundEffect(buttonclip);
