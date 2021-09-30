@@ -20,8 +20,11 @@ public class App : MonoBehaviour
     public GameObject fire;
     public Randomer randomer;
     
+    
 
     public bool randomIA = false;
+
+    public bool MCTSIA = false;
     // TO BE ADDED
     
     public GameObject pausePanel;
@@ -37,11 +40,11 @@ public class App : MonoBehaviour
         Time.timeScale = 1.0f;
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
         CharacterRender charrender = new CharacterRender();
-        Randomer rand = new Randomer(charrender);
+        Randomer rand = new Randomer();
+        MCTS1 mcts = new MCTS1(myModel);
         
         
-        
-        myController = new Controller(rand);
+        myController = new Controller(mcts);
        
         
         myController.activeModel = myModel;
@@ -55,7 +58,7 @@ public class App : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myController.UpdateController(randomIA);
+        myController.UpdateController(randomIA,MCTSIA);
         myModel.UpdateModel();
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////

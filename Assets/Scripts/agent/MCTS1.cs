@@ -10,12 +10,16 @@ public class MCTS1
     private int[] a; // matrice des touches directionnelles
     private float born;
     private CharacterRender render;
+    private Model model;
+    private int playerID = 1;
+    private float simtime = 0.0f;
 
-    public MCTS1() : base()
+    public MCTS1(Model model) 
     {
         tree = new Node(new Register(0, 0));
         born = 0.0f;
         a = new int[4];
+        this.model = model;
     }
 
     public bool thrust()
@@ -32,18 +36,19 @@ public class MCTS1
         return false;
     }
 
-    public int interact(Character characAdv, Character characMe)
+    public int interact()
     {
+        simtime = 0.0f;
+        Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
 
-
-        if (characAdv != null && characMe != null)
+        if (listplayer.Length != 0)
         {
-
-            // initialise les données du simulateur
-            GameSimul.TouchAdv = 0;
-            GameSimul.TouchME = 0;
-
-            compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            // initialise les données du simulateur PROB HERE
+            
+            listplayer[1].health = 1;
+            listplayer[0].health = 1;
+            
+           compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
 
 
@@ -53,23 +58,15 @@ public class MCTS1
             born = FREQUENCY;
 
             float max = float.MinValue;
-            PossibleAction currentAction = PossibleAction.UNDETERMINED;
+            Action currentAction = Action.Undertermined;
             Node n = null;
             bool priorityMove = false;
-            // Si une bombe est proche de l'objet on gère une priorité
-            foreach (GameObject o in GameObject.FindGameObjectsWithTag("bomb"))
-            {
-                if (Vector2.Distance(o.transform.position, render.transform.position) < 2f)
-                {
-                    priorityMove = true;
-                    ;
-                }
-            }
+           
 
             // Cherche la meilleure action conduisant à une victoire
             foreach (Node child in tree.getPossibleAction())
             {
-                if (child.state != PossibleAction.UNDETERMINED)
+                if (child.state != Action.Undertermined)
                 {
                     if ((float) child.data.a / (float) child.data.b > max)
                     {
@@ -80,67 +77,19 @@ public class MCTS1
                 }
             }
 
-            // Si priorité de mouvement ou action ESQUIVE
-            // On se déplace
-            a = new int[4];
-            if (priorityMove || currentAction == PossibleAction.WALK)
-            {
-                if (render.v.x >= 0)
-                    a[2] = 1;
-                else
-                    a[3] = 1;
-
-                if (render.v.y >= 0)
-                    a[1] = 1;
-                else
-                    a[0] = 1;
-            }
-
-
+            
+           
+            //On résou la meilleur action conduisant à une victoire
             int i = 0;
-            if (characMe != null
-                && characAdv != null)
-            {
-                switch (currentAction)
-                {
-                    case PossibleAction.UNDETERMINED:
-                    case PossibleAction.WAIT:
-                        break;
+            
+            
+                model.actionHandler(currentAction,1); //On lance l'action select
 
-                    // Utilise les capacités si le MCTS le demande
-                    case PossibleAction.SETBOMBE:
-                        // i = pokemonMe.useCapacity(0, pokemonAdv, render);
-                        break;
-
-                }
-            }
-
-            // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             if (n != null)
                 tree = n;
 
             return i;
-        }
-
-        // Applique le mouvement
-        if (characMe != null)
-        {
-            /* if(a[0] >= 0.8f){
-                 render.v.y += Time.deltaTime * SENSIBILITY;
-                 pokemonMe.charge(COST_MOVE);
-             }
-             if(a[1] >= 0.8f){
-                 render.v.y -= Time.deltaTime * SENSIBILITY;
-                 pokemonMe.charge(COST_MOVE);
-             }
-             if(a[2] >= 0.8f){
-                 render.v.x -= Time.deltaTime * SENSIBILITY;
-                 pokemonMe.charge(COST_MOVE);
-             }
-             if(a[3] >= 0.8f){
-                 render.v.x += Time.deltaTime * SENSIBILITY;
-                 pokemonMe.charge(COST_MOVE);
-             }   */
         }
 
         return 0;
@@ -151,14 +100,19 @@ public class MCTS1
 
     void compute(Node action)
     {
+        Debug.Log("In COMPUTE");
+        Model simumodel = (Model)model.Clone();     
+        GameSimul.copymodel = simumodel;
         //Debug.Log(action.data.a + "/" + action.data.b);
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished)
+        while (!GameSimul.isFinished && simtime <0.5f)
         {
+            simtime = simtime + Time.deltaTime;
+            
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
             // Choisi une action au piff
-            PossibleAction choice = (PossibleAction) GameSimul.GetRandomAction(actions);
+            Action choice = (Action) GameSimul.GetRandomAction(actions);
 
             // Crée un node (donc une action) si elle n'existe pas encore
             // ou sinon prend celle trouvée
@@ -169,11 +123,11 @@ public class MCTS1
                 selectedAction.parent = action;
                 selectedAction.setState(choice);
 
-                action = selectedAction;
+                action = selectedAction; //La nouvelle action devient la current action
             }
             else
             {
-                action = exitanteNode;
+                action = exitanteNode;   //la current action est l'action
             }
 
             // Lance la simulation 

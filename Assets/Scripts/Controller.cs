@@ -7,15 +7,16 @@ public class Controller
     
     public Model activeModel;
     public Randomer randomer;
+    public MCTS1 mcts;
     
-    
-    public Controller(Randomer randomer)
+    public Controller(MCTS1 mcts)
     {
-        this.randomer = randomer;
+       
+        this.mcts = mcts;
     }
 
     // Listens to Player action
-    public void UpdateController(bool randomIA)
+    public void UpdateController(bool randomIA,bool MCTSIA)
     {
         
         // FOR PLAYER VS PLAYER TAKE INTO ACCOUNT ALTERNATE CONTROL SCHEME
@@ -45,7 +46,7 @@ public class Controller
         
         // PLAYER 2 INPUTS
 
-        if (!randomIA)
+        if (!randomIA && !MCTSIA)
         {
 
             if (Input.GetKey(KeyCode.UpArrow))
@@ -74,10 +75,15 @@ public class Controller
             }
         }
 
-        else
+        else if (randomIA)
         {
              Action action = (Action)Random.Range(0, 5);
              activeModel.actionHandler(action, 1);
+        }
+        
+        else if (MCTSIA)
+        {
+            mcts.interact();
         }
     }
 }

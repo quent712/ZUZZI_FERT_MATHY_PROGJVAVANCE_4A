@@ -12,7 +12,9 @@ public enum Action
     MoveDown,
     MoveLeft,
     MoveRight,
-    SetBomb
+    SetBomb,
+    Wait,
+    Undertermined
 };
 
 // Possible Environment on the map
@@ -119,6 +121,11 @@ public struct Player
         health = playerToCopy.health;
         timeuntilbomb = playerToCopy.timeuntilbomb;
     }
+
+    public static void setnbPlayer(int i)
+    {
+        nbPlayer = i;
+    }
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -172,7 +179,10 @@ public class Model
 
     //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
     public bool isBothPlayerAlive;
-
+    
+    public object Clone() {
+            return this.MemberwiseClone();
+        }
     // This code is kinda bad
     public Player getWinner()
     {
@@ -196,6 +206,7 @@ public class Model
     // Init the different lists and add new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
+        Player.setnbPlayer(0);
         inGameTimer = 0.0f;
         playerList = new Player[numberOfPlayer];
         bombList = new Dictionary<int, Bomb>();
