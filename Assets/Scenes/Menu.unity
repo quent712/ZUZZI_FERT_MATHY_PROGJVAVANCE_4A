@@ -1031,6 +1031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicSource: {fileID: 1536518838}
   EffectSource: {fileID: 953764509}
+  Boomeffect: {fileID: 8300000, guid: acfc158298b02bd4894c28393e0303fd, type: 3}
 --- !u!4 &1498436667
 Transform:
   m_ObjectHideFlags: 0
