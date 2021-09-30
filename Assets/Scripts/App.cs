@@ -1,7 +1,12 @@
 using UnityEngine;
 
 
-
+public enum P2Input
+{
+    Multi,
+    RandomIA,
+    MCTSIA
+}
 // General class containing the main variables and responsible of initiating the different classes
 public class App : MonoBehaviour
 {
@@ -21,12 +26,10 @@ public class App : MonoBehaviour
     public GameObject breakable;
     public GameObject fire;
     public Randomer randomer;
-    
-    
 
-    public bool randomIA = false;
 
-    public bool MCTSIA = false;
+
+    public P2Input currentMode;
     // TO BE ADDED
     
     public GameObject pausePanel;
@@ -44,14 +47,20 @@ public class App : MonoBehaviour
         CharacterRender charrender = new CharacterRender();
         MCTS1 mcts = new MCTS1(myModel);
 
-        if (AIandSound.Instance.Difficulty == "Easy")
+        switch (AIandSound.Instance.Difficulty)
         {
-            randomIA = true;
-            MCTSIA = false;
-        }else if (AIandSound.Instance.Difficulty == "Hard")
-        {
-            randomIA = false;
-            MCTSIA = true;
+            case "Easy":
+                currentMode = P2Input.RandomIA;
+                break;
+            case "Hard":
+                currentMode = P2Input.MCTSIA;
+                break;
+            case "Multiplayer":
+                currentMode = P2Input.Multi;
+                break;
+            default:
+                currentMode = P2Input.Multi;
+                break;
         }
         
         
@@ -69,7 +78,7 @@ public class App : MonoBehaviour
     void FixedUpdate()
     {
         Debug.Log(Time.deltaTime);
-        myController.UpdateController(randomIA,MCTSIA);
+        myController.UpdateController(currentMode);
         myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////

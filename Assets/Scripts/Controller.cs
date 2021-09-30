@@ -15,8 +15,47 @@ public class Controller
         this.mcts = mcts;
     }
 
+    private void listenMultiplayer()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            activeModel.actionHandler(Action.MoveUp, 1);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            activeModel.actionHandler(Action.MoveDown, 1);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            activeModel.actionHandler(Action.MoveLeft, 1);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            activeModel.actionHandler(Action.MoveRight, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            activeModel.actionHandler(Action.SetBomb,1);
+        }
+    }
+
+    private void listenRandomIA()
+    {
+        Action action = (Action)Random.Range(0, 5);
+        activeModel.actionHandler(action, 1);
+    }
+
+    private void listenMCTSIA()
+    {
+        activeModel.actionHandler(mcts.interact(),1);
+    }
+
     // Listens to Player action
-    public void UpdateController(bool randomIA,bool MCTSIA)
+    public void UpdateController(P2Input currentMode)
     {
         
         // FOR PLAYER VS PLAYER TAKE INTO ACCOUNT ALTERNATE CONTROL SCHEME
@@ -45,45 +84,20 @@ public class Controller
         }
         
         // PLAYER 2 INPUTS
-
-        if (!randomIA && !MCTSIA)
+        switch (currentMode)
         {
-
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                activeModel.actionHandler(Action.MoveUp, 1);
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                activeModel.actionHandler(Action.MoveDown, 1);
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                activeModel.actionHandler(Action.MoveLeft, 1);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                activeModel.actionHandler(Action.MoveRight, 1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
-                activeModel.actionHandler(Action.SetBomb,1);
-            }
-        }
-
-        else if (randomIA)
-        {
-             Action action = (Action)Random.Range(0, 5);
-             activeModel.actionHandler(action, 1);
+            case P2Input.Multi:
+                listenMultiplayer();
+                break;
+            
+            case P2Input.RandomIA:
+                listenRandomIA();
+                break;
+            
+            case P2Input.MCTSIA:
+                listenMCTSIA();
+                break;
         }
         
-        else if (MCTSIA)
-        {
-            mcts.interact();
-        }
     }
 }

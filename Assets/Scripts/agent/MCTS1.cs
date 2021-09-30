@@ -22,7 +22,7 @@ public class MCTS1
         this.model = model;
     }
 
-    public bool thrust()
+    public bool trust()
     {
         foreach (Node n in tree.getPossibleAction())
         {
@@ -36,7 +36,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact() //SELECT BEST ACTION IN THREE
+    public Action interact() //SELECT BEST ACTION IN THREE
     {
         simtime = 0.0f;
         Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
@@ -56,9 +56,8 @@ public class MCTS1
 
 
         // Appel horloge
-        if (thrust())
+        if (trust())
         {
-            
             float max = float.MinValue;
             Action currentAction = Action.Undertermined;
             Node n = null;
@@ -76,20 +75,16 @@ public class MCTS1
                     }
                 }
             }
-
-            int i = 0;
-            
-            
-                model.actionHandler(currentAction,1); //On lance l'action select
-
-                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             if (n != null)
                 tree = n;
 
-            return i;
+            return currentAction; //On retourne l'action select
+
+                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+            
         }
 
-        return 0;
+        return Action.Undertermined;
     }
 
 
