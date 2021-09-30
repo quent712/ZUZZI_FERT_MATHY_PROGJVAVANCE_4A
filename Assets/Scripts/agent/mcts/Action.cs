@@ -43,14 +43,22 @@ public class GameSimul{
        
         //On a une fin de partie ?
        Player[] listplayer = copymodel.getGameState()["PlayersInfo"] as Player[];
-        if(listplayer[1].health ==0){   //Si Adversaire mort
+       if (listplayer[1].health <= 0 && listplayer[0].health <= 0)
+       {
+           finalSituation = 2; //égalité
+           isFinished = true;
+       }
+       
+       else if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;
         }
-        else if(listplayer[0].health ==0){ //Si Player mort
+        else if(listplayer[0].health <=0){ //Si Player mort
             finalSituation = 1;
             isFinished = true;
         }
+        
+        
         
     }
 
