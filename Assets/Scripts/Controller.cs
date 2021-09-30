@@ -9,9 +9,9 @@ public class Controller
     public Randomer randomer;
     public MCTS1 mcts;
     
-    public Controller(Randomer randomer,MCTS1 mcts)
+    public Controller(MCTS1 mcts)
     {
-        this.randomer = randomer;
+       
         this.mcts = mcts;
     }
 

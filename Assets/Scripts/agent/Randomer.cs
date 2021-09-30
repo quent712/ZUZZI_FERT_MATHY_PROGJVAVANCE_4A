@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Randomer 
 {
-    private double born;
+   /* private double born;
     private System.Random random;
     private Character characterMe;
     private Character characterAdv;
@@ -35,10 +35,11 @@ public class Randomer
 
 
             
-        }*/
+        }
         if(charAdv != null){
             
         }
         return 0;
     }
+    */
 }

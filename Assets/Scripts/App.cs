@@ -40,11 +40,11 @@ public class App : MonoBehaviour
         Time.timeScale = 1.0f;
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
         CharacterRender charrender = new CharacterRender();
-        Randomer rand = new Randomer(charrender);
+        Randomer rand = new Randomer();
         MCTS1 mcts = new MCTS1(myModel);
         
         
-        myController = new Controller(rand,mcts);
+        myController = new Controller(mcts);
        
         
         myController.activeModel = myModel;
