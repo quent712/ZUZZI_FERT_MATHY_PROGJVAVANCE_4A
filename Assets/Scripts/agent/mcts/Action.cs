@@ -35,10 +35,10 @@ public class GameSimul{
        copymodel.actionHandler(action.state,1);
        
        //On va simuler une action random du player
-       Action actiona = (Action)Random.Range(0, 7);
+       Action actiona = (Action)Random.Range(0, 5);
        
        copymodel.actionHandler( actiona,0); //Action aléatoire du player
-       copymodel.inGameTimer += copymodel.inGameDeltaTime * 800; //Raccourcir temps de posage de bombe et de déplacements
+       copymodel.inGameTimer += copymodel.inGameDeltaTime * 100; //Raccourcir temps de posage de bombe et de déplacements
        copymodel.UpdateModel(copymodel.inGameDeltaTime); //Pour calcul explos
        
         //On a une fin de partie ?

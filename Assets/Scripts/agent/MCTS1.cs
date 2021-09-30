@@ -26,7 +26,7 @@ public class MCTS1
     {
         foreach (Node n in tree.getPossibleAction())
         {
-            if (n.data.b > 20)
+            if (n.data.b > 150)
             {
                 // au moins un des noeuds doit être fiable (>20)
                 return true;
@@ -48,7 +48,7 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-            for (int i =0;i<50;i++)
+            for (int i =0;i<200;i++)
             {
                 compute(tree); //compute(tree,pokemonMe, pokemonAdv);
             }
@@ -133,9 +133,12 @@ public class MCTS1
         // Applique des valeurs sur la feuille finale
         action.data.b = 1;
         if (GameSimul.finalSituation == 0) //gameover
-            action.data.a = 0;
-        else //win
+        {action.data.a = 0;}
+        else if (GameSimul.finalSituation == 1)//win
+        {
+            Debug.Log(GameSimul.finalSituation);
             action.data.a = 1;
+        }
 
         // Retroprograpagation de l'action
         Node.Retropropagation(action);
