@@ -5,9 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/contentModel.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
