@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireDestruction : MonoBehaviour
 {
-    [SerializeField] public float lifetime = 0.5f;
+    private float lifetime = 0.1f;
     void Start()
     {
         StartCoroutine(LifeTime());

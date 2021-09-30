@@ -1,7 +1,13 @@
+using System;
 using UnityEngine;
 
 
-
+public enum P2Input
+{
+    Multi,
+    RandomAI,
+    MCTSAI
+}
 // General class containing the main variables and responsible of initiating the different classes
 public class App : MonoBehaviour
 {
@@ -14,19 +20,17 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
+    public GameObject ennPlayer;
     public GameObject AIeasy;
     public GameObject AIhard;
     public GameObject bomb;
     public GameObject wall;
     public GameObject breakable;
     public GameObject fire;
-    public Randomer randomer;
-    
-    
 
-    public bool randomIA = false;
 
-    public bool MCTSIA = false;
+
+    public P2Input currentMode;
     // TO BE ADDED
     
     public GameObject pausePanel;
@@ -44,12 +48,20 @@ public class App : MonoBehaviour
         CharacterRender charrender = new CharacterRender();
         MCTS1 mcts = new MCTS1(myModel);
 
-        if (AIandSound.Instance.Difficulty == "Easy")
+        switch (AIandSound.Instance.Difficulty)
         {
-            randomIA = true;
-        }else if (AIandSound.Instance.Difficulty == "Hard")
-        {
-            randomIA = false;
+            case "Easy":
+                currentMode = P2Input.RandomAI;
+                break;
+            case "Hard":
+                currentMode = P2Input.MCTSAI;
+                break;
+            case "Multiplayer":
+                currentMode = P2Input.Multi;
+                break;
+            default:
+                currentMode = P2Input.Multi;
+                break;
         }
         
         
@@ -57,16 +69,23 @@ public class App : MonoBehaviour
        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player, AIeasy,  AIhard ,AIandSound.Instance.Difficulty, bomb, wall, breakable, fire);
+        myView = new View(myModel.getGameState(),player, ennPlayer, AIeasy,  AIhard ,currentMode, bomb, wall, breakable, fire);
         
         
         
     }
-    
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        myController.UpdateController(randomIA,MCTSIA);
+        myModel.inGameDeltaTime = Time.deltaTime;
+        myController.UpdateController(currentMode);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        //Debug.Log(Time.deltaTime);
+        
         myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////

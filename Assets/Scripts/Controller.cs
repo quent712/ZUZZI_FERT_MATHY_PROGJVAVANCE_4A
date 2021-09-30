@@ -6,7 +6,6 @@ public class Controller
 {
     
     public Model activeModel;
-    public Randomer randomer;
     public MCTS1 mcts;
     
     public Controller(MCTS1 mcts)
@@ -15,8 +14,47 @@ public class Controller
         this.mcts = mcts;
     }
 
+    private void listenMultiplayer()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            activeModel.actionHandler(Action.MoveUp, 1);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            activeModel.actionHandler(Action.MoveDown, 1);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            activeModel.actionHandler(Action.MoveLeft, 1);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            activeModel.actionHandler(Action.MoveRight, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            activeModel.actionHandler(Action.SetBomb,1);
+        }
+    }
+
+    private void listenRandomAI()
+    {
+        Action action = (Action)Random.Range(0, 5);
+        activeModel.actionHandler(action, 1);
+    }
+
+    private void listenMCTSAI()
+    {
+        activeModel.actionHandler(mcts.interact(),1);
+    }
+
     // Listens to Player action
-    public void UpdateController(bool randomIA,bool MCTSIA)
+    public void UpdateController(P2Input currentMode)
     {
         
         // FOR PLAYER VS PLAYER TAKE INTO ACCOUNT ALTERNATE CONTROL SCHEME
@@ -41,49 +79,25 @@ public class Controller
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("want bomb");
             activeModel.actionHandler(Action.SetBomb,0);
         }
         
         // PLAYER 2 INPUTS
-
-        if (!randomIA && !MCTSIA)
+        switch (currentMode)
         {
-
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                activeModel.actionHandler(Action.MoveUp, 1);
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                activeModel.actionHandler(Action.MoveDown, 1);
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                activeModel.actionHandler(Action.MoveLeft, 1);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                activeModel.actionHandler(Action.MoveRight, 1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightShift))
-            {
-                activeModel.actionHandler(Action.SetBomb,1);
-            }
-        }
-
-        else if (randomIA)
-        {
-             Action action = (Action)Random.Range(0, 5);
-             activeModel.actionHandler(action, 1);
+            case P2Input.Multi:
+                listenMultiplayer();
+                break;
+            
+            case P2Input.RandomAI:
+                listenRandomAI();
+                break;
+            
+            case P2Input.MCTSAI:
+                listenMCTSAI();
+                break;
         }
         
-        else if (MCTSIA)
-        {
-            mcts.interact();
-        }
     }
 }

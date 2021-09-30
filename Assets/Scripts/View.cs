@@ -9,13 +9,15 @@ public class View
     // The dictionaries and lists contains the unity gameObjects
     private GameObject playerObject;
     private Dictionary<int,GameObject> playerObjectDict;
+
+    private GameObject player2Object;
     
     private GameObject AIeasyObject;
-    private Dictionary<int,GameObject> AIeasyObjectDict;
 
     private GameObject AIhardObject;
-    private Dictionary<int,GameObject> AIhardObjectDict;
-    
+
+    private GameObject HumanEnnemyObject;
+
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
     
@@ -27,7 +29,7 @@ public class View
 
     private GameObject fireObject;
 
-    private string Difficulty;
+    private P2Input mode;
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
@@ -35,17 +37,15 @@ public class View
     private List<Vector2> tempVectorList;
 
     // View constructor
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject aieasy, GameObject aihard, string difficulty, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject humEnn, GameObject aieasy, GameObject aihard, P2Input mode, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
         // We add the prefab so it can be generated
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
-        
+
+        HumanEnnemyObject = humEnn;
         AIeasyObject = aieasy;
-        AIeasyObjectDict = new Dictionary<int, GameObject>();
-        
         AIhardObject = aihard;
-        AIhardObjectDict = new Dictionary<int, GameObject>();
 
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
@@ -58,27 +58,30 @@ public class View
 
         fireObject = fire;
 
-        Difficulty = difficulty;
+        mode = mode;
 
         // For each player from Model we instantiate a new Player model
         
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
-            GameObject tempmodel = null;
+            GameObject newPlayer = null;
             if (playerInfo.playerID == 0)
             {
-                tempmodel = playerObject;
+                newPlayer = GameObject.Instantiate(playerObject);
             }
-            else if (playerInfo.playerID == 1 || Difficulty == "Easy")
+            else if (mode == P2Input.Multi)
             {
-                tempmodel = AIeasyObject;
+                newPlayer = GameObject.Instantiate(HumanEnnemyObject);
             }
-            else if (Difficulty == "Hard")
+            else if (mode == P2Input.RandomAI)
             {
-                tempmodel = AIhardObject;
+                newPlayer = GameObject.Instantiate(AIeasyObject);;
+            }
+            else if (mode == P2Input.MCTSAI)
+            {
+                newPlayer = GameObject.Instantiate(AIhardObject);
             }
             
-            GameObject newPlayer = GameObject.Instantiate(tempmodel);
             newPlayer.transform.position = new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
             newPlayer.name = playerInfo.playerID.ToString();
             playerObjectDict.Add(playerInfo.playerID, newPlayer);
@@ -136,7 +139,7 @@ public class View
                 GameObject.Destroy(bombObjectDict[bombItem.Key]);
                 bombObjectDict.Remove(bombItem.Key);
                 
-                //SoundManager.Instance.PlaySoundEffect();
+                SoundManager.Instance.PlaySoundEffectBoom();
             }
         }
         

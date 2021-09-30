@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MCTS1
 {
     private Node tree;
-    public static float FREQUENCY = 0.4f; // Fréquence des actions du MCTS
-    private int[] a; // matrice des touches directionnelles
+    
     private float born;
     private CharacterRender render;
     private Model model;
@@ -18,15 +18,15 @@ public class MCTS1
     {
         tree = new Node(new Register(0, 0));
         born = 0.0f;
-        a = new int[4];
+   
         this.model = model;
     }
 
-    public bool thrust()
+    public bool trust()
     {
         foreach (Node n in tree.getPossibleAction())
         {
-            if (n.data.b > 20)
+            if (n.data.b > 150)
             {
                 // au moins un des noeuds doit être fiable (>20)
                 return true;
@@ -36,7 +36,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact()
+    public Action interact() //SELECT BEST ACTION IN THREE
     {
         simtime = 0.0f;
         Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
@@ -48,21 +48,20 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-           compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            for (int i =0;i<200;i++)
+            {
+                compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            }
         }
 
 
         // Appel horloge
-        if (thrust())
+        if (trust())
         {
-            born = FREQUENCY;
-
             float max = float.MinValue;
             Action currentAction = Action.Undertermined;
             Node n = null;
-            bool priorityMove = false;
-           
-
+            
             // Cherche la meilleure action conduisant à une victoire
             foreach (Node child in tree.getPossibleAction())
             {
@@ -76,36 +75,32 @@ public class MCTS1
                     }
                 }
             }
-
-            
-           
-            //On résou la meilleur action conduisant à une victoire
-            int i = 0;
-            
-            
-                model.actionHandler(currentAction,1); //On lance l'action select
-
-                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+            Debug.Log("MAX" +"=" + max);
             if (n != null)
                 tree = n;
 
-            return i;
+            return currentAction; //On retourne l'action select
+
+                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+            
         }
 
-        return 0;
+        return Action.Undertermined;
     }
 
 
 
 
-    void compute(Node action)
+    void compute(Node action) //Simulation
     {
-        Debug.Log("In COMPUTE");
-        Model simumodel = new Model(model);     
+        
+        Model simumodel = new Model(model);  //On copie le model actuel
+        simumodel.inGameDeltaTime = 0.02f; //Les déplacements seront similaire à la réalité dans la simu
         GameSimul.copymodel = simumodel;
-        //Debug.Log(action.data.a + "/" + action.data.b);
+        
+        
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished && simtime <0.5f)
+        while (!GameSimul.isFinished)
         {
             simtime = simtime + Time.deltaTime;
             
@@ -113,7 +108,7 @@ public class MCTS1
 
             // Choisi une action au piff
             Action choice = (Action) GameSimul.GetRandomAction(actions);
-
+            //Action choice = (Action)Random.Range(0, 6);
             // Crée un node (donc une action) si elle n'existe pas encore
             // ou sinon prend celle trouvée
             Node exitanteNode = action.Exist(choice);
@@ -130,18 +125,25 @@ public class MCTS1
                 action = exitanteNode;   //la current action est l'action
             }
 
-            // Lance la simulation 
+            // Lance l'action
             GameSimul.PlayAction(action);
-            //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
-            //if(i++ > 10000) break;
+           
+            
         }
 
         // Applique des valeurs sur la feuille finale
         action.data.b = 1;
         if (GameSimul.finalSituation == 0) //gameover
+        {
             action.data.a = 0;
-        else //win
+           
+        }
+        else if (GameSimul.finalSituation == 1)//win
+        {
+           
             action.data.a = 1;
+            
+        }
 
         // Retroprograpagation de l'action
         Node.Retropropagation(action);
