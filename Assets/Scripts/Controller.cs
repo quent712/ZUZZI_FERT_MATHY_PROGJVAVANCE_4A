@@ -13,8 +13,7 @@ public class Controller
     {
         this.randomer = randomer;
     }
-    
-    
+
     // Listens to Player action
     public void UpdateController(bool randomIA)
     {
