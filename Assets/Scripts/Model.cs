@@ -162,6 +162,7 @@ public class Model
     private Vector2 tempPosition;
     private Rect tempRect;
     private Bomb tempBomb;
+    private int tempInt;
     
     // Init the different lists and add new players
     public Model(int mapX,int mapY, int numberOfPlayer)
@@ -177,21 +178,18 @@ public class Model
         // TO DO: HANDLE NOT SPAWNING ON BREAKABLE
         for (int i = 0; i < numberOfPlayer; i++)
         {
-            Vector2 pos = new Vector2(0,0);
-            if (i == 0)
+
+            tempPosition = new Vector2(Random.Range(0, currentMap.mapSizeX), Random.Range(0, currentMap.mapSizeX));
+            while (currentMap.myMapLayout[(int) tempPosition.x, (int) tempPosition.y] != MapEnvironment.Empty)
             {
-                pos = new Vector2(2, 11);
+                tempPosition = new Vector2(Random.Range(0, currentMap.mapSizeX), Random.Range(0, currentMap.mapSizeX));
             }
-            else
-            {
-                pos = new Vector2(11, 2);
-            }
-            playerList[i] = (new Player(pos));
+            playerList[i] = new Player(tempPosition);
         }
     }
 
     // Check if a given position is in a wall or breakable
-    private bool checkPossiblePosition(Vector2 posToCheck,bool isExplosion = false)
+    private int checkPossiblePosition(Vector2 posToCheck,bool isExplosion = false)
     {
         Vector2 closePoint = new Vector2((int) Math.Round(posToCheck.x, 0), (int) Math.Round(posToCheck.y, 0));
         
@@ -201,16 +199,16 @@ public class Model
             if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Wall || currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Breakable && !isExplosion)
             {
                 tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
-                if (tempRect.Contains(posToCheck)) return false;
+                if (tempRect.Contains(posToCheck)) return 0;
             }
             else if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Breakable && isExplosion)
             {
                 currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] = MapEnvironment.Empty;
-                return false;
+                return 2;
             }
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
     
     
@@ -242,7 +240,7 @@ public class Model
                     break;
             }
             // for a move action check if it is possible
-            if(checkPossiblePosition(tempPosition)) playerList[playerID].position = tempPosition;
+            if(checkPossiblePosition(tempPosition)==1) playerList[playerID].position = tempPosition;
             
         }
         else dropBombAction(playerID);
@@ -281,11 +279,12 @@ public class Model
         {
             for (int i = 1; i < explodingBomb.explosionRadius; i++)
             {
-                if (checkPossiblePosition(explodingBomb.position + direction * i,true))
+                tempInt = checkPossiblePosition(explodingBomb.position + direction * i, true);
+                if (tempInt!=0)
                 {
                     explodingBomb.explosionSquares.Add(explodingBomb.position + direction * i);
                 }
-                else break;
+                if(tempInt!=1) break;
             }
         }
         
@@ -328,7 +327,5 @@ public class Model
                 else bombList.Remove(bombKey);
             }
         }
-        
-        
     }
 }
