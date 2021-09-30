@@ -48,7 +48,7 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-            for (int i =0;i<5;i++)
+            for (int i =0;i<60;i++)
             {
                 compute(tree); //compute(tree,pokemonMe, pokemonAdv);
             }
@@ -98,12 +98,13 @@ public class MCTS1
     void compute(Node action) //Simulation
     {
         Debug.Log("In COMPUTE");
-        Model simumodel = new Model(model);     
+        Model simumodel = new Model(model);  //On copie le model actuel
+        simumodel.inGameDeltaTime = 0.02f; //Les déplacements seront similaire à la réalité dans la simu
         GameSimul.copymodel = simumodel;
         
         
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished && simtime <5f)
+        while (!GameSimul.isFinished)
         {
             simtime = simtime + Time.deltaTime;
             
@@ -128,10 +129,10 @@ public class MCTS1
                 action = exitanteNode;   //la current action est l'action
             }
 
-            // Lance la simulation 
+            // Lance l'action
             GameSimul.PlayAction(action);
-            //Debug.Log(GameSimul.lifeAdv + " | " + GameSimul.lifeMe);
-            //if(i++ > 10000) break;
+           
+            
         }
 
         // Applique des valeurs sur la feuille finale
