@@ -44,7 +44,7 @@ public class App : MonoBehaviour
         if (AIandSound.Instance.Difficulty == "Easy")
         {
             randomIA = true;
-        }else if (AIandSound.Instance.Difficulty == "Hard")
+        }else if (AIandSound.Instance.Difficulty == "Hard" || AIandSound.Instance.Difficulty == "Multiplayer")
         {
             randomIA = false;
         }
