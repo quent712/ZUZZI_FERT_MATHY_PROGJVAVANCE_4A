@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Model.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Model.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/View.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/View.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +32,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/View.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />
@@ -89,6 +94,14 @@
       <workItem from="1632922220400" duration="2582000" />
       <workItem from="1632992018039" duration="3441000" />
     </task>
+    <task id="LOCAL-00001" summary="update controller for cleaner inputMode">
+      <created>1633007041184</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1633007041186</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,5 +124,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="update controller for cleaner inputMode" />
+    <option name="LAST_COMMIT_MESSAGE" value="update controller for cleaner inputMode" />
   </component>
 </project>

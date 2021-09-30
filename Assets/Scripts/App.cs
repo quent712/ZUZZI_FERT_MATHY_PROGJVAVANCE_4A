@@ -4,8 +4,8 @@ using UnityEngine;
 public enum P2Input
 {
     Multi,
-    RandomIA,
-    MCTSIA
+    RandomAI,
+    MCTSAI
 }
 // General class containing the main variables and responsible of initiating the different classes
 public class App : MonoBehaviour
@@ -19,7 +19,7 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
-    public GameObject player2;
+    public GameObject ennPlayer;
     public GameObject AIeasy;
     public GameObject AIhard;
     public GameObject bomb;
@@ -51,10 +51,10 @@ public class App : MonoBehaviour
         switch (AIandSound.Instance.Difficulty)
         {
             case "Easy":
-                currentMode = P2Input.RandomIA;
+                currentMode = P2Input.RandomAI;
                 break;
             case "Hard":
-                currentMode = P2Input.MCTSIA;
+                currentMode = P2Input.MCTSAI;
                 break;
             case "Multiplayer":
                 currentMode = P2Input.Multi;
@@ -69,7 +69,7 @@ public class App : MonoBehaviour
        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player,player2, AIeasy,  AIhard ,AIandSound.Instance.Difficulty, bomb, wall, breakable, fire);
+        myView = new View(myModel.getGameState(),player, ennPlayer, AIeasy,  AIhard ,currentMode, bomb, wall, breakable, fire);
         
         
         

@@ -13,11 +13,11 @@ public class View
     private GameObject player2Object;
     
     private GameObject AIeasyObject;
-    private Dictionary<int,GameObject> AIeasyObjectDict;
 
     private GameObject AIhardObject;
-    private Dictionary<int,GameObject> AIhardObjectDict;
-    
+
+    private GameObject HumanEnnemyObject;
+
     private GameObject bombObject;
     private Dictionary<int,GameObject> bombObjectDict;
     
@@ -29,7 +29,7 @@ public class View
 
     private GameObject fireObject;
 
-    private string Difficulty;
+    private P2Input mode;
     // TEMPORARY VARIABLES
     private Dictionary<int, Bomb> tempDict;
     private List<int> idList;
@@ -37,19 +37,15 @@ public class View
     private List<Vector2> tempVectorList;
 
     // View constructor
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject player2, GameObject aieasy, GameObject aihard, string difficulty, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject humEnn, GameObject aieasy, GameObject aihard, P2Input mode, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
         // We add the prefab so it can be generated
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
 
-        player2Object = player2;
-        
+        HumanEnnemyObject = humEnn;
         AIeasyObject = aieasy;
-        AIeasyObjectDict = new Dictionary<int, GameObject>();
-        
         AIhardObject = aihard;
-        AIhardObjectDict = new Dictionary<int, GameObject>();
 
         bombObject = bomb;
         bombObjectDict = new Dictionary<int, GameObject>();
@@ -62,31 +58,30 @@ public class View
 
         fireObject = fire;
 
-        Difficulty = difficulty;
+        mode = mode;
 
         // For each player from Model we instantiate a new Player model
         
         foreach (Player playerInfo in (IEnumerable) gameState["PlayersInfo"])
         {
-            GameObject tempmodel = null;
+            GameObject newPlayer = null;
             if (playerInfo.playerID == 0)
             {
-                tempmodel = playerObject;
+                newPlayer = GameObject.Instantiate(playerObject);
             }
-            else if(playerInfo.playerID == 1 && Difficulty == "Multiplayer")
+            else if (mode == P2Input.Multi)
             {
-                tempmodel = player2Object;
+                newPlayer = HumanEnnemyObject;
             }
-            else if (Difficulty == "Easy")
+            else if (mode == P2Input.RandomAI)
             {
-                tempmodel = AIeasyObject;
+                newPlayer = AIeasyObject;
             }
-            else if (Difficulty == "Hard")
+            else if (mode == P2Input.MCTSAI)
             {
-                tempmodel = AIhardObject;
+                newPlayer = AIhardObject;
             }
             
-            GameObject newPlayer = GameObject.Instantiate(tempmodel);
             newPlayer.transform.position = new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
             newPlayer.name = playerInfo.playerID.ToString();
             playerObjectDict.Add(playerInfo.playerID, newPlayer);

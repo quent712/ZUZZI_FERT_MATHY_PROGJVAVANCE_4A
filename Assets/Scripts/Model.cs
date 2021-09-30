@@ -305,8 +305,6 @@ public class Model
     // Drop a bomb at the position of a given player
     private void dropBombAction(int playerID)
     {
-        //Debug.Log("Ingametimer" + inGameTimer);
-        //Debug.Log("timeuntilbomb" + playerList[playerID].timeuntilbomb);
         if (inGameTimer > playerList[playerID].timeuntilbomb)
         {
             Bomb newBomb = new Bomb(playerList[playerID].position, inGameTimer);
