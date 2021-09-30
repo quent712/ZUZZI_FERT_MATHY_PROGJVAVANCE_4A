@@ -277,19 +277,19 @@ public class Model
             switch (action)
             {
                 case Action.MoveUp:
-                    tempPosition.y += Player.movementStep*Time.deltaTime;
+                    tempPosition.y += Player.movementStep*inGameDeltaTime;
                     break;
             
                 case Action.MoveDown:
-                    tempPosition.y -= Player.movementStep*Time.deltaTime;
+                    tempPosition.y -= Player.movementStep*inGameDeltaTime;
                     break;
             
                 case Action.MoveRight:
-                    tempPosition.x += Player.movementStep*Time.deltaTime;
+                    tempPosition.x += Player.movementStep*inGameDeltaTime;
                     break;
             
                 case Action.MoveLeft:
-                    tempPosition.x -= Player.movementStep*Time.deltaTime;
+                    tempPosition.x -= Player.movementStep*inGameDeltaTime;
                     break;
             
                 default:
@@ -362,10 +362,11 @@ public class Model
     }
 
     // On each update, check if a bomb should explode and launch explosion detection
-    public void UpdateModel()
+    public void UpdateModel(float deltaTime)
     {
+        inGameDeltaTime = deltaTime;
         // Update the in game timer for computation
-        inGameTimer += Time.deltaTime;
+        inGameTimer += deltaTime;
         
         // Create an explosion if bomb timer has expired
         idList = new List<int>(bombList.Keys);

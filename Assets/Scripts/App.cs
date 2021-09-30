@@ -67,7 +67,7 @@ public class App : MonoBehaviour
     void Update()
     {
         myController.UpdateController(randomIA,MCTSIA);
-        myModel.UpdateModel();
+        myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
         if (!myModel.isBothPlayerAlive)
