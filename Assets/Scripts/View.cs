@@ -71,15 +71,15 @@ public class View
             }
             else if (mode == P2Input.Multi)
             {
-                newPlayer = HumanEnnemyObject;
+                newPlayer = GameObject.Instantiate(HumanEnnemyObject);
             }
             else if (mode == P2Input.RandomAI)
             {
-                newPlayer = AIeasyObject;
+                newPlayer = GameObject.Instantiate(AIeasyObject);;
             }
             else if (mode == P2Input.MCTSAI)
             {
-                newPlayer = AIhardObject;
+                newPlayer = GameObject.Instantiate(AIhardObject);
             }
             
             newPlayer.transform.position = new Vector3(playerInfo.position.x, 0, playerInfo.position.y);
