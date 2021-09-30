@@ -19,6 +19,7 @@ public class App : MonoBehaviour
     public int mapSizeY = 13;
     
     public GameObject player;
+    public GameObject player2;
     public GameObject AIeasy;
     public GameObject AIhard;
     public GameObject bomb;
@@ -68,7 +69,7 @@ public class App : MonoBehaviour
        
         myController.activeModel = myModel;
         
-        myView = new View(myModel.getGameState(),player, AIeasy,  AIhard ,AIandSound.Instance.Difficulty, bomb, wall, breakable, fire);
+        myView = new View(myModel.getGameState(),player,player2, AIeasy,  AIhard ,AIandSound.Instance.Difficulty, bomb, wall, breakable, fire);
         
         
         
