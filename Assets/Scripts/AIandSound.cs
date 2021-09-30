@@ -6,8 +6,6 @@ public class AIandSound : MonoBehaviour
 {
 
     public string Difficulty="Easy";
-    public float GeneralSound = 1.0f;
-    
     
     public static AIandSound Instance;
     void Awake ()   
