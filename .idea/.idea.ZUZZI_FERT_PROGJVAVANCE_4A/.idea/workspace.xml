@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64531ae8-3d29-4f8f-b58e-57c38fa8dc2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZUZZI_FERT_PROGJVAVANCE_4A/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Model.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Model.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" afterDir="false" />
@@ -29,13 +31,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/CharacterRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/Randomer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/TreeAction.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />

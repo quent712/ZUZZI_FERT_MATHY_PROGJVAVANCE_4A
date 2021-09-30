@@ -13,11 +13,12 @@ public class MCTS1
     private Model model;
     private int playerID = 1;
 
-    public MCTS1() : base()
+    public MCTS1(Model model) 
     {
         tree = new Node(new Register(0, 0));
         born = 0.0f;
         a = new int[4];
+        this.model = model;
     }
 
     public bool thrust()
@@ -34,18 +35,18 @@ public class MCTS1
         return false;
     }
 
-    public int interact(Character characAdv, Character characMe)
+    public int interact()
     {
+        Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
 
-
-        if (characAdv != null && characMe != null)
+        if (listplayer.Length != 0)
         {
-
-            // initialise les données du simulateur
-            GameSimul.TouchAdv = 0;
-            GameSimul.TouchME = 0;
-
-            compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            // initialise les données du simulateur PROB HERE
+            
+            listplayer[1].health = 1;
+            listplayer[0].health = 1;
+            
+           compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
 
 
@@ -78,13 +79,11 @@ public class MCTS1
            
             //On résou la meilleur action conduisant à une victoire
             int i = 0;
-            if (characMe != null
-                && characAdv != null)
-            {
+            
+            
                 model.actionHandler(currentAction,1); //On lance l'action select
-            }
 
-            // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
+                // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             if (n != null)
                 tree = n;
 
@@ -99,6 +98,7 @@ public class MCTS1
 
     void compute(Node action)
     {
+        Debug.Log("In COMPUTE");
         Model simmodel = (Model)model.Clone();
         GameSimul.model = simmodel;
         //Debug.Log(action.data.a + "/" + action.data.b);

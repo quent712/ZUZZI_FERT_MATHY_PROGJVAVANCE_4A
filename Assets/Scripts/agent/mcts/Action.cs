@@ -38,7 +38,7 @@ public class GameSimul{
        model.actionHandler( actiona,0); //Action aléatoire du player
        
         //On a une fin de partie ?
-       Player[] listplayer = model.getGameState()["PlayerInfo"] as Player[];
+       Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
         if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;
