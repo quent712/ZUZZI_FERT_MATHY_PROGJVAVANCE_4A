@@ -2,23 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MCTS1
 {
     private Node tree;
-    public static float FREQUENCY = 0.4f; // Fréquence des actions du MCTS
-    private int[] a; // matrice des touches directionnelles
+    
     private float born;
     private CharacterRender render;
     private Model model;
     private int playerID = 1;
-    private float simtime = 0.0f;
 
     public MCTS1(Model model) 
     {
         tree = new Node(new Register(0, 0));
         born = 0.0f;
-        a = new int[4];
+   
         this.model = model;
     }
 
@@ -26,7 +25,7 @@ public class MCTS1
     {
         foreach (Node n in tree.getPossibleAction())
         {
-            if (n.data.b > 20)
+            if (n.data.b > 150)
             {
                 // au moins un des noeuds doit être fiable (>20)
                 return true;
@@ -38,21 +37,11 @@ public class MCTS1
 
     public Action interact() //SELECT BEST ACTION IN THREE
     {
-        simtime = 0.0f;
-        Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
-
-        if (listplayer.Length != 0)
+        for (int i =0;i<50;i++)
         {
-            // initialise les données du simulateur PROB HERE
-            
-            listplayer[1].health = 1;
-            listplayer[0].health = 1;
-            
-            for (int i =0;i<50;i++)
-            {
-                compute(tree); //compute(tree,pokemonMe, pokemonAdv);
-            }
+            compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
+        
 
 
         // Appel horloge
@@ -75,6 +64,7 @@ public class MCTS1
                     }
                 }
             }
+            Debug.Log("MAX" +"=" + max);
             if (n != null)
                 tree = n;
 
@@ -92,7 +82,7 @@ public class MCTS1
 
     void compute(Node action) //Simulation
     {
-        Debug.Log("In COMPUTE");
+        
         Model simumodel = new Model(model);  //On copie le model actuel
         simumodel.inGameDeltaTime = 0.02f; //Les déplacements seront similaire à la réalité dans la simu
         GameSimul.copymodel = simumodel;
@@ -101,13 +91,11 @@ public class MCTS1
         //Tant que la simulation n'est pas achevée
         while (!GameSimul.isFinished)
         {
-            simtime = simtime + Time.deltaTime;
-            
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
             // Choisi une action au piff
             Action choice = (Action) GameSimul.GetRandomAction(actions);
-
+            //Action choice = (Action)Random.Range(0, 6);
             // Crée un node (donc une action) si elle n'existe pas encore
             // ou sinon prend celle trouvée
             Node exitanteNode = action.Exist(choice);
@@ -133,9 +121,16 @@ public class MCTS1
         // Applique des valeurs sur la feuille finale
         action.data.b = 1;
         if (GameSimul.finalSituation == 0) //gameover
+        {
             action.data.a = 0;
-        else //win
+           
+        }
+        else if (GameSimul.finalSituation == 1)//win
+        {
+           
             action.data.a = 1;
+            
+        }
 
         // Retroprograpagation de l'action
         Node.Retropropagation(action);

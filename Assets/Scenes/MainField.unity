@@ -1655,7 +1655,7 @@ MonoBehaviour:
   mapSizeX: 13
   mapSizeY: 13
   player: {fileID: 7931282367196829637, guid: d4ddf4ec92db4a2409a924cf7f6cb8e0, type: 3}
-  player2: {fileID: 8080747149522945836, guid: dbfe56ef1b5727b469ab67e574505fe9, type: 3}
+  ennPlayer: {fileID: 8080747149522945836, guid: dbfe56ef1b5727b469ab67e574505fe9, type: 3}
   AIeasy: {fileID: 8082559848451196810, guid: 9d4ab48a1c2459b4f859bcd3ea507d60, type: 3}
   AIhard: {fileID: 3226749240133836209, guid: 558d182824cde094aa01011d0de8ae8e, type: 3}
   bomb: {fileID: 6575330075604828838, guid: ac814dff80dc1c940a59a438a8226636, type: 3}

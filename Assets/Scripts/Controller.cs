@@ -6,7 +6,6 @@ public class Controller
 {
     
     public Model activeModel;
-    public Randomer randomer;
     public MCTS1 mcts;
     
     public Controller(MCTS1 mcts)
@@ -43,13 +42,13 @@ public class Controller
         }
     }
 
-    private void listenRandomIA()
+    private void listenRandomAI()
     {
         Action action = (Action)Random.Range(0, 5);
         activeModel.actionHandler(action, 1);
     }
 
-    private void listenMCTSIA()
+    private void listenMCTSAI()
     {
         activeModel.actionHandler(mcts.interact(),1);
     }
@@ -80,6 +79,7 @@ public class Controller
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("want bomb");
             activeModel.actionHandler(Action.SetBomb,0);
         }
         
@@ -90,12 +90,12 @@ public class Controller
                 listenMultiplayer();
                 break;
             
-            case P2Input.RandomIA:
-                listenRandomIA();
+            case P2Input.RandomAI:
+                listenRandomAI();
                 break;
             
-            case P2Input.MCTSIA:
-                listenMCTSIA();
+            case P2Input.MCTSAI:
+                listenMCTSAI();
                 break;
         }
         
