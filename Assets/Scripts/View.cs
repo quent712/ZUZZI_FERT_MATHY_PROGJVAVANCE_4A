@@ -9,6 +9,8 @@ public class View
     // The dictionaries and lists contains the unity gameObjects
     private GameObject playerObject;
     private Dictionary<int,GameObject> playerObjectDict;
+
+    private GameObject player2Object;
     
     private GameObject AIeasyObject;
     private Dictionary<int,GameObject> AIeasyObjectDict;
@@ -35,11 +37,13 @@ public class View
     private List<Vector2> tempVectorList;
 
     // View constructor
-    public View(Dictionary<string, object> gameState, GameObject player, GameObject aieasy, GameObject aihard, string difficulty, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
+    public View(Dictionary<string, object> gameState, GameObject player, GameObject player2, GameObject aieasy, GameObject aihard, string difficulty, GameObject bomb, GameObject wall, GameObject breakable, GameObject fire)
     {
         // We add the prefab so it can be generated
         playerObject = player;
         playerObjectDict = new Dictionary<int, GameObject>();
+
+        player2Object = player2;
         
         AIeasyObject = aieasy;
         AIeasyObjectDict = new Dictionary<int, GameObject>();
@@ -69,7 +73,11 @@ public class View
             {
                 tempmodel = playerObject;
             }
-            else if (playerInfo.playerID == 1 || Difficulty == "Easy")
+            else if(playerInfo.playerID == 1 && Difficulty == "Multiplayer")
+            {
+                tempmodel = player2Object;
+            }
+            else if (Difficulty == "Easy")
             {
                 tempmodel = AIeasyObject;
             }
