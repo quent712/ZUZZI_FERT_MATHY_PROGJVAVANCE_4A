@@ -19,7 +19,7 @@ public class GameSimul{
 
     public static int[] ppMe = new int[4], ppAdv = new int[4];
 
-    public static Model model = null;
+    public static Model copymodel = null;
 
     public static void Reset(){
         TouchAdv = 0;
@@ -32,13 +32,13 @@ public class GameSimul{
     public static void PlayAction(Node action){
  
         // Il va simuler l'action choisi pour l'IA
-       model.actionHandler(action.state,1);
+       copymodel.actionHandler(action.state,1);
        Action actiona = (Action)Random.Range(0, 5);
        
-       model.actionHandler( actiona,0); //Action aléatoire du player
+       copymodel.actionHandler( actiona,0); //Action aléatoire du player
        
         //On a une fin de partie ?
-       Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
+       Player[] listplayer = copymodel.getGameState()["PlayersInfo"] as Player[];
         if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;

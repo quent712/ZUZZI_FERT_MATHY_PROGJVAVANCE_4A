@@ -101,8 +101,8 @@ public class MCTS1
     void compute(Node action)
     {
         Debug.Log("In COMPUTE");
-        Model simmodel = (Model)model.Clone();     
-        GameSimul.model = simmodel;
+        Model simumodel = (Model)model.Clone();     
+        GameSimul.copymodel = simumodel;
         //Debug.Log(action.data.a + "/" + action.data.b);
         //Tant que la simulation n'est pas achevée
         while (!GameSimul.isFinished && simtime <0.5f)

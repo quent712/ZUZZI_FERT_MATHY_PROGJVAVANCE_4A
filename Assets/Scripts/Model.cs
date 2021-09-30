@@ -99,6 +99,11 @@ public struct Player
         health = 1;
         timeuntilbomb = 0f;
     }
+
+    public static void setnbPlayer(int i)
+    {
+        nbPlayer = i;
+    }
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -167,6 +172,7 @@ public class Model
     // Init the different lists and add new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
+        Player.setnbPlayer(0);
         inGameTimer = 0.0f;
         playerList = new Player[numberOfPlayer];
         bombList = new Dictionary<int, Bomb>();
