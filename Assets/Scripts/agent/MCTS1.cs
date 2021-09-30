@@ -12,6 +12,7 @@ public class MCTS1
     private CharacterRender render;
     private Model model;
     private int playerID = 1;
+    private float simtime = 0.0f;
 
     public MCTS1(Model model) 
     {
@@ -37,6 +38,7 @@ public class MCTS1
 
     public int interact()
     {
+        simtime = 0.0f;
         Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
 
         if (listplayer.Length != 0)
@@ -99,12 +101,13 @@ public class MCTS1
     void compute(Node action)
     {
         Debug.Log("In COMPUTE");
-        Model simmodel = (Model)model.Clone();
+        Model simmodel = (Model)model.Clone();     
         GameSimul.model = simmodel;
         //Debug.Log(action.data.a + "/" + action.data.b);
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished)
+        while (!GameSimul.isFinished && simtime <0.5f)
         {
+            simtime = simtime + Time.deltaTime;
             
             System.Array actions = GameSimul.GetNextPossibleAction(action);
 
