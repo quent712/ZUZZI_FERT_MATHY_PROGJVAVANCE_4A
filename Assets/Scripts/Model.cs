@@ -180,9 +180,7 @@ public class Model
     //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
     public bool isBothPlayerAlive;
     
-    public object Clone() {
-            return this.MemberwiseClone();
-        }
+    
     // This code is kinda bad
     public Player getWinner()
     {
