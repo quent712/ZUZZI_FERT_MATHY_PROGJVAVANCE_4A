@@ -1,6 +1,10 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class GameSimul{
 /// <summary>
 /// Le script a pour but de définir les différentes actions possible dans le jeu.
@@ -13,7 +17,9 @@ public class GameSimul{
     
     public static int TouchME = -1; // 0 = pastouché; 1 = touché   
 
-    public static int[] ppMe = new int[4], ppAdv = new int[4]; 
+    public static int[] ppMe = new int[4], ppAdv = new int[4];
+
+    public static Model copymodel = null;
 
     public static void Reset(){
         TouchAdv = 0;
@@ -24,44 +30,39 @@ public class GameSimul{
     }
 
     public static void PlayAction(Node action){
-
-        // Gestion de la vie
-        
-        // Il va simuler l'action choisi et voir les changements qu'ils impliquent
-        switch(action.state){
-            
-            case PossibleAction.WALK:
-                
-                break;
-            case PossibleAction.SETBOMBE:
-                
-                break;
-            case PossibleAction.WAIT:
-               // chargeMe += pokemonMe.getStats().Vitess * 0.5f;
-                break;
-        }
-        //Condition de fin de partie
-        
-        if(TouchAdv == 0){
+ 
+        // Il va simuler l'action choisi pour l'IA
+       copymodel.actionHandler(action.state,1);
+       
+       //On va simuler une action random du player
+       Action actiona = (Action)Random.Range(0, 7);
+       
+       copymodel.actionHandler( actiona,0); //Action aléatoire du player
+       copymodel.inGameTimer += copymodel.inGameDeltaTime * 800; //Raccourcir temps de posage de bombe et de déplacements
+       copymodel.UpdateModel(copymodel.inGameDeltaTime); //Pour calcul explos
+       
+        //On a une fin de partie ?
+       Player[] listplayer = copymodel.getGameState()["PlayersInfo"] as Player[];
+        if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;
         }
-        else if(TouchME == 0){
+        else if(listplayer[0].health <=0){ //Si Player mort
             finalSituation = 1;
             isFinished = true;
         }
         
     }
 
-    public static System.Array GetNextPossibleAction(Node n){ //?????
-        return PossibleAction.GetValues(typeof(PossibleAction));
+    public static System.Array GetNextPossibleAction(Node n){ //Retourne les actions possibles
+        return Action.GetValues(typeof(Action));
     }
 
     public static object GetRandomAction(System.Array actions){
         System.Random rand = new System.Random();
         int i = 0;
         if(i >= 1){
-            return PossibleAction.WAIT;
+            return Action.Wait;
         }else{
             return actions.GetValue(rand.Next(actions.Length-1));
         }
@@ -79,10 +80,4 @@ public struct Register{
         this.a = a;
         this.b = b;
     }
-}
-public enum PossibleAction{
-    UNDETERMINED,
-    WAIT,
-    WALK,
-    SETBOMBE,
 }

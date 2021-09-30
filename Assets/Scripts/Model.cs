@@ -12,7 +12,9 @@ public enum Action
     MoveDown,
     MoveLeft,
     MoveRight,
-    SetBomb
+    SetBomb,
+    Wait,
+    Undertermined
 };
 
 // Possible Environment on the map
@@ -33,6 +35,20 @@ public struct Map
         mapSizeX = mapX+2;
         mapSizeY = mapY+2;
         myMapLayout = CreateRandomMap();
+    }
+
+    public Map(Map mapToCopy)
+    {
+        mapSizeX = mapToCopy.mapSizeX;
+        mapSizeY = mapToCopy.mapSizeY;
+        myMapLayout = new MapEnvironment[mapSizeX,mapSizeY];
+        for (int j = 0; j < mapSizeY; j++)
+        {
+            for (int i = 0; i < mapSizeX; i++)
+            {
+                myMapLayout[i, j] = mapToCopy.myMapLayout[i, j];
+            }
+        }
     }
     
     public MapEnvironment[,] myMapLayout;
@@ -97,6 +113,19 @@ public struct Player
         health = 1;
         timeuntilbomb = 0f;
     }
+
+    public Player(Player playerToCopy)
+    {
+        playerID = playerToCopy.playerID;
+        position = playerToCopy.position;
+        health = playerToCopy.health;
+        timeuntilbomb = playerToCopy.timeuntilbomb;
+    }
+
+    public static void setnbPlayer(int i)
+    {
+        nbPlayer = i;
+    }
 }
 
 // A bomb is a position that sets an explosion after some time 
@@ -124,6 +153,17 @@ public struct Bomb
         explosionRadius = radius;
 
     }
+
+    public Bomb(Bomb bombToCopy)
+    {
+        bombID = bombToCopy.bombID;
+        exploding = bombToCopy.exploding;
+        explosionSquares = bombToCopy.explosionSquares.ConvertAll(vect => new Vector2(vect.x,vect.y));
+
+        position = bombToCopy.position;
+        explosionTime = bombToCopy.explosionTime;
+        explosionRadius = bombToCopy.explosionRadius;
+    }
 }
 
 
@@ -134,11 +174,13 @@ public class Model
     private Player[] playerList;
     private Dictionary<int,Bomb> bombList;
     private Dictionary<string, object> myGameState;
-    private float inGameTimer;
+    public float inGameTimer;
+    public float inGameDeltaTime;
 
     //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
     public bool isBothPlayerAlive;
-
+    
+    
     // This code is kinda bad
     public Player getWinner()
     {
@@ -157,10 +199,12 @@ public class Model
     private Vector2 tempPosition;
     private Rect tempRect;
     private Bomb tempBomb;
+    private int tempInt;
     
     // Init the different lists and add new players
     public Model(int mapX,int mapY, int numberOfPlayer)
     {
+        Player.setnbPlayer(0);
         inGameTimer = 0.0f;
         playerList = new Player[numberOfPlayer];
         bombList = new Dictionary<int, Bomb>();
@@ -172,21 +216,36 @@ public class Model
         // TO DO: HANDLE NOT SPAWNING ON BREAKABLE
         for (int i = 0; i < numberOfPlayer; i++)
         {
-            Vector2 pos = new Vector2(0,0);
-            if (i == 0)
+
+            tempPosition = new Vector2(Random.Range(0, currentMap.mapSizeX), Random.Range(0, currentMap.mapSizeX));
+            while (currentMap.myMapLayout[(int) tempPosition.x, (int) tempPosition.y] != MapEnvironment.Empty)
             {
-                pos = new Vector2(2, 11);
+                tempPosition = new Vector2(Random.Range(0, currentMap.mapSizeX), Random.Range(0, currentMap.mapSizeX));
             }
-            else
-            {
-                pos = new Vector2(11, 2);
-            }
-            playerList[i] = (new Player(pos));
+            playerList[i] = new Player(tempPosition);
         }
     }
 
+    public Model(Model modelToCopy)
+    {
+        inGameTimer = 0.0f;
+        playerList = new Player[modelToCopy.playerList.Length];
+        foreach (Player player in modelToCopy.playerList)
+        {
+            playerList[player.playerID] = new Player(player);
+        }
+        bombList = new Dictionary<int, Bomb>();
+        foreach (KeyValuePair<int,Bomb> bombItem in modelToCopy.bombList)
+        {
+            bombList.Add(bombItem.Key,new Bomb(bombItem.Value));
+        }
+        currentMap = new Map(modelToCopy.currentMap);
+        isBothPlayerAlive = true;
+        myGameState = new Dictionary<string, object>();
+    }
+
     // Check if a given position is in a wall or breakable
-    private bool checkPossiblePosition(Vector2 posToCheck,bool isExplosion = false)
+    private int checkPossiblePosition(Vector2 posToCheck,bool isExplosion = false)
     {
         Vector2 closePoint = new Vector2((int) Math.Round(posToCheck.x, 0), (int) Math.Round(posToCheck.y, 0));
         
@@ -196,16 +255,16 @@ public class Model
             if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Wall || currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Breakable && !isExplosion)
             {
                 tempRect = new Rect(closePoint.x - 0.5f, closePoint.y - 0.5f, 1, 1);
-                if (tempRect.Contains(posToCheck)) return false;
+                if (tempRect.Contains(posToCheck)) return 0;
             }
             else if (currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] == MapEnvironment.Breakable && isExplosion)
             {
                 currentMap.myMapLayout[(int) closePoint.x, (int) closePoint.y] = MapEnvironment.Empty;
-                return false;
+                return 2;
             }
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
     
     
@@ -237,7 +296,7 @@ public class Model
                     break;
             }
             // for a move action check if it is possible
-            if(checkPossiblePosition(tempPosition)) playerList[playerID].position = tempPosition;
+            if(checkPossiblePosition(tempPosition)==1) playerList[playerID].position = tempPosition;
             
         }
         else dropBombAction(playerID);
@@ -276,11 +335,12 @@ public class Model
         {
             for (int i = 1; i < explodingBomb.explosionRadius; i++)
             {
-                if (checkPossiblePosition(explodingBomb.position + direction * i,true))
+                tempInt = checkPossiblePosition(explodingBomb.position + direction * i, true);
+                if (tempInt!=0)
                 {
                     explodingBomb.explosionSquares.Add(explodingBomb.position + direction * i);
                 }
-                else break;
+                if(tempInt!=1) break;
             }
         }
         
@@ -302,10 +362,11 @@ public class Model
     }
 
     // On each update, check if a bomb should explode and launch explosion detection
-    public void UpdateModel()
+    public void UpdateModel(float deltaTime)
     {
         // Update the in game timer for computation
-        inGameTimer += Time.deltaTime;
+        inGameDeltaTime = deltaTime;
+        inGameTimer += inGameDeltaTime;
         
         // Create an explosion if bomb timer has expired
         idList = new List<int>(bombList.Keys);
@@ -323,7 +384,5 @@ public class Model
                 else bombList.Remove(bombKey);
             }
         }
-        
-        
     }
 }

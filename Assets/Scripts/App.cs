@@ -1,7 +1,12 @@
 using UnityEngine;
 
 
-
+public enum P2Input
+{
+    Multi,
+    RandomIA,
+    MCTSIA
+}
 // General class containing the main variables and responsible of initiating the different classes
 public class App : MonoBehaviour
 {
@@ -21,9 +26,10 @@ public class App : MonoBehaviour
     public GameObject breakable;
     public GameObject fire;
     public Randomer randomer;
-    
 
-    public bool randomIA = false;
+
+
+    public P2Input currentMode;
     // TO BE ADDED
     
     public GameObject pausePanel;
@@ -39,17 +45,26 @@ public class App : MonoBehaviour
         Time.timeScale = 1.0f;
         myModel = new Model(mapSizeX,mapSizeY,numberOfPlayer);
         CharacterRender charrender = new CharacterRender();
-        Randomer rand = new Randomer(charrender);
+        MCTS1 mcts = new MCTS1(myModel);
 
-        if (AIandSound.Instance.Difficulty == "Easy")
+        switch (AIandSound.Instance.Difficulty)
         {
-            randomIA = true;
-        }else if (AIandSound.Instance.Difficulty == "Hard" || AIandSound.Instance.Difficulty == "Multiplayer")
-        {
-            randomIA = false;
+            case "Easy":
+                currentMode = P2Input.RandomIA;
+                break;
+            case "Hard":
+                currentMode = P2Input.MCTSIA;
+                break;
+            case "Multiplayer":
+                currentMode = P2Input.Multi;
+                break;
+            default:
+                currentMode = P2Input.Multi;
+                break;
         }
         
-        myController = new Controller(rand);
+        
+        myController = new Controller(mcts);
        
         myController.activeModel = myModel;
         
@@ -60,10 +75,11 @@ public class App : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        myController.UpdateController(randomIA);
-        myModel.UpdateModel();
+        Debug.Log(Time.deltaTime);
+        myController.UpdateController(currentMode);
+        myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
         if (!myModel.isBothPlayerAlive)

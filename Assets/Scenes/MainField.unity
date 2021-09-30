@@ -1661,7 +1661,8 @@ MonoBehaviour:
   wall: {fileID: 3026889979026083125, guid: b29bbf4142a718d44ba76c8784eefecf, type: 3}
   breakable: {fileID: 7649789925095218849, guid: 72d85612b98cb624caf00b3d20e76554, type: 3}
   fire: {fileID: 5468725236565767469, guid: 56140859cca4db54f8e2826c5b40b04c, type: 3}
-  randomIA: 1
+  randomIA: 0
+  MCTSIA: 0
   pausePanel: {fileID: 7028591}
   winPanel: {fileID: 940700912}
   losePanel: {fileID: 1095374724}
