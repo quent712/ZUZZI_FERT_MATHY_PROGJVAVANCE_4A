@@ -66,10 +66,11 @@ public class App : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log(Time.deltaTime);
         myController.UpdateController(randomIA,MCTSIA);
-        myModel.UpdateModel();
+        myModel.UpdateModel(Time.deltaTime);
         
         //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
         if (!myModel.isBothPlayerAlive)

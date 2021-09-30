@@ -362,10 +362,11 @@ public class Model
     }
 
     // On each update, check if a bomb should explode and launch explosion detection
-    public void UpdateModel()
+    public void UpdateModel(float deltaTime)
     {
         // Update the in game timer for computation
-        inGameTimer += Time.deltaTime;
+        inGameDeltaTime = deltaTime;
+        inGameTimer += inGameDeltaTime;
         
         // Create an explosion if bomb timer has expired
         idList = new List<int>(bombList.Keys);
