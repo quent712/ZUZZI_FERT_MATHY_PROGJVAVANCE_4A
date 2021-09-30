@@ -47,9 +47,11 @@ public class App : MonoBehaviour
         if (AIandSound.Instance.Difficulty == "Easy")
         {
             randomIA = true;
+            MCTSIA = false;
         }else if (AIandSound.Instance.Difficulty == "Hard")
         {
             randomIA = false;
+            MCTSIA = true;
         }
         
         

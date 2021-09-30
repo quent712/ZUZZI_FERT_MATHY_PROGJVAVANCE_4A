@@ -36,7 +36,7 @@ public class MCTS1
         return false;
     }
 
-    public int interact()
+    public int interact() //SELECT BEST ACTION IN THREE
     {
         simtime = 0.0f;
         Player[] listplayer = model.getGameState()["PlayersInfo"] as Player[];
@@ -48,21 +48,21 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-           compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            for (int i =0;i<5;i++)
+            {
+                compute(tree); //compute(tree,pokemonMe, pokemonAdv);
+            }
         }
 
 
         // Appel horloge
         if (thrust())
         {
-            born = FREQUENCY;
-
+            
             float max = float.MinValue;
             Action currentAction = Action.Undertermined;
             Node n = null;
-            bool priorityMove = false;
-           
-
+            
             // Cherche la meilleure action conduisant à une victoire
             foreach (Node child in tree.getPossibleAction())
             {
@@ -77,9 +77,6 @@ public class MCTS1
                 }
             }
 
-            
-           
-            //On résou la meilleur action conduisant à une victoire
             int i = 0;
             
             
@@ -98,14 +95,15 @@ public class MCTS1
 
 
 
-    void compute(Node action)
+    void compute(Node action) //Simulation
     {
         Debug.Log("In COMPUTE");
         Model simumodel = new Model(model);     
         GameSimul.copymodel = simumodel;
-        //Debug.Log(action.data.a + "/" + action.data.b);
+        
+        
         //Tant que la simulation n'est pas achevée
-        while (!GameSimul.isFinished && simtime <0.5f)
+        while (!GameSimul.isFinished && simtime <5f)
         {
             simtime = simtime + Time.deltaTime;
             
