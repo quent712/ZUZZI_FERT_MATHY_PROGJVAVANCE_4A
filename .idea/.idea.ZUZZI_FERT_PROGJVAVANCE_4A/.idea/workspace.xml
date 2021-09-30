@@ -33,8 +33,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/PauseAndWinLoseScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Model.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/App.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/agent/MCTS1.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/agent/mcts/Action.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1yiwP7jo4fwmLwbkRYm2w4IAEjr" />

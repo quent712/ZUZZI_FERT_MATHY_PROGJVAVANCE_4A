@@ -38,7 +38,7 @@ public class GameSimul{
        Action actiona = (Action)Random.Range(0, 5);
        
        copymodel.actionHandler( actiona,0); //Action aléatoire du player
-       copymodel.inGameTimer += copymodel.inGameDeltaTime * 20; //Raccourcir temps de posage de bombe et de déplacements
+       copymodel.inGameTimer += copymodel.inGameDeltaTime * 800; //Raccourcir temps de posage de bombe et de déplacements
        copymodel.UpdateModel(copymodel.inGameDeltaTime); //Pour calcul explos
        
         //On a une fin de partie ?
@@ -54,7 +54,7 @@ public class GameSimul{
         
     }
 
-    public static System.Array GetNextPossibleAction(Node n){ //?????
+    public static System.Array GetNextPossibleAction(Node n){ //Retourne les actions possibles
         return Action.GetValues(typeof(Action));
     }
 

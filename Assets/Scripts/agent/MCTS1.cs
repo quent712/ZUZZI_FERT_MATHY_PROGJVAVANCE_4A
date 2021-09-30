@@ -48,7 +48,7 @@ public class MCTS1
             listplayer[1].health = 1;
             listplayer[0].health = 1;
             
-            for (int i =0;i<60;i++)
+            for (int i =0;i<50;i++)
             {
                 compute(tree); //compute(tree,pokemonMe, pokemonAdv);
             }
