@@ -179,7 +179,7 @@ public class Model
             {
                 tempPosition = new Vector2(Random.Range(0, currentMap.mapSizeX), Random.Range(0, currentMap.mapSizeX));
             }
-            playerList[i] = (new Player(tempPosition));
+            playerList[i] = new Player(tempPosition);
         }
     }
 
@@ -322,7 +322,5 @@ public class Model
                 else bombList.Remove(bombKey);
             }
         }
-        
-        
     }
 }
