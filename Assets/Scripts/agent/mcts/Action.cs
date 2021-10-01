@@ -38,19 +38,27 @@ public class GameSimul{
        Action actiona = (Action)Random.Range(0, 6);
        
        copymodel.actionHandler( actiona,0); //Action aléatoire du player
-       copymodel.inGameTimer += copymodel.inGameDeltaTime * 50; //Raccourcir temps de posage de bombe et de déplacements
+       copymodel.inGameTimer += copymodel.inGameDeltaTime * 10; //Raccourcir temps de posage de bombe et de déplacements
        copymodel.UpdateModel(copymodel.inGameDeltaTime); //Pour calcul explos
        
         //On a une fin de partie ?
        Player[] listplayer = copymodel.getGameState()["PlayersInfo"] as Player[];
-        if(listplayer[1].health ==0){   //Si Adversaire mort
+       if (listplayer[1].health <= 0 && listplayer[0].health <= 0)
+       {
+           finalSituation = 2; //égalité
+           isFinished = true;
+       }
+       
+       else if(listplayer[1].health <=0){   //Si Adversaire mort
             finalSituation = 0;
             isFinished = true;
         }
-        else if(listplayer[0].health ==0){ //Si Player mort
+        else if(listplayer[0].health <=0){ //Si Player mort
             finalSituation = 1;
             isFinished = true;
         }
+        
+        
         
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1077,7 +1077,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1204,8 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192d0c6af8538404c86915acbf0d69b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Difficulty: Easy
-  GeneralSound: 1
+  Difficulty: Hard
 --- !u!4 &1587542506
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,6 +1513,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 49620360464128806, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 426676251456117390, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: buttonclip
       value: 
@@ -1596,7 +1599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488526325588624, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -103
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 3022488526325588625, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1792,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197150, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 23
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 3022488527087197151, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1916,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3022488528204141893, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -43
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3022488528204141898, guid: 0a9c9749ad629194b88ff855a847b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
