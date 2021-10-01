@@ -177,7 +177,7 @@ public class Model
     public float inGameTimer;
     public float inGameDeltaTime;
 
-    //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+    //////////////// 2 PLAYERS SOLUTION ////////////
     public bool isBothPlayerAlive;
     
     
@@ -190,8 +190,7 @@ public class Model
         }
         return playerList[0];
     }
-    ////////////////////////////////////////////////////////////
-    
+    /////////////////////////////////////////////////
     
     
     // TEMPORARY VARIABLES
@@ -211,9 +210,7 @@ public class Model
         currentMap = new Map(mapX,mapY);
         isBothPlayerAlive = true;
         myGameState = new Dictionary<string, object>();
-        
-        
-        // TO DO: HANDLE NOT SPAWNING ON BREAKABLE
+
         for (int i = 0; i < numberOfPlayer; i++)
         {
 
