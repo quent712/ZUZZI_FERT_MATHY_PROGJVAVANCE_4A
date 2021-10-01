@@ -25,7 +25,7 @@ public class MCTS1
     {
         foreach (Node n in tree.getPossibleAction())
         {
-            if (n.data.b > 150)
+            if (n.data.b > 10)
             {
                 // au moins un des noeuds doit être fiable (>20)
                 return true;
@@ -37,7 +37,7 @@ public class MCTS1
 
     public Action interact() //SELECT BEST ACTION IN THREE
     {
-        for (int i =0;i<30;i++)
+        for (int i =0;i<15;i++)
         {
             compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
