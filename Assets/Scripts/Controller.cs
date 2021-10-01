@@ -56,10 +56,6 @@ public class Controller
     // Listens to Player action
     public void UpdateController(P2Input currentMode)
     {
-        
-        // FOR PLAYER VS PLAYER TAKE INTO ACCOUNT ALTERNATE CONTROL SCHEME
-        // PLAYERID IS MANUALLY INPUTTED, NOT GOOD?
-        
         // PLAYER 1 INPUTS
         if (Input.GetKey(KeyCode.Z))
         {
@@ -79,7 +75,6 @@ public class Controller
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("want bomb");
             activeModel.actionHandler(Action.SetBomb,0);
         }
         

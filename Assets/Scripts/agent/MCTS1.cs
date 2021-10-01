@@ -37,7 +37,7 @@ public class MCTS1
 
     public Action interact() //SELECT BEST ACTION IN THREE
     {
-        for (int i =0;i<50;i++)
+        for (int i =0;i<30;i++)
         {
             compute(tree); //compute(tree,pokemonMe, pokemonAdv);
         }
@@ -45,15 +45,17 @@ public class MCTS1
 
 
         // Appel horloge
-        if (trust())
-        {
+        
             float max = float.MinValue;
             Action currentAction = Action.Undertermined;
             Node n = null;
             
             // Cherche la meilleure action conduisant à une victoire
+            
+            
             foreach (Node child in tree.getPossibleAction())
             {
+                
                 if (child.state != Action.Undertermined)
                 {
                     if ((float) child.data.a / (float) child.data.b > max)
@@ -62,6 +64,11 @@ public class MCTS1
                         max = (float) child.data.a / (float) child.data.b;
                         n = child;
                     }
+                }
+                
+                if (child.data.a / (float) child.data.b == 1)
+                {
+                    break;
                 }
             }
             Debug.Log("MAX" +"=" + max);
@@ -72,7 +79,7 @@ public class MCTS1
 
                 // IMPORTANT ! On définie le nouveau noeud de base sur le noeud choisi
             
-        }
+        
 
         return Action.Undertermined;
     }
@@ -122,9 +129,16 @@ public class MCTS1
         action.data.b = 1;
         if (GameSimul.finalSituation == 0) //gameover
         {
+            action.data.a = -1;
+           
+        }
+        
+        if (GameSimul.finalSituation == 2) //égalité
+        {
             action.data.a = 0;
            
         }
+        
         else if (GameSimul.finalSituation == 1)//win
         {
            
