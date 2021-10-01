@@ -84,15 +84,12 @@ public class App : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(Time.deltaTime);
-        
         myModel.UpdateModel(Time.deltaTime);
         
-        //////////////// TO BE CHANGED FOR PROPER SOLUTION ////////////
+        //////////////// 2 PLAYERS SOLUTION ////////////
         if (!myModel.isBothPlayerAlive)
         {
             Player winner = myModel.getWinner();
-            Debug.Log("Game Ended and I got a Winner: Player "+winner.playerID);
 
             if (winner.playerID == 0)
             {
@@ -105,11 +102,10 @@ public class App : MonoBehaviour
                 Time.timeScale = 0.0f;
             }
         }
-        /////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////
         
         myView.UpdateView(myModel.getGameState());
-        
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pausePanel.SetActive(true);
